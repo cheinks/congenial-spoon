@@ -1,6 +1,6 @@
 
 /**
- * We took notes about loops and stuff.
+ * Write a description of class Loops here.
  *
  * @author Cody Heinks
  * @version 8.27.18
