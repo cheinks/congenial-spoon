@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Notes
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ HelloWorld\ here.\r\n\r\n\ @author\ Wiebe\r\n\ @version\ 8.21.18\r\n
+comment1.params=
+comment1.target=void\ dataTypes()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=
+comment3.target=void\ math()
+numComments=4
