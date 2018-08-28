@@ -9,14 +9,14 @@ public class Loops
 {
     public static void whileLoops(){
         int x = 0;
-        while(x<10000){
+        while(x<10){
             System.out.println(x);
             x++;
         }
     }
-    public static void forLoops(){
+    public static void forLoop(){
         for (int i = 0; i < 10; i++){
-            System.out.println("Mmmmmmmmm....Bacon!");
+            System.out.println("Mmmmmm....Bacon!");
         }
     }
     public static void forLoop2(){
@@ -26,24 +26,15 @@ public class Loops
     }
     public static void litLoop(){
         for(int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
+            for (int j = 0; j < 5; j++){
                 System.out.print(i + " ");
             }
             System.out.println();
         }
     }
-    
-    public static void challenge1(){
+    public static void litLoop2(){
         for(int i = 1; i < 6; i++){
-            for(int j = i; j < 6; j++){
-                System.out.print(i + " ");
-            }
-            System.out.println();
-        }
-    }
-    public static void challenge2(){
-        for(int i = 1; i < 6; i++){
-            for(int j = i; j > 0; j--){
+            for (int j = i; j < 6; j++){
                 System.out.print(i + " ");
             }
             System.out.println();
