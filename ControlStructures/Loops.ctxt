@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Loops
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Loops\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ 8.27.18\r\n
+comment0.text=\r\n\ Loops\!\!\!\!\!\!.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ 8.27.18\r\n
 comment1.params=
 comment1.target=void\ whileLoops()
 comment2.params=
@@ -10,7 +10,7 @@ comment3.target=void\ forLoop2()
 comment4.params=
 comment4.target=void\ litLoop()
 comment5.params=
-comment5.target=void\ challenge()
+comment5.target=void\ litLoop2()
 comment6.params=
 comment6.target=void\ challenge1()
 comment7.params=
