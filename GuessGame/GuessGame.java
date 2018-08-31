@@ -12,7 +12,7 @@ public class GuessGame
 {
     public static int randNum(){
         int rand = (int)(Math.random() * 101) + 100;
-        //System.out.println(rand);
+        System.out.println(rand);
         return rand;
     }
     public static void playGame(){
@@ -25,22 +25,22 @@ public class GuessGame
         System.out.println("Got it! Guess my number.");
         while(guesses > 0){
             int playerGuess = scanner.nextInt();
-            if(playerGuess > numToGuess){
+            if(playerGuess == numToGuess){
+                System.out.println("That's it. You win!");
+                guesses = 0;
+            }
+            else if(playerGuess > numToGuess && guesses > 1){
                 System.out.println("Too high. Guess again.");
                 guesses--;
             }
-            else if(playerGuess < numToGuess){
+            else if(playerGuess < numToGuess && guesses > 1){
                 System.out.println("Too low. Guess again.");
                 guesses--;
             }
             else{
-                System.out.println("That's it. You win!");
-                guesses = 0;
-                numNotGuessed = false;
+                System.out.println("That's not it either. You lose!");
+                guesses--;
             }
-        }
-        if(numNotGuessed){
-            System.out.println("Oh, wait, you ran out of guesses. You lose!");
         }
     }
 }
