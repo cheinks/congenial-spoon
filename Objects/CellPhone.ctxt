@@ -1,6 +1,12 @@
 #BlueJ class context
 comment0.target=CellPhone
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ CellPhone\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ 9.4.18\r\n
-comment1.params=screenW\ screenH\ color\ chargeP\ cam
+comment1.params=screenW\ screenH\ colour\ chargeP\ cam
 comment1.target=CellPhone(int,\ int,\ java.lang.String,\ java.lang.String,\ boolean)
-numComments=2
+comment2.params=name
+comment2.target=void\ call(java.lang.String)
+comment3.params=
+comment3.target=void\ compute()
+comment4.params=
+comment4.target=void\ getOtherPhoneNumber()
+numComments=5
