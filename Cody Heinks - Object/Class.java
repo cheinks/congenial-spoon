@@ -61,7 +61,7 @@ public class Class
     }
     
     //Methods
-    public void getTeacher(){
+    public void teacher(){
         System.out.println("I haven't gotten this far yet okay!");
         System.out.println("Mr. Wiebe teaches this class for now.");
     }
