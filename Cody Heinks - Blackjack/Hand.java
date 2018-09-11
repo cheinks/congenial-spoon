@@ -9,24 +9,37 @@ import java.lang.Math;
 public class Hand
 {
     private int numCards;
+    private int handValue;
+    private String hand;
     //private int
     
     //Constructors
-    public Hand(int value){
-        numCards = value;
-    }
     public Hand(){
-        numCards = (int)(Math.random() * 11) + 1;
+        numCards = 2;
+        handValue = 0;
+        hand = "";
     }
     
     //Accessors
     public int getCards(){
         return numCards;
     }
+    public int getValue(){
+        return handValue;
+    }
+    public String getHand(){
+        return hand;
+    }
     
     //Mutators
     public void setCards(int cards){
         numCards = cards;
+    }
+    public void setValue(int cards){
+        handValue += cards;
+    }
+    public void setHand(String newCards){
+        hand = hand + newCards;
     }
     
     //Methods
