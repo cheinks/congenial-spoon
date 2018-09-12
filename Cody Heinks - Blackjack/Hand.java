@@ -11,13 +11,16 @@ public class Hand
     private int numCards;
     private int handValue;
     private String hand;
-    //private int
+    private boolean playerHand;
+    private String showing;
     
     //Constructors
-    public Hand(){
+    public Hand(boolean handType){
         numCards = 2;
         handValue = 0;
         hand = "";
+        playerHand = handType;
+        showing = " ";
     }
     
     //Accessors

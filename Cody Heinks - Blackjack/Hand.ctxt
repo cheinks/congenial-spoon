@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Hand
-comment1.params=
-comment1.target=Hand()
+comment1.params=handType
+comment1.target=Hand(boolean)
 comment2.params=
 comment2.target=int\ getCards()
 comment3.params=
