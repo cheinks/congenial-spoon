@@ -6,7 +6,6 @@
  * @version 9.11.18
  */
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 public class Blackjack
 {
     /*
@@ -16,23 +15,11 @@ public class Blackjack
      * str1.equals(str2) //True
      */
     public static void playGame(){
-        Hand playerHand = new Hand(true);
-        Hand dealerHand = new Hand(false);
-        int i;
-        for(i = 0; i < 2; i++){
-            int rand = (int)(Math.random() * 11) + 1;
-            playerHand.setValue(rand);
-            playerHand.setHand("" + rand + " ");
-        }
-        for(i = 0; i < 2; i++){
-            int rand = (int)(Math.random() * 11) + 1;
-            dealerHand.setValue(rand);
-            if(i == 0){
-                dealerHand.setHand("" + "X" + " ");
-            }else{
-                dealerHand.setHand("" + rand + " ");
-            }   
-        }
+        Hand playerHand = new Hand();
+        int playerTotal = playerHand.getValue();
+        Hand dealerHand = new Hand();
+        int dealerTotal = dealerHand.getValue();
+        
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome!");
         System.out.println("When you are ready to play, type 'begin' and press enter.");
@@ -40,14 +27,12 @@ public class Blackjack
         boolean playing = true;
         boolean hit;
         int response;
+        System.out.println("The dealer is showing a " + dealerHand.getCard2);
         while(playing){
             hit = false;
             System.out.println("Your hand:");
             System.out.println(playerHand.getHand());
             System.out.println();
-            System.out.println("Dealer hand:");
-            System.out.println(dealerHand.getHand());
-            int playerTotal = playerHand.getValue();
             if(playerTotal < 22){
                 System.out.println("Would you like a hit? Yes(1)/No(2)");
                 response = scanner.nextInt();
@@ -61,8 +46,6 @@ public class Blackjack
                 playerHand.setHand("" + rand + " ");
             }else{
                 if(playerTotal<22){
-                    System.out.println();
-                    int dealerTotal = dealerHand.getValue();
                     System.out.println("Your hand:");
                     System.out.println(playerHand.getHand());
                     System.out.println();
