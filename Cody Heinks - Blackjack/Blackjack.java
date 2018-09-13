@@ -9,13 +9,7 @@ public class Blackjack
 {
     public static void playGame(){
         Hand playerHand = new Hand();
-<<<<<<< HEAD
         Hand dealerHand = new Hand();
-=======
-        int playerTotal = playerHand.getValue();
-        Hand dealerHand = new Hand();
-        int dealerTotal = dealerHand.getValue();
->>>>>>> 2a6ac82db6eff28acdf357016631ae997fb881fc
         
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome!");
@@ -23,23 +17,15 @@ public class Blackjack
         String begin = scanner.next();
         boolean playing = true;
         boolean hit;
-<<<<<<< HEAD
         String response;
         System.out.println("The dealer is showing a " + dealerHand.getCard2() + ".");
-=======
-        int response;
-        System.out.println("The dealer is showing a " + dealerHand.getCard2);
->>>>>>> 2a6ac82db6eff28acdf357016631ae997fb881fc
         while(playing){
             hit = false;
             System.out.println();
             System.out.println("Your hand:");
             System.out.println(playerHand.getHand());
             System.out.println();
-<<<<<<< HEAD
             int playerTotal = playerHand.getValue();
-=======
->>>>>>> 2a6ac82db6eff28acdf357016631ae997fb881fc
             if(playerTotal < 22){
                 System.out.println("Would you like to hit?");
                 response = scanner.next().toLowerCase();
