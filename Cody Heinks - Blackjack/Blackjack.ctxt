@@ -2,5 +2,4 @@
 comment0.target=Blackjack
 comment1.params=
 comment1.target=void\ playGame()
-comment1.text=\r\n\ String\ str1\ \=\ "hit"\r\n\ String\ str2\ \=\ "hit"\r\n\ str1\ \=\=\ str2\ //False\r\n\ str1.equals(str2)\ //True\r\n
 numComments=2

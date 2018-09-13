@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class Hand here.
  *
@@ -8,24 +7,25 @@
 import java.lang.Math;
 public class Hand
 {
-    private int numCards;
+    private int card1;
+    private int card2;
     private int handValue;
     private String hand;
-    private boolean playerHand;
-    private String showing;
     
     //Constructors
-    public Hand(boolean handType){
-        numCards = 2;
-        handValue = 0;
-        hand = "";
-        playerHand = handType;
-        showing = " ";
+    public Hand(){
+        card1 = (int)(Math.random() * 11) + 1;
+        card2 = (int)(Math.random() * 11) + 1;
+        handValue = card1 + card2;
+        hand = "" + card1 + " " + card2 + " ";
     }
     
     //Accessors
-    public int getCards(){
-        return numCards;
+    public int getCard1(){
+        return card1;
+    }
+    public int getCard2(){
+        return card2;
     }
     public int getValue(){
         return handValue;
@@ -35,8 +35,11 @@ public class Hand
     }
     
     //Mutators
-    public void setCards(int cards){
-        numCards = cards;
+    public void setCard1(int card){
+        card1 = card;
+    }
+    public void setCard2(int card){
+        card2 = card;
     }
     public void setValue(int cards){
         handValue += cards;
