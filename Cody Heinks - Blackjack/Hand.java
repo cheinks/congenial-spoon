@@ -16,7 +16,11 @@ public class Hand
     public Hand(){
         card1 = (int)(Math.random() * 11) + 1;
         card2 = (int)(Math.random() * 11) + 1;
+<<<<<<< HEAD
         handValue = card1 + card2;
+=======
+        handValue = card1 + card 2;
+>>>>>>> 2a6ac82db6eff28acdf357016631ae997fb881fc
         hand = "" + card1 + " " + card2 + " ";
     }
     
