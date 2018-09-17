@@ -1,57 +1,38 @@
+
 /**
  * Write a description of class Hand here.
  *
  * @author Cody Heinks
- * @version 9.10.18
+ * @version 9.14.18
  */
-import java.lang.Math;
-public class Hand
-{
+public class Hand{
     private int card1;
     private int card2;
-    private int handValue;
+    private int total;
     private String hand;
+    private boolean bust;
     
-    //Constructors
     public Hand(){
         card1 = (int)(Math.random() * 11) + 1;
         card2 = (int)(Math.random() * 11) + 1;
-        handValue = card1 + card2;
+        total = card1 + card2;
         hand = "" + card1 + " " + card2 + " ";
+        bust = false;
     }
     
-    //Accessors
-    public int getCard1(){
-        return card1;
-    }
-    public int getCard2(){
-        return card2;
-    }
-    public int getValue(){
-        return handValue;
-    }
-    public String getHand(){
-        return hand;
-    }
+    public int getCard1(){return card1;}
+    public int getCard2(){return card2;}
+    public int getTotal(){return total;}
+    public String getHand(){return hand;}
+    public boolean getBust(){return bust;}
     
-    //Mutators
-    public void setCard1(int card){
-        card1 = card;
+    public void setCard1(int card){card1 = card;}
+    public void setCard2(int card){card2 = card;}
+    public void addTotal(int newCard){total += newCard; 
+        if(total > 21){bust = true;}
     }
-    public void setCard2(int card){
-        card2 = card;
-    }
-    public void setValue(int cards){
-        handValue += cards;
-    }
-    public void setHand(String newCards){
-        hand = hand + newCards;
-    }
+    public void addCard(String newCard){hand = hand + newCard;}
+    public void busted(){bust = true;}
     
-    //Methods
-    public static void randNum(){
-        int rand = (int)(Math.random() * 11) + 1;
-        System.out.println(rand);
-    }
     
 }
