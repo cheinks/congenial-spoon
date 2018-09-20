@@ -59,7 +59,10 @@ public class Magpie2
         {
                 response = "Cody is a great guy.";
         }
-        //else if (statement.in){}
+        else if (statement.indexOf("eat") >= 0)
+        {
+                response = "What's your favorite food of all time?";
+        }
         else if ((int)statement.trim().length() < 1)
         {
                 response = "Say something, please.";
