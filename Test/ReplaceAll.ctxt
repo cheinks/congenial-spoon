@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ReplaceAll
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ReplaceAll\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=str\ oldStr\ newStr
+comment1.target=java.lang.String\ apcsReplaceAll(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ @param\ str\ a\ String\ with\ length\ >\ 0\r\n\ @param\ oldstr\ a\ String\r\n\ @param\ newstr\ a\ String\r\n\ @return\ a\ new\ String\ in\ which\ all\ occurrences\ of\ the\ substring\ \r\n\ oldstr\ in\ str\ are\ replaced\ by\ the\ substring\ newstr\r\n
+comment2.params=
+comment2.target=void\ runner()
+numComments=3
