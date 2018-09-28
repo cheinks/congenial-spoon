@@ -42,7 +42,8 @@ public class ReplaceAll
             return toBeReturned;
         }
     }
-    public static void runner()
+    /*
+     * public static void runner()
     {
         System.out.println("type q to quit when asked:");
         boolean running = true;
@@ -61,4 +62,5 @@ public class ReplaceAll
             System.out.println();
         }        
     }
+     */
 }
