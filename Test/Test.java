@@ -10,7 +10,7 @@ public class Test
 {
     public static void test1(){
         Scanner scanner = new Scanner(System.in);
-        String guessWord = "Hello world!";
+        String guessWord = "hello world";
         System.out.println(guessWord);
         String whatPlayerSees = "";
         String whatComputerSees = "";
