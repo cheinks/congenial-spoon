@@ -24,16 +24,17 @@ public class ReplaceAll
         int oldLen = oldstr.length();
         int psn = original.indexOf(oldstr); //Location of the string to be replaced
         String toBeReturned = ""; //Running total of the final product
-        String restOfPhrase = original;
+        String restOfPhrase = original; //Nothing has been replaced yet
         
         //Will return the original if it does not contain the string to be replaced)
         if(psn<0){return original;}
         else{
+            String wordTracker = original;
             while(psn >= 0)
             {
-                original = restOfPhrase; //Updates the original - removes the changed portion
-                toBeReturned += original.substring(0, psn); //Includes the part before oldstr
-                restOfPhrase = original.substring(psn + oldLen); //The part after oldstr
+                wordTracker = restOfPhrase; //Updates the original - removes the changed portion
+                toBeReturned += wordTracker.substring(0, psn); //Includes the part before oldstr
+                restOfPhrase = wordTracker.substring(psn + oldLen); //The part after oldstr
                 toBeReturned += newstr; //Includes newstr
                 psn = restOfPhrase.indexOf(oldstr); //Is there another instance of oldstr?
                 //Will be -1 if not, ending the loop, otherwise is the new location of oldstr
