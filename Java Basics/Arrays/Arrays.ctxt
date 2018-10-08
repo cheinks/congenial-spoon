@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Arrays
+comment1.params=n
+comment1.target=Arrays(int)
+comment1.text=Creates\ a\ new\ array\ with\ 10000\ n's\ in\ it.\r\n\ \r\n\ @param\ n\ All\ 10000\ entries\ will\ be\ the\ integer\ n.\r\n
+comment2.params=
+comment2.target=Arrays()
+comment3.params=
+comment3.target=void\ printArray()
+numComments=4
