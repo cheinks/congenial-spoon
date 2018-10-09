@@ -7,4 +7,6 @@ comment2.params=
 comment2.target=Arrays()
 comment3.params=
 comment3.target=void\ printArray()
-numComments=4
+comment4.params=
+comment4.target=void\ main()
+numComments=5

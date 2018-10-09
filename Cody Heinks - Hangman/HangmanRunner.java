@@ -3,17 +3,17 @@
  * Write a description of class HangmanRunner here.
  *
  * @author Cody Heinks
- * @version (a version number or a date)
+ * @version 10.09.18
  */
 import java.util.Scanner;
 public class HangmanRunner
 {
     public static void playGame(){
         Scanner scanner = new Scanner(System.in);
-        String guessWord = "helloworld";
-        int guessLen = guessWord.length();
+        String wordToGuess = "hello world";        
+        int guessLen = wordToGuess.length();
+        String guessWord = wordToGuess;
         String newGuessWord = guessWord;
-        System.out.println(guessWord);
         
         String dashes = "";
         String whatPlayerSees = "";
@@ -21,35 +21,31 @@ public class HangmanRunner
         int guesses = 6;
         
         System.out.println("I'm thinking of a word...");
-        System.out.println("Word to guess: " + guessWord);
         for(int i = 0; i < guessLen; i++){
-            System.out.print("_");
-            dashes += "_";
+            if(wordToGuess.charAt(i) == ' '){dashes += " ";}else{dashes += "_";}
         }
         String restOfPhrase = dashes;
-        System.out.println();
+        System.out.println(dashes);
         while(guesses > 0){
             System.out.println("Guess a letter:");
             playerGuess = scanner.nextLine();
             int loc = guessWord.indexOf(playerGuess);
             if(loc >= 0){
                 while(loc >= 0){
-                    guessWord = newGuessWord;
                     dashes = restOfPhrase;
                     whatPlayerSees += dashes.substring(0, loc);
                     restOfPhrase = dashes.substring(loc + 1);
                     whatPlayerSees += playerGuess;
-                    newGuessWord = guessWord.substring(0, loc) + "_" + guessWord.substring(loc + 1);
-                    System.out.println(newGuessWord);
+                    newGuessWord = newGuessWord.substring(loc + 1);
                     loc = newGuessWord.indexOf(playerGuess);
-                    System.out.println("New loc: " + loc);
-                    System.out.println(restOfPhrase);
                 }
                 whatPlayerSees += restOfPhrase;
                 System.out.println(whatPlayerSees);
                 dashes = whatPlayerSees;
                 restOfPhrase = dashes;
                 whatPlayerSees = "";
+                guessWord.replaceAll(playerGuess, "_");
+                newGuessWord = guessWord;
             }else{
                 guesses--;
                 System.out.println("Guesses remaining: " + guesses);

@@ -27,4 +27,14 @@ public class Arrays
     public void printArray(){
         for(int i = 0; i < newArray.length; i++){System.out.println(newArray[i]);}
     }
+    
+    
+    public static void main(){
+        Double[] array1 = new Double[10];
+        array1[0] = 7878.1;
+        System.out.println(array1[2]);
+        
+        boolean[] array2 = new boolean[2];
+        System.out.println(array2[1]);
+    }
 }
