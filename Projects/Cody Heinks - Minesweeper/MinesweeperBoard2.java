@@ -24,6 +24,7 @@ public class MinesweeperBoard2{
         rows = row;
         columns = column;
         numOfCells = row * column;
+        board = new Cell[numOfCells];
         
         //These pieces are for the GUI.
         JFrame frame = new JFrame();
@@ -45,13 +46,14 @@ public class MinesweeperBoard2{
      *  It is still required for all students.
      */
     public void printBoard(){
-        for(int n = 0; n < numOfCells; n++){
-            for(int r = 0; r < rows; r++){
-                for(int c = 0; c < columns; c++){
-                    
-                }
+        int n = 0;
+        for(int r = 0; r < rows; r++){
+            for(int c = 0; c < columns; c++){
+                System.out.print(board[n].getValue());
+                n++;
             }
-        }
+            System.out.println();
+        }        
     }
     public JPanel addCells(){
         JPanel panel = new JPanel(new GridLayout(rows,columns));
