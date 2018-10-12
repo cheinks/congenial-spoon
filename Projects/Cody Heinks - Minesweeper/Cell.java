@@ -32,10 +32,7 @@ public class Cell implements ActionListener{
      * 
      * @return true if it is a bomb, otherwse false.
      */
-    boolean isBomb(){
-        if(value == 11){return true;}else{return false;}
-    }
-    
+    boolean isBomb(){if(value == 11){return true;}else{return false;}}
     
     //Additional Methods may be required. Please make them yourself.
     public void setValue(int newValue){value = newValue;}
