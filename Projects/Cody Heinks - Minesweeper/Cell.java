@@ -35,8 +35,10 @@ public class Cell implements ActionListener{
     boolean isBomb(){if(value == 11){return true;}else{return false;}}
     
     //Additional Methods may be required. Please make them yourself.
+    
     public void setValue(int newValue){value = newValue;}
     public int getValue(){return value;}
+    public void addOne(){value++;}
     
     //The following methods are used for the User Inferface. These methods are fully functional and do not need to be modified.
     public void checkCell(){

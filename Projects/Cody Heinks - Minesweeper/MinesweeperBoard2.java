@@ -16,6 +16,8 @@ public class MinesweeperBoard2{
     int columns;
 
     int numOfCells;
+    boolean hasBombs = false;
+    boolean hasNums = false;
     public MinesweeperBoard2(){
         this(10, 10);
     }
@@ -48,12 +50,27 @@ public class MinesweeperBoard2{
     }
     
     public void addNums(){
-         for(int i = 0; i < numOfCells; i++){
-             Cell iCell = board[i];
-             if(iCell.isBomb()){
-                 if(i >= columns && i < numOfCells - columns){}
-             }
-         }
+        for(int i = 0; i < numOfCells; i++){
+            if(!board[i].isBomb()){
+                int tLeft = 0;
+                int above = 0;
+                int tRight = 0;
+                int left = 0;
+                int right = 0;
+                int bLeft = 0;
+                int below = 0;
+                int bRight = 0;
+                
+                if(i < columns){tLeft = -1; above = -1; tRight = -1;}
+                if(i % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
+                if((i + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
+                if(i + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
+                
+                if(tLeft == 0 && board[i-columns-1].isBomb()){board[i].addOne();}
+                if(above == 0 && board[i - columns].isBomb()){board[i].addOne();}
+                if(tRight == 0 && board[i - columns + 1].isBomb()){board[i].addOne();}
+            }
+        }
     }
 
     /**This method is used for testing and will be deleted if using the GUI.
@@ -65,7 +82,7 @@ public class MinesweeperBoard2{
         for(int r = 0; r < rows; r++){
             for(int c = 0; c < columns; c++){
                 nValue = board[n].getValue();
-                if(nValue == 11){System.out.print("X");}else{System.out.print(nValue);}
+                if(nValue == 11){System.out.print("X ");}else{System.out.print(nValue + " ");}
                 n++;
             }
             System.out.println();
