@@ -5,7 +5,7 @@
  * I will be representing a mine using the number: 11
  * 
  * @author Cody Heinks 
- * @version 10.11.18
+ * @version 10.14.18
  */
 import javax.swing.*;
 import java.awt.*;

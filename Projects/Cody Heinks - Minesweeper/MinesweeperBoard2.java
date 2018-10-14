@@ -3,7 +3,7 @@
  * Write a description of class MinesweeperBoard2 here.
  * 
  * @author Cody Heinks 
- * @version 10.11.18
+ * @version 10.14.18
  */
 import java.lang.Math;
 import javax.swing.*;
@@ -16,8 +16,10 @@ public class MinesweeperBoard2{
     int columns;
 
     int numOfCells;
+    int numOfBombs;
     boolean hasBombs = false;
     boolean hasNums = false;
+    
     public MinesweeperBoard2(){
         this(10, 10);
     }
@@ -66,9 +68,14 @@ public class MinesweeperBoard2{
                 if((i + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
                 if(i + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
                 
-                if(tLeft == 0 && board[i-columns-1].isBomb()){board[i].addOne();}
+                if(tLeft == 0 && board[i - columns - 1].isBomb()){board[i].addOne();}
                 if(above == 0 && board[i - columns].isBomb()){board[i].addOne();}
                 if(tRight == 0 && board[i - columns + 1].isBomb()){board[i].addOne();}
+                if(left == 0 && board[i - 1].isBomb()){board[i].addOne();}
+                if(right == 0 && board[i + 1].isBomb()){board[i].addOne();}
+                if(bLeft == 0 && board[i + columns - 1].isBomb()){board[i].addOne();}
+                if(below == 0 && board[i + columns].isBomb()){board[i].addOne();}
+                if(bRight == 0 && board[i + columns + 1].isBomb()){board[i].addOne();}
             }
         }
     }
