@@ -16,7 +16,6 @@ public class MinesweeperBoard2{
     int columns;
 
     int numOfCells;
-    boolean hasBombs;
     public MinesweeperBoard2(){
         this(10, 10);
     }
@@ -38,21 +37,23 @@ public class MinesweeperBoard2{
     }
 
     public void addBombs(int bombs) throws Exception{
-        if(!hasBombs){
-            int randCell = 0;
-            while(bombs > 0){
-                randCell = (int)(Math.random() * numOfCells);
-                if(!board[randCell].isBomb()){
-                    board[randCell].setValue(11);
-                    bombs--;
-                }
+        int randCell = 0;
+        while(bombs > 0){
+            randCell = (int)(Math.random() * numOfCells);
+            if(!board[randCell].isBomb()){
+                board[randCell].setValue(11);
+                bombs--;
             }
-            hasBombs = true;
         }
     }
-
+    
     public void addNums(){
-
+         for(int i = 0; i < numOfCells; i++){
+             Cell iCell = board[i];
+             if(iCell.isBomb()){
+                 if(i >= columns && i < numOfCells - columns){}
+             }
+         }
     }
 
     /**This method is used for testing and will be deleted if using the GUI.
