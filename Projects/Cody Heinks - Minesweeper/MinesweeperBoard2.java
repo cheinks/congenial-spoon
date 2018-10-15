@@ -29,7 +29,7 @@ public class MinesweeperBoard2{
         rows = row;
         columns = column;
         numOfCells = row * column;
-        board = new Cell[numOfCells];
+        board = new Cell[numOfCells];        
 
         //These pieces are for the GUI.
         JFrame frame = new JFrame();
@@ -40,15 +40,23 @@ public class MinesweeperBoard2{
         frame.setVisible(true);
     }
 
-    public void addBombs(int bombs) throws Exception{
-        int randCell = 0;
-        while(bombs > 0){
-            randCell = (int)(Math.random() * numOfCells);
-            if(!board[randCell].isBomb()){
-                board[randCell].setValue(11);
-                bombs--;
+    public void addBombs(int bombs) throws Exception{        
+        if(!hasBombs){
+            if(bombs < numOfCells || bombs < 0){
+                int randCell = 0;
+                while(bombs > 0){
+                    randCell = (int)(Math.random() * numOfCells);
+                    if(!board[randCell].isBomb()){
+                        board[randCell].setValue(11);
+                        bombs--;
+                    }
+                }
+                hasBombs = true;
+            }else{
+                System.out.println("That value is invalid.");
             }
-        }
+            System.out.println("It is too dangerous to add more mines");
+        }        
     }
     
     public void addNums(){
