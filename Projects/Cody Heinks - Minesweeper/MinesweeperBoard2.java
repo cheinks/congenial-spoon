@@ -16,7 +16,7 @@ public class MinesweeperBoard2{
     int columns;
 
     int numOfCells;
-    int numOfBombs;
+    //int numOfBombs;
     boolean hasBombs = false;
     boolean hasNums = false;
     
@@ -55,37 +55,41 @@ public class MinesweeperBoard2{
             }else{
                 System.out.println("That value is invalid.");
             }
-            System.out.println("It is too dangerous to add more mines");
-        }        
+        }else{System.out.println("It is too dangerous to add more mines.");}
     }
     
     public void addNums(){
-        for(int i = 0; i < numOfCells; i++){
-            if(!board[i].isBomb()){
-                int tLeft = 0;
-                int above = 0;
-                int tRight = 0;
-                int left = 0;
-                int right = 0;
-                int bLeft = 0;
-                int below = 0;
-                int bRight = 0;
-                
-                if(i < columns){tLeft = -1; above = -1; tRight = -1;}
-                if(i % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
-                if((i + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
-                if(i + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
-                
-                if(tLeft == 0 && board[i - columns - 1].isBomb()){board[i].addOne();}
-                if(above == 0 && board[i - columns].isBomb()){board[i].addOne();}
-                if(tRight == 0 && board[i - columns + 1].isBomb()){board[i].addOne();}
-                if(left == 0 && board[i - 1].isBomb()){board[i].addOne();}
-                if(right == 0 && board[i + 1].isBomb()){board[i].addOne();}
-                if(bLeft == 0 && board[i + columns - 1].isBomb()){board[i].addOne();}
-                if(below == 0 && board[i + columns].isBomb()){board[i].addOne();}
-                if(bRight == 0 && board[i + columns + 1].isBomb()){board[i].addOne();}
-            }
-        }
+        if(!hasNums){
+            if(hasBombs){
+                for(int i = 0; i < numOfCells; i++){
+                    if(!board[i].isBomb()){
+                        int tLeft = 0;
+                        int above = 0;
+                        int tRight = 0;
+                        int left = 0;
+                        int right = 0;
+                        int bLeft = 0;
+                        int below = 0;
+                        int bRight = 0;
+                        
+                        if(i < columns){tLeft = -1; above = -1; tRight = -1;}
+                        if(i % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
+                        if((i + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
+                        if(i + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
+                        
+                        if(tLeft == 0 && board[i - columns - 1].isBomb()){board[i].addOne();}
+                        if(above == 0 && board[i - columns].isBomb()){board[i].addOne();}
+                        if(tRight == 0 && board[i - columns + 1].isBomb()){board[i].addOne();}
+                        if(left == 0 && board[i - 1].isBomb()){board[i].addOne();}
+                        if(right == 0 && board[i + 1].isBomb()){board[i].addOne();}
+                        if(bLeft == 0 && board[i + columns - 1].isBomb()){board[i].addOne();}
+                        if(below == 0 && board[i + columns].isBomb()){board[i].addOne();}
+                        if(bRight == 0 && board[i + columns + 1].isBomb()){board[i].addOne();}
+                    }
+                }
+                hasNums = true;
+            }else{System.out.println("There aren't any mines yet.");}
+        }else{System.out.println("This board already has numbers.");}
     }
 
     /**This method is used for testing and will be deleted if using the GUI.
