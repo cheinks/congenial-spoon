@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import java.awt.event.*;
+
 public class MinesweeperBoard2{
     Cell[] board;
     int rows;
@@ -32,12 +34,12 @@ public class MinesweeperBoard2{
         board = new Cell[numOfCells];        
 
         //These pieces are for the GUI.
-        JFrame frame = new JFrame();
+        JFrame frame = new JFrame("Minesweeper");
         frame.add(addCells());
-
+        
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        frame.setVisible(true); 
     }
 
     public void addBombs(int bombs) throws Exception{        
