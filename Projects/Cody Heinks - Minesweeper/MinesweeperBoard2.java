@@ -16,6 +16,7 @@ public class MinesweeperBoard2{
     Cell[] board;
     int rows;
     int columns;
+    public static boolean flag = true;
 
     int numOfCells;
     //int numOfBombs;
@@ -36,7 +37,6 @@ public class MinesweeperBoard2{
         //These pieces are for the GUI.
         JFrame frame = new JFrame("Minesweeper");
         frame.add(addCells());
-        
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true); 
@@ -116,6 +116,19 @@ public class MinesweeperBoard2{
             board[i]= new Cell();
             panel.add(board[i].getButton());
         }
+        return panel;
+    }
+    
+    public JPanel flagButton(){
+        JPanel panel = new JPanel();
+        JButton btn = new JButton();
+        btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                //do stuff
+            }
+        });
+        btn.setPreferredSize(new Dimension(50,50));
+        btn.setMargin(new Insets(0,0,0,0));
         return panel;
     }
 }
