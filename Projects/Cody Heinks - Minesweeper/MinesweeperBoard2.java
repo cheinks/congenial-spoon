@@ -16,10 +16,9 @@ public class MinesweeperBoard2{
     Cell[] board;
     int rows;
     int columns;
-    public static boolean flag = true;
+    public static boolean flag = false;
 
     int numOfCells;
-    //int numOfBombs;
     boolean hasBombs = false;
     boolean hasNums = false;
     
@@ -32,19 +31,27 @@ public class MinesweeperBoard2{
         rows = row;
         columns = column;
         numOfCells = row * column;
-        board = new Cell[numOfCells];        
-
+        board = new Cell[numOfCells];
+        
+        try{
+            addBombs(50);
+        }catch(Exception e){
+            System.out.println("Sorry. I can't do that.");
+            System.out.println(numOfCells);
+        }
+        
         //These pieces are for the GUI.
         JFrame frame = new JFrame("Minesweeper");
         frame.add(addCells());
+        //frame.add(flagButton());
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true); 
     }
 
-    public void addBombs(int bombs) throws Exception{        
+    public void addBombs(int bombs) throws Exception{
         if(!hasBombs){
-            if(bombs < numOfCells || bombs < 0){
+            if(bombs < numOfCells && bombs > 0){
                 int randCell = 0;
                 while(bombs > 0){
                     randCell = (int)(Math.random() * numOfCells);
@@ -54,10 +61,8 @@ public class MinesweeperBoard2{
                     }
                 }
                 hasBombs = true;
-            }else{
-                System.out.println("That value is invalid.");
-            }
-        }else{System.out.println("It is too dangerous to add more mines.");}
+            }else{throw new Exception("That value is invalid.");}
+        }else{throw new Exception("It is too dangerous to plant more mines.");}
     }
     
     public void addNums(){

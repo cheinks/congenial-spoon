@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Class
+comment1.params=students
+comment1.target=Class(int)
+comment2.params=id
+comment2.target=boolean\ isHere(int)
+comment3.params=
+comment3.target=void\ askAboutStudent()
+numComments=4
