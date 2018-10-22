@@ -23,34 +23,35 @@ public class MinesweeperBoard2{
     boolean hasNums = false;
     
     public MinesweeperBoard2(){
-        this(10, 10);
+        this(10, 10, 50);
     }
 
-    public MinesweeperBoard2(int row, int column){
+    public MinesweeperBoard2(int row, int column, int numOfBombs){
         //Put the constructor here.
         rows = row;
         columns = column;
         numOfCells = row * column;
         board = new Cell[numOfCells];
         
-        try{
-            addBombs(50);
-        }catch(Exception e){
-            System.out.println("Sorry. I can't do that.");
-            System.out.println(numOfCells);
-        }
-        
         //These pieces are for the GUI.
         JFrame frame = new JFrame("Minesweeper");
+        frame.add(addModeSelectors());
         frame.add(addCells());
-        //frame.add(flagButton());
+        
+        try{
+            this.addBombs(numOfBombs);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true); 
     }
 
     public void addBombs(int bombs) throws Exception{
-        if(!hasBombs){
+        if (bombs == 4200){throw new CodyException("NICE!!!");}
+        else if(!hasBombs){
             if(bombs < numOfCells && bombs > 0){
                 int randCell = 0;
                 while(bombs > 0){
@@ -61,8 +62,9 @@ public class MinesweeperBoard2{
                     }
                 }
                 hasBombs = true;
-            }else{throw new Exception("That value is invalid.");}
-        }else{throw new Exception("It is too dangerous to plant more mines.");}
+            }else if(bombs != 0){throw new Exception("That value is invalid.");}
+        }
+        else{throw new Exception("It is too dangerous to plant more mines.");}
     }
     
     public void addNums(){
@@ -124,16 +126,23 @@ public class MinesweeperBoard2{
         return panel;
     }
     
-    public JPanel flagButton(){
-        JPanel panel = new JPanel();
+    public JButton flagButton(){
         JButton btn = new JButton();
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                //do stuff
+                System.out.println("Hello world!");
+                btn.setEnabled(true);
             }
         });
         btn.setPreferredSize(new Dimension(50,50));
-        btn.setMargin(new Insets(0,0,0,0));
+        btn.setMargin(new Insets(0,0,0,0));;
+        return btn;
+    }
+    
+    public JPanel addModeSelectors(){
+        JPanel panel = new JPanel();
+        panel.add(flagButton());
+        panel.add(flagButton());
         return panel;
     }
 }

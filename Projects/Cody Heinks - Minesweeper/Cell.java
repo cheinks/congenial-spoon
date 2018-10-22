@@ -7,7 +7,7 @@
  * @author Cody Heinks 
  * @version 10.14.18
  */
-import javax.swing.*;
+import javax.swing.*;   
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
@@ -75,10 +75,8 @@ public class Cell implements ActionListener{
             checkCell();
         }
     }
-    public void addFlag(){
-        button.setBackground(Color.YELLOW);
-    }
-    public void clearFlag(){
-        button.setBackground(new JButton().getBackground());
-    }
+    
+    public void addFlag(){button.setBackground(Color.YELLOW);}
+    
+    public void clearFlag(){button.setBackground(new JButton().getBackground());}
 }
