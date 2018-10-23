@@ -25,6 +25,10 @@ public class MinesweeperBoard2{
     public MinesweeperBoard2(){
         this(10, 10, 50);
     }
+    
+    public MinesweeperBoard2(boolean playGame){
+        this(20, 30, 99);
+    }
 
     public MinesweeperBoard2(int row, int column, int numOfBombs){
         //Put the constructor here.
@@ -35,14 +39,17 @@ public class MinesweeperBoard2{
         
         //These pieces are for the GUI.
         JFrame frame = new JFrame("Minesweeper");
-        frame.add(addModeSelectors());
-        frame.add(addCells());
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.add(addModeSelectors());
+        panel.add(addCells());
+        frame.add(panel);
         
         try{
             this.addBombs(numOfBombs);
         }catch(Exception e){
             System.out.println(e);
         }
+        addNums();
         
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -130,7 +137,13 @@ public class MinesweeperBoard2{
         JButton btn = new JButton();
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                System.out.println("Hello world!");
+                if(flag){
+                    flag = false;
+                    btn.setBackground(new JButton().getBackground());
+                }else{
+                    flag = true;
+                    btn.setBackground(Color.RED);
+                }
                 btn.setEnabled(true);
             }
         });
@@ -142,7 +155,12 @@ public class MinesweeperBoard2{
     public JPanel addModeSelectors(){
         JPanel panel = new JPanel();
         panel.add(flagButton());
-        panel.add(flagButton());
         return panel;
+    }
+    
+    public void endGame(){
+        for(int i = 0; i < numOfCells; i++){
+            
+        }
     }
 }

@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 public class Cell implements ActionListener{
     //Variables you need to work with
     private int value;
+    
+    private int loc;
 
     //Variables you don't need to worry about or care about.
     private JButton button;
@@ -39,9 +41,7 @@ public class Cell implements ActionListener{
     //Additional Methods may be required. Please make them yourself.
 
     public void setValue(int newValue){value = newValue;}
-
     public int getValue(){return value;}
-
     public void addOne(){value++;}
 
     //The following methods are used for the User Inferface. These methods are fully functional and do not need to be modified.
@@ -71,8 +71,10 @@ public class Cell implements ActionListener{
             }else{
                 addFlag();
             }
-        }else {
-            checkCell();
+        }else{
+            if(!button.getBackground().equals(Color.YELLOW)){
+                checkCell();
+            }
         }
     }
     
