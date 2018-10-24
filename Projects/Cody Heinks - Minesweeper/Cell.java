@@ -16,8 +16,7 @@ import java.awt.event.ActionListener;
 public class Cell implements ActionListener{
     //Variables you need to work with
     private int value;
-    
-    private int loc;
+    private boolean isFlag;
 
     //Variables you don't need to worry about or care about.
     private JButton button;
@@ -62,23 +61,31 @@ public class Cell implements ActionListener{
     public JButton getButton() {
         return button;
     }
-
+    //button.getBackground().equals(Color.YELLOW)
     @Override
     public void actionPerformed(ActionEvent e) {
         if (MinesweeperBoard2.flag){
-            if (button.getBackground().equals(Color.YELLOW)){
+            if(isFlag){
                 clearFlag();
             }else{
                 addFlag();
             }
         }else{
-            if(!button.getBackground().equals(Color.YELLOW)){
+            if(!isFlag){
                 checkCell();
             }
         }
     }
     
-    public void addFlag(){button.setBackground(Color.YELLOW);}
+    public void addFlag(){
+        isFlag = true;
+        //button.setBackground(Color.YELLOW);
+        button.setText("\u2691");
+    }
     
-    public void clearFlag(){button.setBackground(new JButton().getBackground());}
+    public void clearFlag(){
+        isFlag = false;
+        //button.setBackground(new JButton().getBackground());
+        button.setText("");
+    }
 }

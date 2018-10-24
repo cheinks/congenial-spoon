@@ -23,14 +23,10 @@ public class MinesweeperBoard2{
     boolean hasNums = false;
     
     public MinesweeperBoard2(){
-        this(10, 10, 50);
-    }
-    
-    public MinesweeperBoard2(boolean playGame){
-        this(20, 30, 99);
+        this(10, 10);
     }
 
-    public MinesweeperBoard2(int row, int column, int numOfBombs){
+    public MinesweeperBoard2(int row, int column){
         //Put the constructor here.
         rows = row;
         columns = column;
@@ -39,13 +35,27 @@ public class MinesweeperBoard2{
         
         //These pieces are for the GUI.
         JFrame frame = new JFrame("Minesweeper");
+        frame.add(addCells());
+        
+        frame.pack();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true); 
+    }
+    
+    public MinesweeperBoard2(boolean playGame){
+        rows = 20;
+        columns = 30;
+        numOfCells = 20 * 30;
+        board = new Cell[numOfCells];
+        
+        JFrame frame = new JFrame("Minesweeper");
         JPanel panel = new JPanel(new GridBagLayout());
         panel.add(addModeSelectors());
         panel.add(addCells());
         frame.add(panel);
         
         try{
-            this.addBombs(numOfBombs);
+            this.addBombs(99);
         }catch(Exception e){
             System.out.println(e);
         }
@@ -160,7 +170,11 @@ public class MinesweeperBoard2{
     
     public void endGame(){
         for(int i = 0; i < numOfCells; i++){
-            
+            board[i].getButton().setEnabled(false);
+            if(board[i].isBomb()){
+                board[i].getButton().setText("\u2600");
+                board[i].getButton().setBackground(Color.RED);
+            }
         }
     }
 }
