@@ -17,6 +17,7 @@ public class Cell implements ActionListener{
     //Variables you need to work with
     private int value;
     private boolean isFlag;
+    private boolean bombWithFlag;
 
     //Variables you don't need to worry about or care about.
     private JButton button;
@@ -67,15 +68,23 @@ public class Cell implements ActionListener{
         if (MinesweeperBoard2.flag){
             if(isFlag){
                 clearFlag();
+                //MinesweeperBoard2.flagsPlaced--;
+                if(isBomb()){
+                    MinesweeperBoard2.flaggedBombs--;
+                }
             }else{
                 addFlag();
+                //MinesweeperBoard2.flagsPlaced++;
+                if(isBomb()){
+                    MinesweeperBoard2.flaggedBombs++;
+                }
             }
         }else{
             if(!isFlag){
                 checkCell();
             }
         }
-    }
+    }   
     
     public void addFlag(){
         isFlag = true;

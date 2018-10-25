@@ -3,7 +3,7 @@
  * Write a description of class MinesweeperBoard2 here.
  * 
  * @author Cody Heinks 
- * @version 10.14.18
+ * @version 10.25.18
  */
 import java.lang.Math;
 import javax.swing.*;
@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.awt.event.*;
 
 public class MinesweeperBoard2{
-    Cell[] board;
+    private Cell[] board;
     int rows;
     int columns;
     public static boolean flag = false;
+    public static int flaggedBombs = 0;
+    //public static int flagsPlaced = 0;
 
     int numOfCells;
     boolean hasBombs = false;
@@ -152,7 +154,7 @@ public class MinesweeperBoard2{
                     btn.setBackground(new JButton().getBackground());
                 }else{
                     flag = true;
-                    btn.setBackground(Color.RED);
+                    btn.setBackground(Color.GREEN);
                 }
                 btn.setEnabled(true);
             }
@@ -166,15 +168,5 @@ public class MinesweeperBoard2{
         JPanel panel = new JPanel();
         panel.add(flagButton());
         return panel;
-    }
-    
-    public void endGame(){
-        for(int i = 0; i < numOfCells; i++){
-            board[i].getButton().setEnabled(false);
-            if(board[i].isBomb()){
-                board[i].getButton().setText("\u2600");
-                board[i].getButton().setBackground(Color.RED);
-            }
-        }
     }
 }
