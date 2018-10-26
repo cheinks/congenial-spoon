@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.awt.event.*;
 
 public class MinesweeperBoard2{
-    private Cell[] board;
-    int rows;
-    int columns;
+    static Cell[] board;
+    static int rows;
+    static int columns;
     public static boolean flag = false;
     public static int flaggedBombs = 0;
     //public static int flagsPlaced = 0;
 
-    int numOfCells;
+    static int numOfCells; 
     boolean hasBombs = false;
     boolean hasNums = false;
     
@@ -139,7 +139,7 @@ public class MinesweeperBoard2{
     public JPanel addCells(){
         JPanel panel = new JPanel(new GridLayout(rows,columns));
         for(int i = 0; i< rows*columns; i++){
-            board[i]= new Cell();
+            board[i]= new Cell(i);
             panel.add(board[i].getButton());
         }
         return panel;
@@ -149,7 +149,7 @@ public class MinesweeperBoard2{
         JButton btn = new JButton();
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(flag){
+                if(flag){   
                     flag = false;
                     btn.setBackground(new JButton().getBackground());
                 }else{
