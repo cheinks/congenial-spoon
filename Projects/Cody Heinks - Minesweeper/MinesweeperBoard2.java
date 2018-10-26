@@ -15,7 +15,7 @@ import java.awt.event.*;
 public class MinesweeperBoard2{
     static Cell[] board;
     static int rows;
-    static int columns;
+    static int columns; 
     public static boolean flag = false;
     public static int flaggedBombs = 0;
     //public static int flagsPlaced = 0;
@@ -168,5 +168,17 @@ public class MinesweeperBoard2{
         JPanel panel = new JPanel();
         panel.add(flagButton());
         return panel;
+    }
+    
+    public static void endGame(){
+        for(int i = 0; i<numOfCells; i++){
+            board[i].getButton().setEnabled(false);
+            if(board[i].isBomb() && !board[i].bombWithFlag){
+                board[i].getButton().setText("\u2600");
+                board[i].getButton().setBackground(Color.RED);
+            }else if(board[i].isFlag && !board[i].isBomb()){
+                board[i].getButton().setText("\u274C");
+            }
+        }
     }
 }

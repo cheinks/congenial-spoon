@@ -18,8 +18,8 @@ public class Cell implements ActionListener{
     private int value;
     
     int loc;
-    private boolean isFlag;
-    private boolean bombWithFlag;
+    boolean isFlag;
+    boolean bombWithFlag;
     boolean revealed;
 
     //Variables you don't need to worry about or care about.
@@ -60,6 +60,7 @@ public class Cell implements ActionListener{
     public void displayValue(){
         if(this.isBomb()){
             button.setText("\u2600");
+            MinesweeperBoard2.endGame();
             button.setBackground(Color.RED);
         }else if(value!=0){
             button.setText(String.valueOf(value));
