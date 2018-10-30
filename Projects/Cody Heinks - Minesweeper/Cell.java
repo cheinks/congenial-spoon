@@ -64,8 +64,9 @@ public class Cell implements ActionListener{
             button.setBackground(Color.RED);
         }else if(value!=0){
             button.setText(String.valueOf(value));
-        }else{  
-            revealBlanks(loc);
+            //MinesweeperBoard2.cellCleared();
+        }else{
+            revealBlanks(loc, MinesweeperBoard2.beyondScope);
         }
     }
 
@@ -100,41 +101,44 @@ public class Cell implements ActionListener{
         isFlag = true;
         //button.setBackground(Color.YELLOW);
         button.setText("\u2691");
+        if(isBomb()){MinesweeperBoard2.flaggedBombs++;}
     }
     
     public void clearFlag(){
         isFlag = false;
         //button.setBackground(new JButton().getBackground());
         button.setText("");
+        if(isBomb()){MinesweeperBoard2.flaggedBombs--;}
     }
     
-    public void revealBlanks(int startLoc){
-        int columns = MinesweeperBoard2.columns;
-        int numOfCells = MinesweeperBoard2.numOfCells;
-        
-        int tLeft = 0;
-        int above = 0;
-        int tRight = 0;
-        int left = 0;
-        int right = 0;
-        int bLeft = 0;
-        int below = 0;
-        int bRight = 0;
-        
-        if(startLoc < columns){ tLeft = -1; above = -1; tRight = -1;}
-        if(startLoc % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
-        if((startLoc + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
-        if(startLoc + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
-        
-        if(tLeft == 0){MinesweeperBoard2.board[startLoc - columns - 1].checkCell();}
-        if(above == 0){MinesweeperBoard2.board[startLoc - columns].checkCell();}
-        if(tRight == 0){MinesweeperBoard2.board[startLoc - columns + 1].checkCell();}
-        if(left == 0){MinesweeperBoard2.board[startLoc - 1].checkCell();}
-        
-        if(right == 0){MinesweeperBoard2.board[startLoc + 1].checkCell();}
-        if(bLeft == 0){MinesweeperBoard2.board[startLoc + columns - 1].checkCell();}
-        if(below == 0){MinesweeperBoard2.board[startLoc + columns].checkCell();}
-        if(bRight == 0){MinesweeperBoard2.board[startLoc + columns + 1].checkCell();}
-        
+    public void revealBlanks(int startLoc, boolean beyondScope){
+        if(beyondScope){
+            int columns = MinesweeperBoard2.columns;
+            int numOfCells = MinesweeperBoard2.numOfCells;
+            
+            int tLeft = 0;
+            int above = 0;
+            int tRight = 0;
+            int left = 0;
+            int right = 0;
+            int bLeft = 0;
+            int below = 0;
+            int bRight = 0;
+            
+            if(startLoc < columns){ tLeft = -1; above = -1; tRight = -1;}
+            if(startLoc % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
+            if((startLoc + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
+            if(startLoc + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
+            
+            if(tLeft == 0){MinesweeperBoard2.board[startLoc - columns - 1].checkCell();}
+            if(above == 0){MinesweeperBoard2.board[startLoc - columns].checkCell();}
+            if(tRight == 0){MinesweeperBoard2.board[startLoc - columns + 1].checkCell();}
+            if(left == 0){MinesweeperBoard2.board[startLoc - 1].checkCell();}
+            
+            if(right == 0){MinesweeperBoard2.board[startLoc + 1].checkCell();}
+            if(bLeft == 0){MinesweeperBoard2.board[startLoc + columns - 1].checkCell();}
+            if(below == 0){MinesweeperBoard2.board[startLoc + columns].checkCell();}
+            if(bRight == 0){MinesweeperBoard2.board[startLoc + columns + 1].checkCell();}
+        }
     }
 }

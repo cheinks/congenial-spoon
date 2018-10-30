@@ -15,10 +15,13 @@ import java.awt.event.*;
 public class MinesweeperBoard2{
     static Cell[] board;
     static int rows;
-    static int columns; 
+    static int columns;
+    static int mines;
     public static boolean flag = false;
     public static int flaggedBombs = 0;
-    //public static int flagsPlaced = 0;
+    static int cellsToClear;
+    
+    public static boolean beyondScope = false;
 
     static int numOfCells; 
     boolean hasBombs = false;
@@ -45,9 +48,11 @@ public class MinesweeperBoard2{
     }
     
     public MinesweeperBoard2(boolean playGame){
-        rows = 20;
-        columns = 30;
-        numOfCells = 20 * 30;
+        rows = 4;
+        columns = 6;
+        mines = 3;
+        numOfCells = rows*columns;
+        cellsToClear = numOfCells - mines;
         board = new Cell[numOfCells];
         
         JFrame frame = new JFrame("Minesweeper");
@@ -57,7 +62,7 @@ public class MinesweeperBoard2{
         frame.add(panel);
         
         try{
-            this.addBombs(99);
+            this.addBombs(mines);
         }catch(Exception e){
             System.out.println(e);
         }
@@ -65,7 +70,8 @@ public class MinesweeperBoard2{
         
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true); 
+        frame.setVisible(true);
+        beyondScope = true;
     }
 
     public void addBombs(int bombs) throws Exception{
@@ -91,28 +97,28 @@ public class MinesweeperBoard2{
             if(hasBombs){
                 for(int i = 0; i < numOfCells; i++){
                     if(!board[i].isBomb()){
-                        int tLeft = 0;
-                        int above = 0;
-                        int tRight = 0;
-                        int left = 0;
-                        int right = 0;
-                        int bLeft = 0;
-                        int below = 0;
-                        int bRight = 0;
+                        boolean tLeft = true;
+                        boolean above = true;
+                        boolean tRight = true;
+                        boolean left = true;
+                        boolean right = true;
+                        boolean bLeft = true;
+                        boolean below = true;
+                        boolean bRight = true;
                         
-                        if(i < columns){tLeft = -1; above = -1; tRight = -1;}
-                        if(i % columns == 0){tLeft = -1; left = -1; bLeft = -1;}
-                        if((i + 1) % columns == 0){tRight = -1; right = -1; bRight = -1;}
-                        if(i + columns >= numOfCells){bLeft = -1; below = -1; bRight = -1;}
+                        if(i < columns){tLeft = false; above = false; tRight = false;}
+                        if(i % columns == 0){tLeft = false; left = false; bLeft = false;}
+                        if((i + 1) % columns == 0){tRight = false; right = false; bRight = false;}
+                        if(i + columns >= numOfCells){bLeft = false; below = false; bRight = false;}
                         
-                        if(tLeft == 0 && board[i - columns - 1].isBomb()){board[i].addOne();}
-                        if(above == 0 && board[i - columns].isBomb()){board[i].addOne();}
-                        if(tRight == 0 && board[i - columns + 1].isBomb()){board[i].addOne();}
-                        if(left == 0 && board[i - 1].isBomb()){board[i].addOne();}
-                        if(right == 0 && board[i + 1].isBomb()){board[i].addOne();}
-                        if(bLeft == 0 && board[i + columns - 1].isBomb()){board[i].addOne();}
-                        if(below == 0 && board[i + columns].isBomb()){board[i].addOne();}
-                        if(bRight == 0 && board[i + columns + 1].isBomb()){board[i].addOne();}
+                        if(tLeft && board[i - columns - 1].isBomb()){board[i].addOne();}
+                        if(above && board[i - columns].isBomb()){board[i].addOne();}
+                        if(tRight && board[i - columns + 1].isBomb()){board[i].addOne();}
+                        if(left && board[i - 1].isBomb()){board[i].addOne();}
+                        if(right && board[i + 1].isBomb()){board[i].addOne();}
+                        if(bLeft && board[i + columns - 1].isBomb()){board[i].addOne();}
+                        if(below && board[i + columns].isBomb()){board[i].addOne();}
+                        if(bRight && board[i + columns + 1].isBomb()){board[i].addOne();}
                     }
                 }
                 hasNums = true;
@@ -171,14 +177,21 @@ public class MinesweeperBoard2{
     }
     
     public static void endGame(){
-        for(int i = 0; i<numOfCells; i++){
-            board[i].getButton().setEnabled(false);
-            if(board[i].isBomb() && !board[i].bombWithFlag){
-                board[i].getButton().setText("\u2600");
-                board[i].getButton().setBackground(Color.RED);
-            }else if(board[i].isFlag && !board[i].isBomb()){
-                board[i].getButton().setText("\u274C");
+        if(beyondScope){
+            for(int i = 0; i<numOfCells; i++){
+                board[i].getButton().setEnabled(false);
+                if(board[i].isBomb() && !board[i].bombWithFlag){
+                    board[i].getButton().setText("\u2600");
+                    board[i].getButton().setBackground(Color.RED);
+                }else if(board[i].isFlag && !board[i].isBomb()){
+                    board[i].getButton().setText("\u274C");
+                }
             }
-        }
+        }    
+    }
+    
+    public void cellCleared(){
+        cellsToClear--;
+        //if(cellsToClear){}
     }
 }
