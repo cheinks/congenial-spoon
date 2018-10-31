@@ -22,6 +22,7 @@ public class MinesweeperBoard2{
     static int cellsToClear;
     
     public static boolean beyondScope = false;
+    JButton flagButton = new JButton();
 
     static int numOfCells; 
     boolean hasBombs = false;
@@ -47,17 +48,28 @@ public class MinesweeperBoard2{
         frame.setVisible(true); 
     }
     
-    public MinesweeperBoard2(boolean playGame){
-        rows = 4;
-        columns = 6;
-        mines = 3;
+    public MinesweeperBoard2(int difficulty){
+        if(difficulty == 1){
+            rows = 9;
+            columns = 9;
+            mines = 10;
+        }else if(difficulty == 5){
+            rows = 16;
+            columns = 16;
+            mines = 40;
+        }else{
+            rows = 16;
+            columns = 30;
+            mines = 99;
+        } 
+        
         numOfCells = rows*columns;
         cellsToClear = numOfCells - mines;
         board = new Cell[numOfCells];
         
         JFrame frame = new JFrame("Minesweeper");
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.add(addModeSelectors());
+        panel.add(addModeSelectors(flagButton));
         panel.add(addCells());
         frame.add(panel);
         
@@ -151,8 +163,7 @@ public class MinesweeperBoard2{
         return panel;
     }
     
-    public JButton flagButton(){
-        JButton btn = new JButton();
+    public JButton flagButton(JButton btn){
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if(flag){   
@@ -170,28 +181,39 @@ public class MinesweeperBoard2{
         return btn;
     }
     
-    public JPanel addModeSelectors(){
+    public JPanel addModeSelectors(JButton Cbtn){
         JPanel panel = new JPanel();
-        panel.add(flagButton());
+        panel.add(flagButton(Cbtn));
         return panel;
     }
     
-    public static void endGame(){
+    public static void endGame(boolean win){
         if(beyondScope){
-            for(int i = 0; i<numOfCells; i++){
-                board[i].getButton().setEnabled(false);
-                if(board[i].isBomb() && !board[i].bombWithFlag){
-                    board[i].getButton().setText("\u2600");
-                    board[i].getButton().setBackground(Color.RED);
-                }else if(board[i].isFlag && !board[i].isBomb()){
-                    board[i].getButton().setText("\u274C");
+            if(!win){
+                for(int i = 0; i<numOfCells; i++){
+                    board[i].getButton().setEnabled(false);
+                    if(board[i].isBomb() && !board[i].bombWithFlag){
+                        board[i].getButton().setText("\u2600");
+                        board[i].getButton().setBackground(Color.RED);
+                    }else if(board[i].isFlag && !board[i].isBomb()){
+                        board[i].getButton().setText("\u274C");
+                    }
                 }
-            }
+            }else{
+                System.out.println("Congrats, you won!");
+            }            
         }    
     }
     
-    public void cellCleared(){
+    public static void cellCleared(){
         cellsToClear--;
-        //if(cellsToClear){}
+        if(cellsToClear == 0){
+            for(int i = 0; i < numOfCells; i++){
+                if(board[i].isBomb() && !board[i].bombWithFlag){
+                    board[i].addFlag();
+                }
+            }
+            endGame(true);
+        }
     }
 }
