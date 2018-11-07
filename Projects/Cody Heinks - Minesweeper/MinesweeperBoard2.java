@@ -53,15 +53,27 @@ public class MinesweeperBoard2{
             rows = 9;
             columns = 9;
             mines = 10;
-        }else if(difficulty == 5){
+        }else if(difficulty == 2){
+            rows = 12;
+            columns = 12;
+            mines = 21;
+        }else if(difficulty == 3){
+            rows = 12;
+            columns = 18;
+            mines = 38;
+        }else if(difficulty == 4){
             rows = 16;
             columns = 16;
             mines = 40;
-        }else{
+        }else if(difficulty == 5){
             rows = 16;
             columns = 30;
             mines = 99;
-        } 
+        }else{
+            rows = 20;
+            columns = 30;
+            mines = 145;
+        }
         
         numOfCells = rows*columns;
         cellsToClear = numOfCells - mines;
