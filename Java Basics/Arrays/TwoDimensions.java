@@ -15,7 +15,23 @@ public class TwoDimensions
     }
     public void addNumbers(){
         for(int row = 0; row < array.length; row++){
-            
+            for(int col = 0; col < array[0].length; col++){
+                array[row][col] = 10.5;
+            }
+        }
+    }
+    
+    /**
+     * This method turns all elements in the array to different numbers
+     * starting at 1 and going to N, where N is the total number of elements.
+     */
+    public void count(){
+        int N = 1;
+        for(int row = 0; row < array.length; row++){
+            for(int col = 0; col < array[0].length; col++){
+                array[row][col] = N; //N gets promoted to a double!
+                N++;
+            }
         }
     }
 }
