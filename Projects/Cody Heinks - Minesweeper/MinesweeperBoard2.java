@@ -98,7 +98,8 @@ public class MinesweeperBoard2{
         beyondScope = true;
     }
 
-    public void addBombs(int bombs) throws Exception{
+    public void addBombs(int numBombs) throws Exception{
+        int bombs = numBombs;
         if (bombs == 4200){throw new CodyException("NICE!!!");}
         else if(!hasBombs){
             if(bombs < numOfCells && bombs > 0){
