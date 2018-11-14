@@ -18,11 +18,13 @@ public class MinesweeperBoard2{
     static int columns;
     static int mines;
     public static boolean flag = false;
-    public static int flaggedBombs = 0;
     static int cellsToClear;
+    public static boolean firstClick = true;
+    
+    static boolean playing;
     
     public static boolean beyondScope = false;
-    JButton flagButton = new JButton();
+    static JButton flagButton = new JButton();
 
     static int numOfCells; 
     boolean hasBombs = false;
@@ -96,6 +98,8 @@ public class MinesweeperBoard2{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         beyondScope = true;
+        int randCell = (int)(Math.random()*numOfCells);
+        //board[randCell].checkCell();
     }
 
     public void addBombs(int numBombs) throws Exception{
@@ -212,8 +216,13 @@ public class MinesweeperBoard2{
                         board[i].getButton().setText("\u274C");
                     }
                 }
+                flagButton.setFont(new Font("Courier", Font.PLAIN, 42));
+                flagButton.setText("\u2639");
+                flagButton.setEnabled(false);
             }else{
-                System.out.println("Congrats, you won!");
+                flagButton.setFont(new Font("Courier", Font.PLAIN, 42));
+                flagButton.setText("\u263A");
+                flagButton.setEnabled(false);
             }            
         }    
     }

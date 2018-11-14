@@ -47,13 +47,15 @@ public class Cell implements ActionListener{
     public void setValue(int newValue){value = newValue;}
     public int getValue(){return value;}
     public void addOne(){value++;}
+    
+    public boolean getRevealed(){return revealed;}
 
     //The following methods are used for the User Inferface. These methods are fully functional and do not need to be modified.
     public void checkCell(){
         if(!revealed){
             button.setEnabled(false);
             revealed = true;
-            displayValue();
+            displayValue();           
         }
     }
 
@@ -74,22 +76,14 @@ public class Cell implements ActionListener{
     public JButton getButton() {
         return button;
     }
-    //button.getBackground().equals(Color.YELLOW)
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (MinesweeperBoard2.flag){
             if(isFlag){
                 clearFlag();
-                //MinesweeperBoard2.flagsPlaced--;
-                if(isBomb()){
-                    MinesweeperBoard2.flaggedBombs--;
-                }
             }else{
                 addFlag();
-                //MinesweeperBoard2.flagsPlaced++;
-                if(isBomb()){
-                    MinesweeperBoard2.flaggedBombs++;
-                }
             }
         }else{
             if(!isFlag){
@@ -102,14 +96,14 @@ public class Cell implements ActionListener{
         isFlag = true;
         //button.setBackground(Color.YELLOW);
         button.setText("\u2691");
-        if(isBomb()){MinesweeperBoard2.flaggedBombs++;}
+        if(isBomb()){bombWithFlag = true;}
     }
     
     public void clearFlag(){
         isFlag = false;
         //button.setBackground(new JButton().getBackground());
         button.setText("");
-        if(isBomb()){MinesweeperBoard2.flaggedBombs--;}
+        if(isBomb()){bombWithFlag = false;}
     }
     
     public void revealBlanks(int startLoc, boolean beyondScope){

@@ -3,7 +3,7 @@
  * Minesweeper, but with a 2D array.
  *
  * @author Cody Heinks
- * @version 11.9.18
+ * @version 11.13.18
  */
 import java.lang.Math;
 import javax.swing.*;
@@ -48,7 +48,42 @@ public class MinesweeperBoard2D{
         }
     }
     public void addNums(){
-        
+        for(int r = 0; r < board.length; r++){
+            for(int c = 0; c < board[0].length; c++){
+                if(!board[r][c].isBomb()){
+                    int numValue = 0;
+                    boolean tLeft = true;
+                    boolean above = true;
+                    boolean tRight = true;
+                    boolean left = true;
+                    boolean right = true;
+                    boolean bLeft = true;
+                    boolean below = true;
+                    boolean bRight = true;
+                    //Top edge
+                    if(r == 0){tLeft = false; above = false; tRight = false;}
+                    //Left edge
+                    if(c == 0){tLeft = false; left = false; bLeft = false;}
+                    //Right edge
+                    if(c == columns - 1){tRight = false; right = false; bRight = false;}
+                    //Bottom edge
+                    if(r == rows - 1){bLeft = false; below = false; bRight = false;}
+                    
+                    if(tLeft && board[r-1][c-1].isBomb()){numValue++;}
+                    if(above && board[r-1][c].isBomb()){numValue++;}
+                    if(tRight && board[r-1][c+1].isBomb()){numValue++;}
+                    
+                    if(left && board[r][c-1].isBomb()){numValue++;}
+                    if(right && board[r][c+1].isBomb()){numValue++;}
+                    
+                    if(bLeft && board[r+1][c-1].isBomb()){numValue++;}
+                    if(below && board[r+1][c].isBomb()){numValue++;}
+                    if(bRight && board[r+1][c+1].isBomb()){numValue++;}
+                    
+                    board[r][c].setValue(numValue);
+                }  
+            }
+        }
     }
     
     public void printBoard(){
