@@ -21,7 +21,7 @@ public class MinesweeperBoard2{
     static int cellsToClear;
     public static boolean firstClick = true;
     
-    static boolean playing;
+    static boolean playing = true;
     
     public static boolean beyondScope = false;
     static JButton flagButton = new JButton();
@@ -98,8 +98,17 @@ public class MinesweeperBoard2{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
         beyondScope = true;
-        int randCell = (int)(Math.random()*numOfCells);
-        //board[randCell].checkCell();
+        boolean findStartCell = true;
+        while(findStartCell){
+            int randCell = (int)(Math.random()*numOfCells);
+            if(board[randCell].getValue()==0){
+                board[randCell].checkCell();
+                findStartCell = false;
+            }
+        }
+        flagButton.setEnabled(true);
+        flagButton.setText("");
+        playing = true;
     }
 
     public void addBombs(int numBombs) throws Exception{
@@ -183,14 +192,18 @@ public class MinesweeperBoard2{
     public JButton flagButton(JButton btn){
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(flag){   
-                    flag = false;
-                    btn.setBackground(new JButton().getBackground());
+                if(playing){
+                    if(flag){   
+                        flag = false;
+                        btn.setBackground(new JButton().getBackground());
+                    }else{
+                        flag = true;
+                        btn.setBackground(Color.GREEN);
+                    }
+                    btn.setEnabled(true);
                 }else{
-                    flag = true;
-                    btn.setBackground(Color.GREEN);
+                    MinesweeperRunner.playing = true;
                 }
-                btn.setEnabled(true);
             }
         });
         btn.setPreferredSize(new Dimension(50,50));
@@ -218,13 +231,16 @@ public class MinesweeperBoard2{
                 }
                 flagButton.setFont(new Font("Courier", Font.PLAIN, 42));
                 flagButton.setText("\u2639");
-                flagButton.setEnabled(false);
+                playing = false;
+                //flagButton.setEnabled(false);
             }else{
                 flagButton.setFont(new Font("Courier", Font.PLAIN, 42));
                 flagButton.setText("\u263A");
-                flagButton.setEnabled(false);
+                playing = false;
+                //flagButton.setEnabled(false);
             }            
-        }    
+        }
+        
     }
     
     public static void cellCleared(){
