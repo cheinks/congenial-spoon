@@ -9,10 +9,17 @@ import java.lang.Math;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.awt.event.*;
+
 public class MinesweeperBoard2D{
     Cell[][] board;
     int rows;
     int columns;
+    
+    boolean flagMode = false;
+    
+    JButton flagButton = new JButton();
+    Color bckg = flagButton.getBackground();
     
     public MinesweeperBoard2D(){
         this(10, 10);
@@ -25,6 +32,29 @@ public class MinesweeperBoard2D{
         
         JFrame frame = new JFrame("Minesweeper");
         frame.add(addCells());
+        
+        frame.pack();
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    
+    public MinesweeperBoard2D(int difficulty){
+        rows = 9;
+        columns = 9;
+        board = new Cell[rows][columns];
+        
+        JFrame frame = new JFrame("Minesweeper");
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.add(addModeSelector());
+        mainPanel.add(addCells());
+        frame.add(mainPanel);
+        
+        try{
+            this.addBombs(10);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        addNums();
         
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -107,6 +137,26 @@ public class MinesweeperBoard2D{
                 panel.add(board[r][c].getButton());
             }
         }
+        return panel;
+    }
+    
+    public JPanel addModeSelector(){
+        JPanel panel = new JPanel();
+        flagButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if(flagMode){
+                    flagMode = false;
+                    flagButton.setBackground(new JButton().getBackground());
+                }else{
+                    flagMode = true;
+                    flagButton.setBackground(Color.GREEN);
+                }
+            }
+        });
+        flagButton.setPreferredSize(new Dimension(50,50));
+        flagButton.setMargin(new Insets(0,0,0,0));
+        
+        panel.add(flagButton);
         return panel;
     }
 }
