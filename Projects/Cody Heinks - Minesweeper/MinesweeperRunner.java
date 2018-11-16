@@ -8,12 +8,8 @@
 import java.lang.Math;
 public class MinesweeperRunner{
     static int difficulty;
-    static boolean playing = true;
     public static void playGame(){
-        while(playing){
-            difficulty = (int)(Math.random()*5 + 1);
-            MinesweeperBoard2 board = new MinesweeperBoard2(difficulty);
-            playing = false;
-        }
+        difficulty = (int)(Math.random()*5 + 1);
+        MinesweeperBoard2 board = new MinesweeperBoard2(difficulty);
     }
 }

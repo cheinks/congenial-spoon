@@ -192,7 +192,10 @@ public class MinesweeperBoard2{
     public JButton flagButton(JButton btn){
         btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                if(playing){
+                if(!playing){
+                    MinesweeperRunner.playGame();
+                    playing = true;
+                }else{
                     if(flag){   
                         flag = false;
                         btn.setBackground(new JButton().getBackground());
@@ -200,10 +203,8 @@ public class MinesweeperBoard2{
                         flag = true;
                         btn.setBackground(Color.GREEN);
                     }
-                    btn.setEnabled(true);
-                }else{
-                    MinesweeperRunner.playing = true;
-                }
+                }   
+                btn.setEnabled(true);                
             }
         });
         btn.setPreferredSize(new Dimension(50,50));
