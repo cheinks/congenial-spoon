@@ -74,7 +74,7 @@ public class Cell implements ActionListener{
             if(isFlag){clearFlag();}else{addFlag();}
         }else{if(!isFlag){checkCell();}}
     }
-    
+        
     void addFlag(){
         isFlag = true;
         button.setText("\u2691");

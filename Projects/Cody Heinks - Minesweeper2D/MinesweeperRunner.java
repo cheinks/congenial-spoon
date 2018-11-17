@@ -61,25 +61,24 @@ public class MinesweeperRunner{
         JFrame frame = new JFrame("Minesweeper");
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        
         c.fill = GridBagConstraints.HORIZONTAL;
-        //c.ipady = 40;
+        c.fill = GridBagConstraints.VERTICAL;
+        
         c.weightx = 0.0;
+        c.insets = new Insets(0,10,10,10);
         c.gridwidth = 5;
         c.gridx = 0;
         c.gridy = 1;
         mainPanel.add(addCells(), c);
         
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
         c.gridx = 2;
         c.gridwidth = 1;
         c.gridy = 0;
         mainPanel.add(addModeSelector(), c);
         
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0.5;
-        c.insets = new Insets(0,20,0,0);
+        c.insets = new Insets(0,10,0,0);
         c.gridx = 1;
         c.gridwidth = 1;
         c.gridy = 0;
@@ -130,6 +129,8 @@ public class MinesweeperRunner{
                 }
             }
         });
+        flagButton.setFont(new Font("Courier", Font.PLAIN, 28));
+        flagButton.setText("\u2213" + "\u2691");
         flagButton.setPreferredSize(new Dimension(50,50));
         flagButton.setMargin(new Insets(0,0,0,0));
         panel.add(flagButton);

@@ -35,8 +35,9 @@ public class MinesweeperBoard{
         mines = bombs;
         tracker = bombs;
         cellsToClear = row*col-bombs;
-        bombsLeft.setText("Bombs left: " + bombs);
         
+        bombsLeft.setFont(new Font("Courier", Font.PLAIN, 22));
+        bombsLeft.setText("Bombs left: " + bombs);
     }
     
     public void playGame(int safeX, int safeY){
