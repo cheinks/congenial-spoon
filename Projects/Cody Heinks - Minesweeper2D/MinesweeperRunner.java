@@ -49,6 +49,7 @@ public class MinesweeperRunner{
             columns = 30;
             bombs = 99;
         }else{
+            
             rows = 20;
             columns = 30;
             bombs = 145;
@@ -60,18 +61,27 @@ public class MinesweeperRunner{
         JFrame frame = new JFrame("Minesweeper");
         JPanel mainPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.weightx = 0.5;
         
-        c.gridx = 0;
-        c.gridy = 0;
-        mainPanel.add(addModeSelector(), c);
-        
+        c.fill = GridBagConstraints.HORIZONTAL;
+        //c.ipady = 40;
+        c.weightx = 0.0;
+        c.gridwidth = 5;
         c.gridx = 0;
         c.gridy = 1;
         mainPanel.add(addCells(), c);
         
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
+        c.gridx = 2;
+        c.gridwidth = 1;
+        c.gridy = 0;
+        mainPanel.add(addModeSelector(), c);
         
-        c.gridx = 1;    
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weightx = 0.5;
+        c.insets = new Insets(0,20,0,0);
+        c.gridx = 1;
+        c.gridwidth = 1;
         c.gridy = 0;
         mainPanel.add(bombsLeft, c);
         

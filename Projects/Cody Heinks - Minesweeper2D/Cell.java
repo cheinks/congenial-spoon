@@ -79,10 +79,14 @@ public class Cell implements ActionListener{
         isFlag = true;
         button.setText("\u2691");
         if(isBomb()){bombWithFlag = true;}
+        board.tracker--;
+        board.bombsLeft.setText("Bombs left: " + board.tracker);
     }
     void clearFlag(){
         isFlag = false;
         button.setText("");
         if(isBomb()){bombWithFlag = true;}
+        board.tracker++;
+        board.bombsLeft.setText("Bombs left: " + board.tracker);
     }
 }

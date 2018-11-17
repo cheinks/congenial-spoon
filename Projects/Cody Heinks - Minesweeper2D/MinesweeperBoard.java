@@ -17,7 +17,7 @@ public class MinesweeperBoard{
     int rows;
     int mines;
     boolean firstClick = true;
-    int tracker = mines;
+    int tracker;
     
     int cellsToClear;
     boolean flagMode;
@@ -29,14 +29,14 @@ public class MinesweeperBoard{
         this.board = board;
         this.flagBtn = flagBtn;
         this.bombsLeft = bombsLeft;
-        
-        bombsLeft.setText("Hello world!");
-        
         bckg = flagBtn.getBackground();
         rows = row;
         columns = col;
         mines = bombs;
+        tracker = bombs;
         cellsToClear = row*col-bombs;
+        bombsLeft.setText("Bombs left: " + bombs);
+        
     }
     
     public void playGame(int safeX, int safeY){
