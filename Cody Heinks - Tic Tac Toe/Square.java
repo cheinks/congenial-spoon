@@ -35,18 +35,18 @@ public class Square implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
-        if(board.player1 && !board.player2 && !clicked){
+        if(board.p1Turn && !board.p2Turn && !clicked){
             addO();
             clicked = true;
+            board.p1Turn = false;
+            board.p2Turn = true;
             board.checkSquare();
-            board.player1 = false;
-            board.player2 = true;
-        }else if(!board.player1 && board.player2 && !clicked){
+        }else if(!board.p1Turn && board.p2Turn && !clicked){
             addX();
             clicked = true;
+            board.p1Turn = true;
+            board.p2Turn = false;
             board.checkSquare();
-            board.player1 = true;
-            board.player2 = false;
         }
     }
     

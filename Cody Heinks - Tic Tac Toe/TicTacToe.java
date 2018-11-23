@@ -1,8 +1,8 @@
 
 /**
- * Write a description of class GameRunner here.
+ * Write a description of class TicTacToe here.
  *
- * @author (your name)
+ * @author Cody Heinks
  * @version (a version number or a date)
  */
 import java.lang.Math;
@@ -10,10 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
-public class GameRunner{
+public class TicTacToe{
     Board gameBoard;
     
-    public GameRunner(){
+    public TicTacToe(){
         gameBoard = new Board();
         JFrame frame = new JFrame("Tic Tac Toe");
         
@@ -21,10 +21,19 @@ public class GameRunner{
         mainPanel.setOpaque(true);
         mainPanel.setBackground(gameBoard.randomColor());
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(10,50,10,50);
-        mainPanel.add(addGameBoard(), c);
-        frame.add(mainPanel);
         
+        c.gridy = 0;
+        mainPanel.add(gameBoard.info, c);
+        
+        c.insets = new Insets(10,50,10,50);
+        c.gridy = 1;
+        mainPanel.add(addGameBoard(), c);
+        
+        c.insets = new Insets(10,0,10,0);
+        c.gridy = 2;
+        mainPanel.add(addScore(), c);
+        
+        frame.add(mainPanel);
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -65,6 +74,20 @@ public class GameRunner{
                 panel.add(divider, c);
             }
         }
+        return panel;
+    }
+    public JPanel addScore(){
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setOpaque(false);
+        panel.setPreferredSize(new Dimension(265, 40));
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.insets = new Insets(0,0,0,30);
+        panel.add(gameBoard.p1, c);
+        
+        c.insets = new Insets(0,30,0,0);
+        panel.add(gameBoard.p2, c);
+        
         return panel;
     }
 }
