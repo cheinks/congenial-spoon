@@ -3,7 +3,7 @@
  * Write a description of class TicTacToe here.
  *
  * @author Cody Heinks
- * @version (a version number or a date)
+ * @version 11.26.18
  */
 import java.lang.Math;
 import javax.swing.*;
@@ -33,11 +33,14 @@ public class TicTacToe{
         c.gridy = 2;
         mainPanel.add(addScore(), c);
         
+        c.insets = new Insets(0,0,0,0);
+        c.gridy = 3;
+        mainPanel.add(addNewGame(), c);
+        
         frame.add(mainPanel);
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
     }
     
     JPanel addGameBoard(){
@@ -88,6 +91,27 @@ public class TicTacToe{
         c.insets = new Insets(0,30,0,0);
         panel.add(gameBoard.p2, c);
         
+        return panel;
+    }
+    public JPanel addNewGame(){
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        
+        JButton playAgain = new JButton();
+        playAgain.setOpaque(false);
+        playAgain.setPreferredSize(new Dimension(115, 40));
+        playAgain.setFont(new Font("Courier", Font.PLAIN, 16));
+        playAgain.setText("New Game");
+        playAgain.setContentAreaFilled(false);
+        
+        playAgain.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                gameBoard.resetBoard();
+                playAgain.setEnabled(true);
+            }
+        });
+        
+        panel.add(playAgain);
         return panel;
     }
 }

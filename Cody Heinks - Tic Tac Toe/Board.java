@@ -14,6 +14,7 @@ public class Board{
     Square[][] board = new Square[3][3];
     JLabel info = new JLabel("O Turn");
     int squaresFilled = 0;
+    int gamesPlayed = 0;
     
     JLabel p1;//O
     boolean p1Turn;
@@ -145,10 +146,9 @@ public class Board{
                 }
             }
         }
-        //add delay
-        resetBoard();
     }
     public void resetBoard(){
+        gamesPlayed++;
         for(int r=0; r<3; r++){
             for(int c=0; c<3; c++){
                 board[r][c].clicked = false;
@@ -158,6 +158,13 @@ public class Board{
             }
         }
         squaresFilled = 0;
+        if(gamesPlayed%2 == 0){
+            p1Turn = true;
+            p2Turn = false;
+        }else if(gamesPlayed%2 == 1){
+            p1Turn = false;
+            p2Turn = true;
+        }
         updateInfo(false, 0);
     }
 }

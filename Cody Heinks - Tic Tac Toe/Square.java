@@ -54,10 +54,12 @@ public class Square implements ActionListener{
         button.setText("O");
         clicked = true;
         value = 1;
+        board.squaresFilled++;
     }
     public void addX(){
         button.setText("X");
         clicked = true;
         value = 2;
+        board.squaresFilled++;
     }
 }
