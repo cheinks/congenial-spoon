@@ -49,7 +49,6 @@ public class MinesweeperRunner{
             columns = 30;
             bombs = 99;
         }else{
-            
             rows = 20;
             columns = 30;
             bombs = 145;
