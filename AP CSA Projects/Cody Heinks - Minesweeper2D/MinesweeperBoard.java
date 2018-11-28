@@ -60,17 +60,14 @@ public class MinesweeperBoard{
         while(bombsLeft > 0){
             randRow = (int)(Math.random()*rows);
             randCol = (int)(Math.random()*columns);
-            System.out.println(randRow + " " + randCol);
             if(randCol == safeX - 1 || randCol == safeX || randCol == safeX + 1){
                 if(randRow == safeY - 1 || randRow == safeY || randRow == safeY + 1){
                     dangerous = true;
-                    System.out.println("Dangerous!");
                 }
             }
-            if(!dangerous){
+            if(!dangerous && !board[randRow][randCol].isBomb()){
                 board[randRow][randCol].setValue(11);
                 bombsLeft--;
-                System.out.println("Bombs left:" + bombsLeft);
             }
             dangerous = false;
         }
