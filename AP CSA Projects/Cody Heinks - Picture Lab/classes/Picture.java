@@ -1,4 +1,4 @@
-import java.awt.*;
+    import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
@@ -97,6 +97,49 @@ public class Picture extends SimplePicture
       }
     }
   }
+  
+  public void keepOnlyBlue(){
+      Pixel[][] pixels = this.getPixels2D();
+      for(Pixel[] rowArray : pixels){
+          for(Pixel pixelObj : rowArray){
+              pixelObj.setRed(0);
+              pixelObj.setGreen(0);
+            }
+        }
+  }
+  
+  public void negate(){
+      Pixel[][] pixels = this.getPixels2D();
+      for(Pixel[] rowArray : pixels){
+          for(Pixel pixelObj : rowArray){
+              pixelObj.setRed(255 - pixelObj.getRed());
+              pixelObj.setBlue(255 - pixelObj.getBlue());
+              pixelObj.setGreen(255 - pixelObj.getGreen());
+            }
+        }
+  }
+  
+  public void grayscale(){
+      Pixel[][] pixels = this.getPixels2D();
+      for(Pixel[] rowArray : pixels){
+          for(Pixel pixelObj : rowArray){
+              int average = pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue();
+              average /= 3;
+              pixelObj.setRed(average);
+              pixelObj.setGreen(average);
+              pixelObj.setBlue(average);
+            }
+        }
+  }
+  
+  public void fixUnderwater(){
+      Pixel[][] pixels = this.getPixels2D();
+      for(Pixel[] rowArray : pixels){
+          for(Pixel pixelObj : rowArray){
+              pixelObj.setRed(pixelObj.getRed()*2);
+            }
+        }
+    }
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
