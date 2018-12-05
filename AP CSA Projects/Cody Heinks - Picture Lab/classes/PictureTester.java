@@ -110,6 +110,19 @@ public class PictureTester
     canvas.explore();
   }
   
+  public static void testCopyPart(){
+    Picture canvas = new Picture("640x480.jpg");
+    Picture whiteFlower = new Picture("whiteFlower.jpg");
+    canvas.copyPart(whiteFlower,0,0,0,0,0,0);
+    canvas.explore();
+  }
+  
+  public static void testMyCollage(){
+      Picture canvas = new Picture("640x480.jpg");
+      canvas.myCollage();
+      canvas.explore();
+  }
+  
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
@@ -125,12 +138,12 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
-    testKeepOnlyBlue();
+    //testZeroBlue();
+    //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    testNegate();
-    testGrayscale();
+    //testNegate();
+    //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorTemple();

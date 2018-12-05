@@ -333,6 +333,23 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void copyPart(Picture fromPic, int startRow, int startCol, int fromStR, int fromEnR, int fromStC, int fromEnC)
+  {
+    Pixel fromPixel = null;
+    Pixel toPixel = null;
+    Pixel[][] toPixels = this.getPixels2D();
+    Pixel[][] fromPixels = fromPic.getPixels2D();
+    for (int fromRow = fromStR, toRow = startRow; fromRow < fromEnR && toRow < toPixels.length; fromRow++, toRow++)
+    {
+      for (int fromCol = fromStC, toCol = startCol; fromCol < fromEnC && toCol < toPixels[0].length; fromCol++, toCol++)
+      {
+        fromPixel = fromPixels[fromRow][fromCol];
+        toPixel = toPixels[toRow][toCol];
+        toPixel.setColor(fromPixel.getColor());
+      }
+    }   
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -351,6 +368,21 @@ public class Picture extends SimplePicture
     this.write("collage.jpg");
   }
   
+  public void myCollage(){
+    Picture moonSurface = new Picture("moon-surface.jpg");
+    //this.copy(moonSurface,0,0);
+    
+    Picture robot = new Picture("robot.jpg");
+    //this.copy(robot,0,0);
+    
+    Picture whiteFlower = new Picture("whiteFlower.jpg");
+    this.copy(whiteFlower,100,0);
+    //this.copyPart(whiteFlower,100,0,100,100,500,500);
+    whiteFlower.zeroBlue();
+    
+    //this.mirrorDiagonal();
+    this.write("myCollage.jpg");
+  }
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
