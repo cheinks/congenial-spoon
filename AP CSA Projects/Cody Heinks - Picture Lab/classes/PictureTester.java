@@ -113,8 +113,9 @@ public class PictureTester
   public static void testCopyPart(){
     Picture canvas = new Picture("640x480.jpg");
     Picture whiteFlower = new Picture("whiteFlower.jpg");
-    canvas.copyPart(whiteFlower,0,0,0,0,0,0);
+    canvas.copyPart(whiteFlower,200,200,100,400,100,400);
     canvas.explore();
+    whiteFlower.explore();
   }
   
   public static void testMyCollage(){

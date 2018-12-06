@@ -340,9 +340,13 @@ public class Picture extends SimplePicture
     Pixel toPixel = null;
     Pixel[][] toPixels = this.getPixels2D();
     Pixel[][] fromPixels = fromPic.getPixels2D();
-    for (int fromRow = fromStR, toRow = startRow; fromRow < fromEnR && toRow < toPixels.length; fromRow++, toRow++)
+    for (int fromRow = fromStR, toRow = startRow;
+    toRow < toPixels.length && fromRow < fromEnR && fromRow < fromPixels.length;
+    fromRow++, toRow++)
     {
-      for (int fromCol = fromStC, toCol = startCol; fromCol < fromEnC && toCol < toPixels[0].length; fromCol++, toCol++)
+      for (int fromCol = fromStC, toCol = startCol;
+      toCol < toPixels[0].length && fromCol < fromEnC && fromCol < fromPixels[0].length;
+      fromCol++, toCol++)
       {
         fromPixel = fromPixels[fromRow][fromCol];
         toPixel = toPixels[toRow][toCol];
@@ -370,17 +374,24 @@ public class Picture extends SimplePicture
   
   public void myCollage(){
     Picture moonSurface = new Picture("moon-surface.jpg");
-    //this.copy(moonSurface,0,0);
+    Picture whiteFlower = new Picture("whiteFlower.jpg");
+    this.copy(moonSurface,0,0);
     
     Picture robot = new Picture("robot.jpg");
-    //this.copy(robot,0,0);
+    this.copy(robot,0,0);
     
-    Picture whiteFlower = new Picture("whiteFlower.jpg");
-    this.copy(whiteFlower,100,0);
-    //this.copyPart(whiteFlower,100,0,100,100,500,500);
+    Picture negateFlower = new Picture("whiteFlower.jpg");
+    negateFlower.negate();
+    this.copyPart(negateFlower,75,0,90,270,265,460);
+    
     whiteFlower.zeroBlue();
+    this.copyPart(whiteFlower,250,0,90,270,265,460);
     
-    //this.mirrorDiagonal();
+    robot.keepOnlyBlue();
+    this.copy(robot,430,0);
+    
+    this.mirrorVertical();
+    this.mirrorDiagonal();
     this.write("myCollage.jpg");
   }
   
