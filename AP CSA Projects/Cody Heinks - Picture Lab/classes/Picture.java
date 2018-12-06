@@ -137,7 +137,7 @@ public class Picture extends SimplePicture
       Pixel[][] pixels = this.getPixels2D();
       for(Pixel[] rowArray : pixels){
           for(Pixel pixelObj : rowArray){
-              pixelObj.setRed(pixelObj.getRed()*2);
+              pixelObj.setRed(pixelObj.getRed()*3);
             }
         }
     }
@@ -406,17 +406,16 @@ public class Picture extends SimplePicture
     Color rightColor = null;
     for (int row = 0; row < pixels.length; row++)
     {
-      for (int col = 0; 
-           col < pixels[0].length-1; col++)
+      for (int col = 0; col < pixels[0].length-1; col++)
       {
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+        if (leftPixel.colorDistance(rightColor) > edgeDist){
           leftPixel.setColor(Color.BLACK);
-        else
+        }else{
           leftPixel.setColor(Color.WHITE);
+        }
       }
     }
   }
