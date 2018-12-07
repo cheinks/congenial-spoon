@@ -400,36 +400,34 @@ public class Picture extends SimplePicture
     */
   public void edgeDetection(int edgeDist)
   {
-    Pixel leftPixel = null;
-    Pixel rightPixel = null;
     Pixel[][] pixels = this.getPixels2D();
+    Pixel currentPixel = null;
+    Pixel rightPixel = null;
     Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+    Pixel bottomPixel = null;
+    Color bottomColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
     {
       for (int col = 0; col < pixels[0].length-1; col++)
       {
-        leftPixel = pixels[row][col];
+        currentPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > edgeDist){
-          leftPixel.setColor(Color.BLACK);
+        bottomPixel = pixels[row+1][col];
+        bottomColor = rightPixel.getColor();
+        if(currentPixel.colorDistance(rightColor) > edgeDist){
+            currentPixel.setColor(Color.BLACK);
+        }else if(currentPixel.colorDistance(bottomColor) > edgeDist){
+            currentPixel.setColor(Color.BLACK);
         }else{
-          leftPixel.setColor(Color.WHITE);
+            currentPixel.setColor(Color.WHITE);
         }
       }
     }
   }
   
-  
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
-  public static void main(String[] args) 
-  {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
-  }
-  
+  public static void main(String[] args){}
 } // this } is the end of class Picture, put all new methods before this
