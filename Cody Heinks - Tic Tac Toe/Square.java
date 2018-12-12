@@ -35,12 +35,18 @@ public class Square implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e){
+        checkSquare();
+    }
+    
+    public void checkSquare(){
         if(board.p1Turn && !board.p2Turn && !clicked){
             addO();
             clicked = true;
             board.p1Turn = false;
             board.p2Turn = true;
             board.checkSquare();
+            //Now that it's player 2's turn:
+            //board.
         }else if(!board.p1Turn && board.p2Turn && !clicked){
             addX();
             clicked = true;
@@ -49,7 +55,6 @@ public class Square implements ActionListener{
             board.checkSquare();
         }
     }
-    
     public void addO(){
         button.setText("O");
         clicked = true;

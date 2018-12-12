@@ -1,20 +1,18 @@
 
 /**
- * Write a description of class TicTacToe here.
+ * Controls the GUI for the game.
  *
  * @author Cody Heinks
- * @version 11.26.18
+ * @version 1.01.19
  */
-import java.lang.Math;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
 public class TicTacToe{
     Board gameBoard;
-    
     public TicTacToe(){
-        gameBoard = new Board();
+        gameBoard = new Board(0);
         JFrame frame = new JFrame("Tic Tac Toe");
         
         JPanel mainPanel = new JPanel(new GridBagLayout());

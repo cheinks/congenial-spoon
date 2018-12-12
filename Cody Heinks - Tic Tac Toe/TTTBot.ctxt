@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=TTTBot
+comment1.params=difficulty\ b
+comment1.target=TTTBot(int,\ Square[][])
+comment2.params=
+comment2.target=void\ takeTurn()
+numComments=3

@@ -11,6 +11,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
 public class Board{
+    int mode;
     Square[][] board = new Square[3][3];
     JLabel info = new JLabel("O Turn");
     int squaresFilled = 0;
@@ -24,8 +25,10 @@ public class Board{
     boolean p2Turn;
     int games2;
     
-    public Board(){
+    public Board(int difficulty){
         info.setFont(new Font("Courier", Font.PLAIN, 30));
+        if(difficulty < 4){mode = difficulty;}else{mode = 3;}
+        TTTBot bot = new TTTBot(mode, board);
         
         p1Turn = true;
         games1 = 0;
@@ -51,10 +54,10 @@ public class Board{
         }
         return new Color(redValue, greenValue, blueValue);
     }
-    
+    //Has anyone one yet?
     public void checkSquare(){
         boolean checked = false;
-        //3-in-a-row top to bottom
+            //3-in-a-row top to bottom
         for(int i = 0; i<3; i++){
             int sValue = board[0][i].getValue();
             if(sValue > 0 && board[1][i].getValue()==sValue && board[2][i].getValue()==sValue){
@@ -92,7 +95,7 @@ public class Board{
         
         if(!checked){
             //3-in-a-row top right to bottom left
-            int tR = board[0][2].   getValue();
+            int tR = board[0][2].getValue();
             if(tR == board[1][1].getValue() && tR == board[2][0].getValue()){
                 if(tR != 0){
                     if(tR==1){games1++;}
@@ -112,10 +115,12 @@ public class Board{
         }
         
         if(!checked){
+            //Keep playing
             updateInfo(false, 0);
             checked = true;
         }
     }
+    //Controls the text at top of screen
     public void updateInfo(boolean gameOver, int winner){
         if(!gameOver){
             if(p1Turn){
@@ -134,7 +139,7 @@ public class Board{
             
         }   
     }
-    
+    //End the game (officially)
     public void endGame(int winner){
         updateInfo(true, winner);
         p1.setText("O:   " + games1);
@@ -147,8 +152,9 @@ public class Board{
             }
         }
     }
+    //New game!
     public void resetBoard(){
-        gamesPlayed++;
+        gamesPlayed++; //Keeps track of whick player starts
         for(int r=0; r<3; r++){
             for(int c=0; c<3; c++){
                 board[r][c].clicked = false;
@@ -167,4 +173,6 @@ public class Board{
         }
         updateInfo(false, 0);
     }
+    
+    public void player2(){}
 }
