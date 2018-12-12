@@ -181,6 +181,7 @@ public class Board{
             p1Turn = false;
             p2Turn = true;
         }
+        bot.reset();
         updateInfo(false, 0);
     }
     
