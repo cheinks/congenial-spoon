@@ -12,7 +12,7 @@ import java.awt.event.*;
 public class TicTacToe{
     Board gameBoard;
     public TicTacToe(){
-        gameBoard = new Board(0);
+        gameBoard = new Board(1);
         JFrame frame = new JFrame("Tic Tac Toe");
         
         JPanel mainPanel = new JPanel(new GridBagLayout());

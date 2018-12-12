@@ -12,10 +12,12 @@ import java.util.ArrayList;
 import java.awt.event.*;
 public class Board{
     int mode;
+    TTTBot bot;
     Square[][] board = new Square[3][3];
     JLabel info = new JLabel("O Turn");
     int squaresFilled = 0;
     int gamesPlayed = 0;
+    boolean playing;
     
     JLabel p1;//O
     boolean p1Turn;
@@ -28,7 +30,8 @@ public class Board{
     public Board(int difficulty){
         info.setFont(new Font("Courier", Font.PLAIN, 30));
         if(difficulty < 4){mode = difficulty;}else{mode = 3;}
-        TTTBot bot = new TTTBot(mode, board);
+        bot = new TTTBot(mode, board);
+        playing = true;
         
         p1Turn = true;
         games1 = 0;
@@ -47,14 +50,18 @@ public class Board{
         int redValue = 0;
         int greenValue = 0;
         int blueValue = 0;
-        while(redValue + greenValue + blueValue < 255){
+        int total;
+        while(redValue+blueValue+greenValue == 0){
             redValue = (int)(Math.random()*255);
+            if(redValue < 102){redValue = 0;}else{redValue = 255;}
             greenValue = (int)(Math.random()*255);
+            if(greenValue < 102){greenValue = 0;}else{greenValue = 255;}
             blueValue = (int)(Math.random()*255);
+            if(blueValue < 102){blueValue = 0;}else{blueValue = 255;}
         }
         return new Color(redValue, greenValue, blueValue);
     }
-    //Has anyone one yet?
+    //Has anyone won yet?
     public void checkSquare(){
         boolean checked = false;
             //3-in-a-row top to bottom
@@ -127,6 +134,7 @@ public class Board{
                 info.setText("O Turn");
             }else{
                 info.setText("X Turn");
+                bot.takeTurn();
             }
         }else{
             if(winner == 0){
@@ -141,6 +149,7 @@ public class Board{
     }
     //End the game (officially)
     public void endGame(int winner){
+        playing = false;
         updateInfo(true, winner);
         p1.setText("O:   " + games1);
         p2.setText("X:   " + games2);
@@ -155,6 +164,7 @@ public class Board{
     //New game!
     public void resetBoard(){
         gamesPlayed++; //Keeps track of whick player starts
+        playing = true;
         for(int r=0; r<3; r++){
             for(int c=0; c<3; c++){
                 board[r][c].clicked = false;
@@ -174,5 +184,7 @@ public class Board{
         updateInfo(false, 0);
     }
     
-    public void player2(){}
+    public void player2(){
+        if(playing){bot.takeTurn();}
+    }
 }

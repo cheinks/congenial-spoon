@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 import java.lang.Math;
-import java.awt.event.ActionEvent;
 public class TTTBot{
     int mode;
     Square[][] game;
