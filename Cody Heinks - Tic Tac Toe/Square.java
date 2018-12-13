@@ -45,8 +45,6 @@ public class Square implements ActionListener{
             board.p1Turn = false;
             board.p2Turn = true;
             board.checkSquare();
-            //Now that it's player 2's turn:
-            //board.player2();
         }else if(!board.p1Turn && board.p2Turn && !clicked){
             addX();
             clicked = true;

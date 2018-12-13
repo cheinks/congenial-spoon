@@ -184,8 +184,4 @@ public class Board{
         bot.reset();
         updateInfo(false, 0);
     }
-    
-    public void player2(){
-        if(playing){bot.takeTurn();}
-    }
 }

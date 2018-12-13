@@ -12,7 +12,7 @@ import java.awt.event.*;
 public class TicTacToe{
     Board gameBoard;
     public TicTacToe(){
-        gameBoard = new Board(1);
+        gameBoard = new Board(2);
         JFrame frame = new JFrame("Tic Tac Toe");
         
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -46,9 +46,9 @@ public class TicTacToe{
         panel.setOpaque(false); 
         GridBagConstraints c = new GridBagConstraints();
         c.gridy = -1;
-        for(int row = 0; row<gameBoard.board.length; row++){
+        for(int row = 0; row<3; row++){
             c.gridy++;
-            for(int col = 0; col<gameBoard.board[0].length; col++){
+            for(int col = 0; col<3; col++){
                 gameBoard.board[row][col] = new Square(gameBoard);
                 
                 c.gridwidth  = 3;
