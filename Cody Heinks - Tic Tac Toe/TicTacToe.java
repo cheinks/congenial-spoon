@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.awt.event.*;
 public class TicTacToe{
     Board gameBoard;
-    public TicTacToe(){
-        gameBoard = new Board(2);
-        JFrame frame = new JFrame("Tic Tac Toe");
+    JPanel mainPanel;
+    public TicTacToe(int difficulty){
+        gameBoard = new Board(difficulty);
         
-        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setOpaque(true);
         mainPanel.setBackground(gameBoard.randomColor());
         GridBagConstraints c = new GridBagConstraints();
@@ -35,10 +35,7 @@ public class TicTacToe{
         c.gridy = 3;
         mainPanel.add(addNewGame(), c);
         
-        frame.add(mainPanel);
-        frame.pack();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        
     }
     
     JPanel addGameBoard(){
@@ -112,4 +109,6 @@ public class TicTacToe{
         panel.add(playAgain);
         return panel;
     }
+    
+    public JPanel getPanel(){return mainPanel;}
 }

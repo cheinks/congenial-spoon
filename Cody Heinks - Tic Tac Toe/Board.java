@@ -53,11 +53,17 @@ public class Board{
         int total;
         while(redValue+blueValue+greenValue == 0){
             redValue = (int)(Math.random()*255);
-            if(redValue < 102){redValue = 0;}else{redValue = 255;}
+            if(redValue < 127){redValue = 0;}else{redValue = 255;}
             greenValue = (int)(Math.random()*255);
-            if(greenValue < 102){greenValue = 0;}else{greenValue = 255;}
+            if(greenValue < 127){greenValue = 0;}else{greenValue = 255;}
             blueValue = (int)(Math.random()*255);
-            if(blueValue < 102){blueValue = 0;}else{blueValue = 255;}
+            if(blueValue < 127){blueValue = 0;}else{blueValue = 255;}
+            
+            if(redValue + greenValue + blueValue == 765){
+                redValue = 0;
+                greenValue = 0;
+                blueValue = 0;
+            }
         }
         return new Color(redValue, greenValue, blueValue);
     }
