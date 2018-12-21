@@ -99,12 +99,15 @@ public class TicTacToe{
         playAgain.setText("New Game");
         playAgain.setContentAreaFilled(false);
         
-        playAgain.addActionListener(new ActionListener(){
+        ActionListener l = new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                gameBoard.resetBoard();
-                playAgain.setEnabled(true);
+                if(!gameBoard.playing){
+                    gameBoard.resetBoard();
+                    playAgain.setEnabled(true);
+                }
             }
-        });
+        };
+        playAgain.addActionListener(l);
         
         panel.add(playAgain);
         return panel;

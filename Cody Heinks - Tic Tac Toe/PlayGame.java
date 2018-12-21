@@ -41,7 +41,7 @@ public class PlayGame{
         JButton easy = new JButton("Easy");
         easy.setFont(defaultFont);
         easy.setPreferredSize(defaultDim);
-        easy.addActionListener(new ActionListener(){
+            easy.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 easy.setEnabled(false);
                 startGame(1);
