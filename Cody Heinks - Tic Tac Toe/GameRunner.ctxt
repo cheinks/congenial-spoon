@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=PlayGame
+comment0.target=GameRunner
 comment1.params=
-comment1.target=PlayGame()
+comment1.target=GameRunner()
 comment2.params=
 comment2.target=javax.swing.JPanel\ addInstruct()
 comment3.params=e

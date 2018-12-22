@@ -6,12 +6,14 @@
  * @version (a version number or a date)
  */
 import java.lang.Math;
+import java.util.ArrayList;
 public class TTTBot{
     int mode;
     int turnCounter;
+    boolean first;
     Square[][] game;
-    Square firstChoice;
-    Square secondChoice;
+    Square p1m1;
+    Square p1m2;
     
     public TTTBot(int difficulty, Square[][] b){
         mode = difficulty;
@@ -31,7 +33,15 @@ public class TTTBot{
                 makeMove().checkSquare();
             }
         }else if(mode == 3){ //Impossible
-            
+            if(turnCounter == 1){
+                
+            }
+            else if(turnCounter == 2){
+                
+            }
+            else{
+                makeMove().checkSquare();
+            }
         }
         turnCounter++;
     }
@@ -168,9 +178,46 @@ public class TTTBot{
         return selection;
     }
     
+    public int[] checkMatrix(int turn){
+        int r = 0;
+        int c = 0;
+        int loc = 0;
+        if(turn == 1){
+            for(r = 0; r < 3; r++){
+                for(c = 0; c < 3; c++){
+                    if(game[r][c].getValue() == 1){
+                        p1m1 = game[r][c];
+                        loc = findLocation(r, c);
+                    }
+                }
+            }
+        }
+        else if(turn == 2){
+            for(r = 0; r < 3; r++){
+                for(c = 0; c < 3; c++){
+                    if(game[r][c].getValue() == 1 && p1m1 != game[r][c]){
+                        p1m2 = game[r][c];
+                        loc = findLocation(r, c);
+                    }
+                }
+            }
+        }
+        int[] information = {r, c, loc};
+        return information;
+    }
+    public int findLocation(int r, int c){
+        //corner:1, center:2, edge:3
+        int value = 0;
+        if(r == 0 || r == 2){if(c == 0 || c == 2){value = 1;}
+        }else if(r == 1 && c == 1){value = 2;}
+        else{value = 3;}
+        return value;
+    }
+    
+    
     public void reset(){
-        firstChoice = null;
-        secondChoice = null;
-        turnCounter = 1;
+        p1m1 = null;
+        p1m2 = null;
+        turnCounter = 1;    
     }
 }

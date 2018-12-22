@@ -1,6 +1,6 @@
-
+    
 /**
- * Write a description of class PlayGame here.
+ * Write a description of class GameRunner here.
  *
  * @author Cody Heinks
  * @version 12.13.18
@@ -9,13 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.*;
-public class PlayGame{
+public class GameRunner{
     JFrame frame;
     JPanel mainPanel;
     TicTacToe game;
     boolean playing = false;
-    public PlayGame(){
-        frame = new JFrame("Tic Tac Toe");
+    public GameRunner(){
+        frame = new JFrame("Noughts and Crosses");
         mainPanel = new JPanel();
         mainPanel.add(addInstruct());
         
@@ -68,6 +68,7 @@ public class PlayGame{
         impossible.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 impossible.setEnabled(false);
+                impossible.setText("Coming soon");
                 //startGame(3);
             }
         });

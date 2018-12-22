@@ -183,9 +183,11 @@ public class Board{
         if(gamesPlayed%2 == 0){
             p1Turn = true;
             p2Turn = false;
+            bot.first = false;
         }else if(gamesPlayed%2 == 1){
             p1Turn = false;
             p2Turn = true;
+            bot.first = true;
         }
         bot.reset();
         updateInfo(false, 0);
