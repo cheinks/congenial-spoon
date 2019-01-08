@@ -34,7 +34,7 @@ public class TTTBot{
             }
         }else if(mode == 3){ //Impossible
             if(turnCounter == 1){
-                
+                //firstMove().checkSquare();
             }
             else if(turnCounter == 2){
                 
@@ -45,6 +45,7 @@ public class TTTBot{
         }
         turnCounter++;
     }
+    
     
     private Square randSquare(){
         Square selection = null;
@@ -58,6 +59,7 @@ public class TTTBot{
         }
         return selection;
     }
+    
     
     private boolean dangerous(Square sq1, Square sq2, Square sq3){
         boolean dangerous = false;
@@ -178,6 +180,7 @@ public class TTTBot{
         return selection;
     }
     
+    
     public int[] checkMatrix(int turn){
         int r = 0;
         int c = 0;
@@ -195,7 +198,7 @@ public class TTTBot{
         else if(turn == 2){
             for(r = 0; r < 3; r++){
                 for(c = 0; c < 3; c++){
-                    if(game[r][c].getValue() == 1 && p1m1 != game[r][c]){
+                    if(game[r][c].getValue() == 1 && game[r][c] != p1m1){
                         p1m2 = game[r][c];
                         loc = findLocation(r, c);
                     }
@@ -212,6 +215,15 @@ public class TTTBot{
         }else if(r == 1 && c == 1){value = 2;}
         else{value = 3;}
         return value;
+    }
+    public Square firstMove(){
+        Square selection = null;
+        int[] info = checkMatrix(turnCounter);
+        
+        if(info[2] == 2){ //If player chose center, go in the corner
+            selection = game[info[0] - 1][info[1] - 1];
+        }
+        return selection;
     }
     
     
