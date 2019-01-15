@@ -34,8 +34,6 @@ public class TicTacToe{
         c.insets = new Insets(0,0,0,0);
         c.gridy = 3;
         mainPanel.add(addNewGame(), c);
-        
-        
     }
     
     JPanel addGameBoard(){

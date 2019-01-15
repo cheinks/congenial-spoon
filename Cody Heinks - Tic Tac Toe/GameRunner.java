@@ -20,9 +20,9 @@ public class GameRunner{
         mainPanel.add(addInstruct());
         
         frame.add(mainPanel);
-        frame.setSize(500, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        frame.pack();
     }
     
     public JPanel addInstruct(){
@@ -97,8 +97,8 @@ public class GameRunner{
             JPanel gamePanel = game.getPanel();
             
             frame.remove(mainPanel);
-            frame.add(gamePanel);
-            frame.revalidate();
+            frame.add(gamePanel);frame.revalidate();
+            frame.pack();
         }
     }
 }

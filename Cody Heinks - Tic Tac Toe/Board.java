@@ -171,6 +171,7 @@ public class Board{
     public void resetBoard(){
         gamesPlayed++; //Keeps track of whick player starts
         playing = true;
+        //Resets all of the buttons
         for(int r=0; r<3; r++){
             for(int c=0; c<3; c++){
                 board[r][c].clicked = false;
@@ -180,6 +181,7 @@ public class Board{
             }
         }
         squaresFilled = 0;
+        //Who goes first next
         if(gamesPlayed%2 == 0){
             p1Turn = true;
             p2Turn = false;
