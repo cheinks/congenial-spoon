@@ -13,6 +13,8 @@ public class ArrModTester{
         display(arrMod.original);
         arrMod.remove(1);
         display(arrMod.arr);
+        arrMod.add(1456, 2);
+        display(arrMod.arr);
     }
     
     private static void display(int[] array){
