@@ -3,9 +3,10 @@
  * Write a description of class Project here.
  *
  * @author Cody Heinks
- * @version 1.18.19
+ * @version 2.1.19
  */
 import java.util.ArrayList;
+import java.lang.Math;
 public class Project{
     ArrayList<String> colors;
     //1
@@ -18,7 +19,6 @@ public class Project{
         colors.add("Blue");
         colors.add("Indigo");
         colors.add("Violet");
-        System.out.println(colors);
     }
     //2
     public void display(){
@@ -51,10 +51,27 @@ public class Project{
         }
         return false;
     }
-    //8 ?
-    public void sort(){}
+    //8
+    public ArrayList sort(ArrayList<Integer> n){
+        ArrayList<Integer> sortedList = new ArrayList();
+        for(Integer number : n){
+            boolean sorted = false;
+            int index = 0;
+            while(!sorted){
+                if(index == sortedList.size()){
+                    sortedList.add(number);
+                    sorted = true;
+                }else if(number.intValue() < sortedList.get(index).intValue()){
+                    sortedList.add(index, number);
+                    sorted = true;
+                }
+                index++;
+            }
+        }
+        return sortedList;
+    }
     //9
-    public static ArrayList copy(ArrayList original){
+    public ArrayList copy(ArrayList original){
         ArrayList copy = new ArrayList();
         for(Object e : original){
             copy.add(e);
@@ -62,8 +79,15 @@ public class Project{
         return copy;
     }
     //10 ?
-    public void shuffle(){
-        for(String color : colors){}
+    public ArrayList shuffle(ArrayList list){
+        ArrayList oldList = list;
+        ArrayList newList = new ArrayList();
+        while(oldList.size() > 0){
+            int i = (int)(Math.random()*oldList.size());
+            newList.add(list.get(i));
+            oldList.remove(i);
+        }
+        return newList;
     }
     //11
     public void reverse(){
@@ -77,15 +101,16 @@ public class Project{
         }
     }
     //12
-    public ArrayList extract(int start, int end){ //(inclusive, exclusive)
+    public ArrayList extract(int start, int end){ //(inclusive, inclusive)
         ArrayList extraction = new ArrayList();
-        for(int i = start; i < end; i++){
+        if(start >= colors.size() || end > colors.size()){return extraction;}
+        for(int i = start; i < end+1; i++){
             extraction.add(colors.get(i));
         }
         return extraction;
     }
-    //13 ?
-    public static boolean compare(ArrayList a, ArrayList b){
+    //13
+    public boolean compare(ArrayList a, ArrayList b){
         if(a.size()>b.size()){
             for(int i = 0; i < b.size(); i++){
                 if(!a.get(i).equals(b.get(i))){
@@ -108,7 +133,7 @@ public class Project{
         colors.set(b, holder);
     }
     //15
-    public static ArrayList join(ArrayList a, ArrayList b){
+    public ArrayList join(ArrayList a, ArrayList b){
         ArrayList c = new ArrayList();
         for(Object e : a){
             c.add(e);
@@ -119,19 +144,19 @@ public class Project{
         return c;
     }
     //16
-    public static void clone(ArrayList original, ArrayList clone){
+    public void clone(ArrayList original, ArrayList clone){
         for(int i = 0; i < original.size(); i++){
             clone.set(i, original.get(i));
         }
     }
     //17
-    public static void empty(ArrayList list){
+    public void empty(ArrayList list){
         for(int i = list.size(); i > -1; i--){
             list.remove(i);
         }
     }
     //18
-    public static boolean isEmpty(ArrayList list){
+    public boolean isEmpty(ArrayList list){
         return list.size() == 0;
     }
     //19 ?
