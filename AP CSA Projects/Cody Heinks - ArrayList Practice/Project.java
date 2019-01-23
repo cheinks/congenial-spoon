@@ -144,14 +144,16 @@ public class Project{
         return c;
     }
     //16
-    public void clone(ArrayList original, ArrayList clone){
+    public ArrayList clone(ArrayList original){
+        ArrayList cloneL = new ArrayList();
         for(int i = 0; i < original.size(); i++){
-            clone.set(i, original.get(i));
+            cloneL.add(i, original.get(i));
         }
+        return cloneL;
     }
     //17
     public void empty(ArrayList list){
-        for(int i = list.size(); i > -1; i--){
+        for(int i = list.size()-1; i > -1; i--){
             list.remove(i);
         }
     }
@@ -159,10 +161,16 @@ public class Project{
     public boolean isEmpty(ArrayList list){
         return list.size() == 0;
     }
-    //19 ?
-    public void trim(){}
-    //20 ?
-    public void increaseSize(){}
+    //19
+    public void trim(ArrayList list){
+        list.trimToSize();
+    }
+    //20
+    public void increaseSize(ArrayList<String> list, int num){
+        for(int i = 0; i < num; i++){
+            list.add("");
+        }
+    }
     //21
     public void replaceSecond(int e){
         colors.set(1, colors.get(e));
