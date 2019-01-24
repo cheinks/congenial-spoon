@@ -6,14 +6,12 @@
  * @version (a version number or a date)
  */
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 public class Test3{
-    Graphics graphics;
     public Test3(){
         JFrame frame = new JFrame();
-        graphics = frame.getGraphics();
-        //graphics.fillRect(0,0,10,70);
         
         frame.pack();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=TrivialSketcher
+comment0.text=\r\n\ This\ is\ an\ extremely\ scaled-down\ sketching\ canvas;\ with\ it\ you\r\n\ can\ only\ scribble\ thin\ black\ lines.\ \ For\ simplicity\ the\ window\r\n\ contents\ are\ never\ refreshed\ when\ they\ are\ uncovered.\r\n
+comment1.params=
+comment1.target=TrivialSketcher()
+comment1.text=\r\n\ Constructs\ a\ panel,\ registering\ listeners\ for\ the\ mouse.\r\n
+comment2.params=e
+comment2.target=void\ mousePressed(java.awt.event.MouseEvent)
+comment3.params=e
+comment3.target=void\ mouseDragged(java.awt.event.MouseEvent)
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\r\n\ A\ tester\ method\ that\ embeds\ the\ panel\ in\ a\ frame\ so\ you\ can\r\n\ run\ it\ as\ an\ application.\r\n
+numComments=5

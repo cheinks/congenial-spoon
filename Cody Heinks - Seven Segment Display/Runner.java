@@ -42,7 +42,7 @@ public class Runner{
         }
         return output;
     }
-    public void binToSSD(String input){
+    private void binToSSD(String input){
         String binary = input;
         int length = input.length();
         String display;
