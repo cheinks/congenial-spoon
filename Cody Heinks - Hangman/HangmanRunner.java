@@ -6,11 +6,15 @@
  * @version 10.09.18
  */
 import java.util.Scanner;
+import java.lang.Math;
 public class HangmanRunner
 {
     public static void playGame(){
         Scanner scanner = new Scanner(System.in);
-        String wordToGuess = "California";        
+        String[] words = {"elastic", "yellow", "object", "knot", "jail",
+            "familiar", "truck","save", "torpid", "brush", "boast",
+            "measure", "annoyed", "closed", "ruin"};
+        String wordToGuess = words[(int)(Math.random()*words.length)];
         int guessLen = wordToGuess.length();
         String guessWord = wordToGuess;
         String newGuessWord = guessWord;
