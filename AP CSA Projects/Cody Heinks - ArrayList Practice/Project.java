@@ -78,7 +78,7 @@ public class Project{
         }
         return copy;
     }
-    //10 ?
+    //10
     public ArrayList shuffle(ArrayList list){
         ArrayList oldList = list;
         ArrayList newList = new ArrayList();
