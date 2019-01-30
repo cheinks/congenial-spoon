@@ -6,16 +6,29 @@
  * @version (a version number or a date)
  */
 import java.awt.*;
-import java.io.File;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
 public class Player{
     private int x;
     private int y;
     private int speed;
-    private File img = new File("myImage.png");
+    File myFile = new File("myImage.png");
+    private BufferedImage img = null;
+    
     public Player(int xCoord, int yCoord){
         x = xCoord;
         y = yCoord;
         speed = 10;
-        
+        try{
+            img = ImageIO.read(myFile);
+        }catch(IOException e){
+            System.out.println("Noooo!");
+        }
     }
+    
+    public int getX(){return x;}
+    public int getY(){return y;}
+    public int getSpeed(){return speed;}
+    public BufferedImage getImg(){return img;}
 }

@@ -2,4 +2,12 @@
 comment0.target=Player
 comment1.params=xCoord\ yCoord
 comment1.target=Player(int,\ int)
-numComments=2
+comment2.params=
+comment2.target=int\ getX()
+comment3.params=
+comment3.target=int\ getY()
+comment4.params=
+comment4.target=int\ getSpeed()
+comment5.params=
+comment5.target=java.awt.image.BufferedImage\ getImg()
+numComments=6
