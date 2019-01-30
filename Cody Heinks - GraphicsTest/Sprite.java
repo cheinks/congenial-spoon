@@ -9,14 +9,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
-public class Player{
+public class Sprite{
     private int x;
     private int y;
     private int speed;
     File myFile = new File("myImage.png");
     private BufferedImage img = null;
     
-    public Player(int xCoord, int yCoord){
+    public Sprite(int xCoord, int yCoord){
         x = xCoord;
         y = yCoord;
         speed = 10;
