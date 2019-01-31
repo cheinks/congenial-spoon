@@ -14,21 +14,19 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.util.ArrayList;
 
-
-public class GameRunner extends JFrame{
+import java.awt.Graphics;
+public class TestGame extends JFrame{
     private Screen game;
-    private Sprite player1;
-    public GameRunner(){
-        setTitle("Yay!");
+    private ArrayList<Sprite> sprites = new ArrayList();
+    public TestGame(){
+        setTitle("Does it work?");
         
-        
-        game = new Screen();
-        player1 = new Sprite(100, 100);
-        game.addSprite(player1);
+        Sprite player1 = new Sprite(100, 100);
+        sprites.add(player1);
+        game = new Screen(sprites);
         
         add(game);
         setVisible(true);
         pack();
     }
-    
 }

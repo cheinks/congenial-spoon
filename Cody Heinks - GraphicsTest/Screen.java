@@ -15,17 +15,14 @@ import javax.imageio.ImageIO;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.lang.Math;
 public class Screen extends JPanel{
     private ArrayList<Sprite> sprites;
     private Dimension fieldSize;
-    public Screen(){
-        sprites = new ArrayList();
+    Graphics g = getGraphics();
+    public Screen(ArrayList<Sprite> newSprites){
+        sprites = newSprites;
         fieldSize = new Dimension(500, 500);
-        Graphics g = getGraphics();
-        for(Sprite s : sprites){
-            g.drawImage(s.getImg(), s.getX(), s.getY());
-        }
-        
         
         addKeyListener(new KeyListener(){
             public void keyPressed(KeyEvent e){
@@ -36,6 +33,14 @@ public class Screen extends JPanel{
             }
             public void keyReleased(KeyEvent e){}
             public void keyTyped(KeyEvent e){}
+        });
+        
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                for(Sprite s : sprites){
+                    g.drawImage(s.getImg(), s.getX(), s.getY(), null);
+                }
+            }
         });
         
         setPreferredSize(fieldSize);
