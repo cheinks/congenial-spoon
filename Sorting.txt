@@ -1,0 +1,11 @@
+Bubble sort:
+Compares two, the greater one is moved down the list.
+After every iteration, the last item of the list is guaranteed to be sorted.
+
+Insertion sort:
+Moves through the list, creating a sorted and unsorted section.
+Compares the first unsorted to every item before it (until it would be sorted).
+
+Selection sort:
+"Selects" the lowest value in the list and moves it to the front.
+Guarantees the next item of the list is sorted.
