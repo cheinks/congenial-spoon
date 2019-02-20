@@ -11,28 +11,39 @@ public class Sorter{
         
     }
 
-    public ArrayList bubble(ArrayList<Integer> list){
+    public int[] bubble(int[] list){
         int middleMan;
-        for(int lastSortedIndex = list.size() - 1; lastSortedIndex > 0; lastSortedIndex--){
-            for(int index = 0; index < lastSortedIndex; index++){
-                if(list.get(index).intValue() > list.get(index + 1).intValue()){
-                    middleMan = list.get(index).intValue();
-                    list.set(index, new Integer(list.get(index + 1).intValue()));
-                    list.set(index + 1, new Integer(middleMan));
+        for(int lastSortedIndex = list.length - 1; lastSortedIndex > 0; lastSortedIndex--){
+            for(int currentIndex = 0; currentIndex < lastSortedIndex; currentIndex++){
+                if(list[currentIndex] > list[currentIndex + 1]){
+                    middleMan = list[currentIndex];
+                    list[currentIndex] = list[currentIndex + 1];
+                    list[currentIndex + 1] = middleMan;
                 }
             }
         }
+        return list;
+    }
+
+    public int[] insertion(int[] list){
+        int middleMan;
         
         return list;
     }
 
-    public ArrayList insertion(ArrayList<Integer> list){
-        
-        return list;
-    }
-
-    public ArrayList selection(ArrayList<Integer> list){
-        
+    public int[] selection(int[] list){
+        int middleMan;
+        for(int nextSlot = 0; nextSlot < list.length; nextSlot++){
+            int lowestIndex = nextSlot;
+            for(int i = nextSlot; i < list.length; i++){
+                if(list[i] < list[lowestIndex]){
+                    lowestIndex = i;
+                }
+            }
+            middleMan = list[nextSlot];
+            list[nextSlot] = list[lowestIndex];
+            list[lowestIndex] = middleMan;
+        }
         return list;
     }
 }
