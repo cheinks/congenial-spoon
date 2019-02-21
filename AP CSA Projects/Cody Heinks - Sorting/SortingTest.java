@@ -3,20 +3,27 @@
  * Write a description of class SortingTest here.
  *
  * @author Cody Heinks
- * @version (a version number or a date)
+ * @version 2.21.19
  */
 import java.lang.Math;
 public class SortingTest{
     public static void main(String[] args){
+        testBubble();
+        System.out.println();
+        
+        testInsertion();
+        System.out.println();
+        
+        testSelection();
+        System.out.println();
+    }
+    
+    public static int[] randIntArray(){
         int[] numbers = new int[10];
         for(int i = 0; i < numbers.length; i++){
             numbers[i] = (int)(Math.random()*100);
         }
-        display(numbers);
-
-        //testBubble(numbers);
-        //testInsertion(numbers);
-        testSelection(numbers);
+        return numbers;
     }
 
     public static void display(int[] list){
@@ -26,18 +33,27 @@ public class SortingTest{
         System.out.println();
     }
     
-    public static void testBubble(int[] unsorted){
+    private static void testBubble(){
+        System.out.println("Bubble Sort");
         Sorter sorter = new Sorter();
+        int[] unsorted = randIntArray();
+        display(unsorted);
         display(sorter.bubble(unsorted));
     }
     
-    public static void testInsertion(int[] unsorted){
+    private static void testInsertion(){
+        System.out.println("Insertion Sort");
         Sorter sorter = new Sorter();
+        int[] unsorted = randIntArray();
+        display(unsorted);
         display(sorter.insertion(unsorted));
     }
     
-    public static void testSelection(int[] unsorted){
+    private static void testSelection(){
+        System.out.println("Selection Sort");
         Sorter sorter = new Sorter();
+        int[] unsorted = randIntArray();
+        display(unsorted);
         display(sorter.selection(unsorted));
     }
 }

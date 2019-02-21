@@ -3,14 +3,11 @@
  * Write a description of class Sorter here.
  *
  * @author Cody Heinks
- * @version (a version number or a date)
+ * @version 2.21.19
  */
-import java.util.ArrayList;
 public class Sorter{
-    public Sorter(){
-        
-    }
-
+    public Sorter(){}
+    
     public int[] bubble(int[] list){
         int middleMan;
         for(int lastSortedIndex = list.length - 1; lastSortedIndex > 0; lastSortedIndex--){
@@ -27,7 +24,18 @@ public class Sorter{
 
     public int[] insertion(int[] list){
         int middleMan;
-        
+        int pointer;
+        int toBeSorted;
+        for(int split = 1; split < list.length; split++){
+            pointer = split - 1;
+            toBeSorted = list[split];
+            while(pointer >= 0 && toBeSorted < list[pointer]){
+                middleMan = list[pointer];
+                list[pointer] = toBeSorted;
+                list[pointer + 1] = middleMan;
+                pointer--;
+            }
+        }
         return list;
     }
 
