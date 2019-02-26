@@ -54,4 +54,22 @@ public class Sorter{
         }
         return list;
     }
+    
+    public void merge(int[] list){
+        int[] left;
+        int[] right;
+        int divide;
+        if(list.length % 2 == 0){
+            left = new int[list.length / 2];
+            right = new int[list.length / 2];
+            divide = list.length / 2;
+        }else{
+            left = new int[1 + list.length / 2];
+            right = new int[list.length / 2];
+            divide = 1 + list.length / 2;
+        }
+        for(int i = 0; i < list.length; i++){
+            
+        }
+    }
 }

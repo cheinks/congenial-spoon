@@ -16,6 +16,8 @@ public class SortingTest{
         
         testSelection();
         System.out.println();
+        
+        System.out.println(5 / 2);
     }
     
     public static int[] randIntArray(){

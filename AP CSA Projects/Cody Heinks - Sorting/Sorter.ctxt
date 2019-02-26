@@ -9,4 +9,6 @@ comment3.params=list
 comment3.target=int[]\ insertion(int[])
 comment4.params=list
 comment4.target=int[]\ selection(int[])
-numComments=5
+comment5.params=list
+comment5.target=void\ merge(int[])
+numComments=6
