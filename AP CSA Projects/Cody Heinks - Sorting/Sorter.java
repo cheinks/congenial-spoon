@@ -69,5 +69,18 @@ public class Sorter{
         }
         int leftI = leftBound;
         int rightI = divide;
+        for(int i = 0; i < tempArray.length; i++){
+            System.out.println("Left: "+leftI+" Right: "+rightI);
+            if(rightI == rightBound || list[leftI] <= list[rightI]){
+                tempArray[i] = list[leftI];
+                leftI++;
+            }else if(leftI == divide || list[leftI] > list[rightI]){
+                tempArray[i] = list[rightI];
+                rightI++;
+            }
+        }
+        SortingTest.display(tempArray);
+        
+        
     }
 }
