@@ -55,21 +55,19 @@ public class Sorter{
         return list;
     }
     
-    public void merge(int[] list){
-        int[] left;
-        int[] right;
+    
+    public void merge(int[] list, int leftBound, int rightBound){
         int divide;
-        if(list.length % 2 == 0){
-            left = new int[list.length / 2];
-            right = new int[list.length / 2];
-            divide = list.length / 2;
+        // left < divide <= right
+        // left inclusive, right exclusive
+        int limit = leftBound + rightBound;
+        int[] tempArray = new int[rightBound - leftBound];
+        if(limit % 2 == 0){
+            divide = limit / 2;
         }else{
-            left = new int[1 + list.length / 2];
-            right = new int[list.length / 2];
-            divide = 1 + list.length / 2;
+            divide = (limit / 2) + 1;
         }
-        for(int i = 0; i < list.length; i++){
-            
-        }
+        int leftI = leftBound;
+        int rightI = divide;
     }
 }
