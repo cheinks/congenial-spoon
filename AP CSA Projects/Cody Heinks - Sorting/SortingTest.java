@@ -61,8 +61,8 @@ public class SortingTest{
     
     public static void testMerge(){
         Sorter sorter = new Sorter();
-        int[] unsorted = {1, 5, 7, 2, 4, 6};
+        int[] unsorted = {};
         display(unsorted);
-        sorter.merge(unsorted, 0, 6);
+        sorter.merge(unsorted, 0, 1);
     }
 }
