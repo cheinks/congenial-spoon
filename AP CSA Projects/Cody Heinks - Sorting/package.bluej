@@ -1,19 +1,19 @@
 #BlueJ package file
-dependency1.from=Sorter
-dependency1.to=SortingTest
+dependency1.from=SortingTest
+dependency1.to=Sorter
 dependency1.type=UsesDependency
-dependency2.from=SortingTest
-dependency2.to=Sorter
+dependency2.from=Sorter
+dependency2.to=SortingTest
 dependency2.type=UsesDependency
 editor.fx.0.height=744
 editor.fx.0.width=1382
 editor.fx.0.x=-8
 editor.fx.0.y=-8
-objectbench.height=155
+objectbench.height=66
 objectbench.width=760
 package.divider.horizontal=0.6
-package.divider.vertical=0.676
-package.editor.height=331
+package.divider.vertical=0.854
+package.editor.height=420
 package.editor.width=670
 package.editor.x=349
 package.editor.y=65

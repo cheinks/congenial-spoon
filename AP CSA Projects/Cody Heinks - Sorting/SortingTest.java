@@ -61,8 +61,14 @@ public class SortingTest{
     
     public static void testMerge(){
         Sorter sorter = new Sorter();
-        int[] unsorted = {};
+        int[] unsorted = randIntArray();
         display(unsorted);
-        sorter.merge(unsorted, 0, 1);
+        sorter.merge(unsorted, 0, 2);
+        sorter.merge(unsorted, 2, 3);
+        sorter.merge(unsorted, 0, 3);
+        sorter.merge(unsorted, 3, 4);
+        sorter.merge(unsorted, 4, 5);
+        sorter.merge(unsorted, 3, 5);
+        sorter.merge(unsorted, 0, 5);
     }
 }

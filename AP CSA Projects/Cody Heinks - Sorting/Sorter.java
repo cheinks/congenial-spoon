@@ -7,7 +7,7 @@
  */
 public class Sorter{
     public Sorter(){}
-    
+
     public int[] bubble(int[] list){
         int middleMan;
         for(int lastSortedIndex = list.length - 1; lastSortedIndex > 0; lastSortedIndex--){
@@ -54,9 +54,13 @@ public class Sorter{
         }
         return list;
     }
-    
-    
+
     public void merge(int[] list, int leftBound, int rightBound){
+        int groups = 1;
+        while(groups < list.length){
+            groups *= 2;
+        }
+        double modifier = list.length / (double)(groups);
         int divide;
         // left < divide <= right
         // left inclusive, right exclusive
@@ -70,7 +74,7 @@ public class Sorter{
         int leftI = leftBound;
         int rightI = divide;
         for(int i = 0; i < tempArray.length; i++){
-            System.out.println("Left: "+leftI+" Right: "+rightI);
+            //System.out.println("Left: "+leftI+" Right: "+rightI);
             if(rightI == rightBound || list[leftI] <= list[rightI]){
                 tempArray[i] = list[leftI];
                 leftI++;
@@ -79,8 +83,10 @@ public class Sorter{
                 rightI++;
             }
         }
-        SortingTest.display(tempArray);
-        
-        
+        //SortingTest.display(tempArray);
+        for(int i = leftBound; i < rightBound; i++){
+            list[i] = tempArray[i-leftBound];
+        }
+        SortingTest.display(list);
     }
 }
