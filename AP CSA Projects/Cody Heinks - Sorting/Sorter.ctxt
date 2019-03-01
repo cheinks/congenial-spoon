@@ -11,4 +11,6 @@ comment4.params=list
 comment4.target=int[]\ selection(int[])
 comment5.params=list\ leftBound\ rightBound
 comment5.target=void\ merge(int[],\ int,\ int)
-numComments=6
+comment6.params=list
+comment6.target=void\ merge(int[])
+numComments=7

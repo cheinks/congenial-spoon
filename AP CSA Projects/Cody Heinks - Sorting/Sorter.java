@@ -89,4 +89,21 @@ public class Sorter{
         }
         SortingTest.display(list);
     }
+    
+    public void merge(int[] list){
+        int divide;
+        int[] left;
+        int[] right;
+        if(list.length % 2 == 0){
+            divide = list.length / 2;
+            left = new int[divide];
+            right = new int[divide];
+        }else{
+            divide = 1 + list.length / 2;
+            left = new int[divide];
+            right = new int[divide - 1];
+        }
+        merge(left);
+        merge(right);
+    }
 }
