@@ -17,7 +17,7 @@ public class SortingTest{
         testSelection();
         System.out.println();
         
-        System.out.println(5 / 2);
+        testMerge();
     }
     
     public static int[] randIntArray(){
@@ -59,16 +59,11 @@ public class SortingTest{
         display(sorter.selection(unsorted));
     }
     
-    public static void testMerge(){
+    private static void testMerge(){
+        System.out.println("Merge Sort");
         Sorter sorter = new Sorter();
         int[] unsorted = randIntArray();
         display(unsorted);
-        sorter.merge(unsorted, 0, 2);
-        sorter.merge(unsorted, 2, 3);
-        sorter.merge(unsorted, 0, 3);
-        sorter.merge(unsorted, 3, 4);
-        sorter.merge(unsorted, 4, 5);
-        sorter.merge(unsorted, 3, 5);
-        sorter.merge(unsorted, 0, 5);
+        display(sorter.merge(unsorted));
     }
 }

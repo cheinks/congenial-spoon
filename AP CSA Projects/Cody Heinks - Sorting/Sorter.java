@@ -55,45 +55,10 @@ public class Sorter{
         return list;
     }
 
-    public void merge(int[] list, int leftBound, int rightBound){
-        int groups = 1;
-        while(groups < list.length){
-            groups *= 2;
-        }
-        double modifier = list.length / (double)(groups);
+    public int[] merge(int[] list){
         int divide;
-        // left < divide <= right
-        // left inclusive, right exclusive
-        int limit = leftBound + rightBound;
-        int[] tempArray = new int[rightBound - leftBound];
-        if(limit % 2 == 0){
-            divide = limit / 2;
-        }else{
-            divide = (limit / 2) + 1;
-        }
-        int leftI = leftBound;
-        int rightI = divide;
-        for(int i = 0; i < tempArray.length; i++){
-            //System.out.println("Left: "+leftI+" Right: "+rightI);
-            if(rightI == rightBound || list[leftI] <= list[rightI]){
-                tempArray[i] = list[leftI];
-                leftI++;
-            }else if(leftI == divide || list[leftI] > list[rightI]){
-                tempArray[i] = list[rightI];
-                rightI++;
-            }
-        }
-        //SortingTest.display(tempArray);
-        for(int i = leftBound; i < rightBound; i++){
-            list[i] = tempArray[i-leftBound];
-        }
-        SortingTest.display(list);
-    }
-    
-    public void merge(int[] list){
-        int divide;
-        int[] left;
-        int[] right;
+        int[] left; int leftI;
+        int[] right; int rightI;
         if(list.length % 2 == 0){
             divide = list.length / 2;
             left = new int[divide];
@@ -103,7 +68,28 @@ public class Sorter{
             left = new int[divide];
             right = new int[divide - 1];
         }
-        merge(left);
-        merge(right);
+        for(int i = 0; i < list.length; i++){
+            if(i < divide){
+                left[i] = list[i];
+            }else{
+                right[i - divide] = list[i];
+            }
+        }
+        if(list.length > 1){
+            left = merge(left);
+            right = merge(right);
+        }
+        leftI = 0;
+        rightI = 0;
+        for(int i = 0; i < list.length; i++){
+            if(rightI == right.length || leftI < left.length && left[leftI] <= right[rightI]){
+                list[i] = left[leftI];
+                leftI++;
+            }else if(leftI == left.length || rightI < right.length && right[rightI] < left[leftI]){
+                list[i] = right[rightI];
+                rightI++;
+            }
+        }
+        return list;
     }
 }
