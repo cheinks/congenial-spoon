@@ -1,0 +1,29 @@
+
+/**
+ * Write a description of class Tesla here.
+ *
+ * @author Cody Heinks
+ * @version (a version number or a date)
+ */
+public final class Tesla extends Car implements DriverlessCar
+{
+    int speed;
+    final double MODEL = 1.1;
+    public Tesla(int passengers, String start, String end){
+        super(passengers, start, end);
+        speed = 0;
+    }
+    
+    public void emergencyStop(){
+        System.out.println("The car comes to a complete stop on its own.");
+    }
+    public void slowDown(int speed){
+        System.out.println("The car slows down to " + speed + " mph");
+        this.speed = speed;
+    }
+    public void speedUp(int speed){
+        System.out.println("The car speeds up to " + speed + " mph");
+        this.speed = speed;
+    }
+    
+}
