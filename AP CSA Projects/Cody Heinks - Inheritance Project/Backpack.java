@@ -26,7 +26,7 @@ public class Backpack implements BackpackInterface {
      * @return     true if added
      */
     public void storeItem(Item item){
-            backpack.add(item);       
+            backpack.add(item);
     }
 
     /**
