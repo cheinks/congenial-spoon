@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Character
+comment0.text=\r\n\ Abstract\ class\ Character\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (version\ number\ or\ date\ here)\r\n
+comment1.params=name\ health
+comment1.target=Character(java.lang.String,\ int)
+numComments=2

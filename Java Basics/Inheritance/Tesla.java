@@ -26,4 +26,14 @@ public final class Tesla extends Car implements DriverlessCar
         this.speed = speed;
     }
     
+    @Override
+    public boolean toggleLocks(){
+        super.toggleLocks();
+        if(locked){
+            System.out.println("Bleep bloop. It's locked!");
+        }else{
+            System.out.println("Bleep bloop. Unlocked!");
+        }
+        return locked;
+    }
 }

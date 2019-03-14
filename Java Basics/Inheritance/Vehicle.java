@@ -5,7 +5,7 @@
  * @author Cody Heinks
  * @version (a version number or a date)
  */
-public class Vehicle{
+public abstract class Vehicle{
     int passengers;
     String start;
     String end;
@@ -18,4 +18,6 @@ public class Vehicle{
     public int getPassengers(){return passengers;}
     public String getStart(){return start;}
     public String getEnd(){return end;}
+    
+    public abstract boolean toggleLocks();
 }

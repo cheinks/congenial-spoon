@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=java.lang.String\ getStart()
 comment4.params=
 comment4.target=java.lang.String\ getEnd()
-numComments=5
+comment5.params=
+comment5.target=boolean\ toggleLocks()
+numComments=6

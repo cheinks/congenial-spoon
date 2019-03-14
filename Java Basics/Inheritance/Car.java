@@ -6,8 +6,10 @@
  * @version (a version number or a date)
  */
 public class Car extends Vehicle{
+    protected boolean locked;
     public Car(int passengers, String start, String end){
         super(passengers, start, end);
+        locked = true;
     }
     public void start(){
         System.out.println("You start the car.");
@@ -20,5 +22,13 @@ public class Car extends Vehicle{
     }
     public void yourDriving(){
         System.out.println("Russel hit a tree.");
+    }
+    public boolean toggleLocks(){
+        if(locked){
+            locked = false;
+        }else{
+            locked = true;
+        }
+        return locked;
     }
 }

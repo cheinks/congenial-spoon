@@ -9,4 +9,6 @@ comment3.params=speed
 comment3.target=void\ slowDown(int)
 comment4.params=speed
 comment4.target=void\ speedUp(int)
-numComments=5
+comment5.params=
+comment5.target=boolean\ toggleLocks()
+numComments=6
