@@ -5,15 +5,14 @@
  * @author Wiebe 
  * @version 1.2
  */
-public interface WeaponInterface
-{
+public interface WeaponInterface{
     /**
      * Attacks an enemy for an amount
      * 
      * 
      * @return        Returns amount of damage successfully done to the opponent 
      */
-    int attack();
+    int attack(Character target);
     /**
      * Parry Attack Method
      * 
@@ -21,6 +20,5 @@ public interface WeaponInterface
      * 
      * @return        True if the attack was parried. 
      */
-    boolean parry();
-    
+    boolean parry(int damage);
 }

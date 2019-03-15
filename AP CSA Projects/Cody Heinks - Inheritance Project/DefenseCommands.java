@@ -5,14 +5,11 @@
  * @author Wiebe
  * @version 1.2
  */
-public interface DefenseCommands
-{
-    
+public interface DefenseCommands{
     /**
      * Block Attack Method
      * 
      * @return        True if the attack was blocked by a piece of armor. 
      */
-    boolean blocked();
-    
+    boolean blocked(int damage);
 }
