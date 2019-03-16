@@ -10,12 +10,12 @@ public class Enemy extends Character{
     int health; boolean alive = true;
     int atk;
     int def;
-    Room location;
-    private String battle;
-    public Enemy(String name, int health, int attack, int defense, Room location, String battle){
-        super(name, health, attack, defense, location);
-        this.battle = battle;
+    int gold;
+    private String battleCry;
+    public Enemy(String name, int health, int attack, int defense, int gold, String battle){
+        super(name, health, attack, defense, gold);
+        battleCry = battle;
     }
     
-    public String getBattle(){return battle;}
+    public String getBattle(){return battleCry;}
 }

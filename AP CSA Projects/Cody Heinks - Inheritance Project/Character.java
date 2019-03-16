@@ -7,22 +7,17 @@
  */
 public class Character implements WeaponInterface, DefenseCommands{
     String name;
-    int health; boolean alive = true;
-    Backpack inventory;
-    int atk = 10;
-    int def = 10;
-    Weapon primary = null;
-    Weapon offHand = null;
-    Armor[] armor = new Armor[4];
-    Room location;
+    int health; private boolean alive = true;
+    int atk;
+    int def;
+    private int gold;
 
-    public Character(String name, int health, int attack, int defense, Room location){
+    public Character(String name, int health, int attack, int defense, int gold){
         this.name = name;
         this.health = health;
         atk = attack;
         def = defense;
-        this.location = location;
-        inventory = new Backpack();
+        this.gold = gold;
     }
 
     public boolean parry(int damage){
@@ -51,22 +46,14 @@ public class Character implements WeaponInterface, DefenseCommands{
         }
         return finalDamage;
     }
-
-    public void pickUp(Item item){
-
+    
+    public void addGold(int amount){
+        gold += amount;
     }
-
-    public void equip(Item item){
-
+    public void takeGold(int amount){
+        gold -= amount;
     }
     
-    public void move(String direction){
-        Room newLoc = location.getPath(direction);
-        if(newLoc == null){
-            System.out.println("You can't go that way.");
-        }else{
-            location = newLoc;
-        }
-        
-    }
+    public boolean isAlive(){return alive;}
+    public void kill(){alive = false;}
 }
