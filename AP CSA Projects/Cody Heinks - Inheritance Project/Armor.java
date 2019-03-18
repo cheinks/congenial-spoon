@@ -10,10 +10,19 @@ public class Armor extends Item{
     String description;
     int value;
     
-    int defense;
-    
-    public Armor(String name, String description, int value, int def){
+    private int defense;
+    private String bodyPart;
+    public Armor(String name, String description, int value, int def, String bodyPart){
         super(name, description, value);
         defense = def;
+        this.bodyPart = bodyPart;
+    }
+    
+    public int getDefense(){
+        return defense;
+    }
+    
+    public String getBodyPart(){
+        return bodyPart;
     }
 }

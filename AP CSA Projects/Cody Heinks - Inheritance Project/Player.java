@@ -16,20 +16,18 @@ public class Player extends Character{
     Weapon primary = null;
     Weapon offHand = null;
     Armor[] armor = new Armor[4];
-    Room location;
-    
-    public Player(String name, int health, int attack, int defense, int gold, Room location){
+    //Room location;
+    public Player(String name, int health, int attack, int defense, int gold){
         super(name, health, attack, defense, gold);
-        this.location = location;
+        //this.location = location;
     }
     
     public void take(Item item){
         inventory.storeItem(item);
     }
+    public void equip(){}
     
-    public void move(){
-        
-    }
+    //public void move(){}
     
     public void viewStats(){
         System.out.println(name);

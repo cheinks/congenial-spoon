@@ -11,6 +11,7 @@ public class Enemy extends Character{
     int atk;
     int def;
     int gold;
+    
     private String battleCry;
     public Enemy(String name, int health, int attack, int defense, int gold, String battle){
         super(name, health, attack, defense, gold);
