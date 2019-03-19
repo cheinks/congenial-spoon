@@ -7,20 +7,28 @@
  */
 import java.util.ArrayList;
 public class NPC extends Character{
-    String name;
+    private String name;
     
-    String challenge;
-    int reward;
+    private String quest;
+    private int reward;
     ArrayList<String> required;
     ArrayList<Item> possessions;
-    public NPC(String name, String challenge, int reward, ArrayList<String> required){
+    public NPC(String name, String quest, int reward, ArrayList<String> required){
         super(name, 1, 0, 0, reward);
+        this.quest = quest;
     }
     
     @Override
     public int takeDamage(int damage){
         return 0;
     }
+    
+    @Override
+    public void changeGold(int amount){
+        reward -= amount;
+    }
+    
+    private String getQuest(){return quest;}
     
     public boolean checkChallenge(){
         for(String thing : required){

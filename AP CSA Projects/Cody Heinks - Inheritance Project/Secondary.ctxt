@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Secondary
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Secondary\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=keyword\ name\ value\ damage
+comment1.target=Secondary(java.lang.String,\ java.lang.String,\ int,\ int)
+numComments=2

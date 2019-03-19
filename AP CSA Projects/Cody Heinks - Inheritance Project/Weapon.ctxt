@@ -1,6 +1,8 @@
 #BlueJ class context
 comment0.target=Weapon
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Weapon\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=name\ description\ value\ damage
+comment1.params=keyword\ name\ value\ damage
 comment1.target=Weapon(java.lang.String,\ java.lang.String,\ int,\ int)
-numComments=2
+comment2.params=
+comment2.target=int\ getDamage()
+numComments=3

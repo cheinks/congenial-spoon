@@ -7,22 +7,17 @@
  */
 public class Armor extends Item{
     String name;
-    String description;
     int value;
     
-    private int defense;
+    private int durability;
     private String bodyPart;
-    public Armor(String name, String description, int value, int def, String bodyPart){
-        super(name, description, value);
-        defense = def;
+    public Armor(String keyword, String name, int value, int dur, String bodyPart){
+        super(keyword, name, value);
+        durability = dur;
         this.bodyPart = bodyPart;
     }
     
-    public int getDefense(){
-        return defense;
-    }
+    public int getDefense(){return durability;}
     
-    public String getBodyPart(){
-        return bodyPart;
-    }
+    public String getBodyPart(){return bodyPart;}
 }

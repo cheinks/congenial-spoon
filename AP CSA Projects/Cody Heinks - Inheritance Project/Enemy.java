@@ -7,16 +7,16 @@
  */
 public class Enemy extends Character{
     String name;
-    int health; boolean alive = true;
-    int atk;
-    int def;
-    int gold;
+    private int health; private boolean alive = true;
+    private int atk;
+    private int def;
+    private int gold;
     
-    private String battleCry;
+    private String battle;
     public Enemy(String name, int health, int attack, int defense, int gold, String battle){
         super(name, health, attack, defense, gold);
-        battleCry = battle;
+        this.battle = battle;
     }
     
-    public String getBattle(){return battleCry;}
+    public String getBattle(){return battle;}
 }

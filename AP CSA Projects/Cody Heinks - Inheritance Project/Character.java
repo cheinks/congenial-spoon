@@ -5,16 +5,17 @@
  * @author Cody Heinks
  * @version (version number or date here)
  */
-public class Character implements WeaponInterface, DefenseCommands{
+public abstract class Character implements WeaponInterface, DefenseCommands{
     String name;
-    int health; private boolean alive = true;
-    int atk;
-    int def;
+    private final int baseHP;
+    private int currentHP; private boolean alive = true;
+    private int atk;
+    private int def;
     private int gold;
-
     public Character(String name, int health, int attack, int defense, int gold){
         this.name = name;
-        this.health = health;
+        baseHP = health;
+        currentHP = health;
         atk = attack;
         def = defense;
         this.gold = gold;
@@ -38,22 +39,26 @@ public class Character implements WeaponInterface, DefenseCommands{
             finalDamage = 0; //Blocked
         }else{
             finalDamage = damage - def;
-            health -= finalDamage; //Lose difference in health
+            currentHP -= finalDamage; //Lose difference in health
         }
 
-        if(health <= 0){
-            alive = false;
+        if(currentHP <= 0){
+            kill();
         }
         return finalDamage;
     }
     
-    public void addGold(int amount){
-        gold += amount;
-    }
-    public void takeGold(int amount){
-        gold -= amount;
+    public String getName(){return name;}
+    
+    public void changeHealth(int amount){
+        currentHP += amount;
     }
     
     public boolean isAlive(){return alive;}
     public void kill(){alive = false;}
+    
+    public int getGold(){return gold;}
+    public void changeGold(int amount){
+        gold += amount;
+    }   
 }

@@ -6,13 +6,14 @@
  * @version (a version number or a date)
  */
 public abstract class Weapon extends Item{
-    String name;
-    String description;
-    int value;
+    private String name;
+    private int value;
     
-    int damage;
-    public Weapon(String name, String description, int value, int damage){
-        super(name, description, value);
+    private int damage;
+    public Weapon(String keyword, String name, int value, int damage){
+        super(keyword, name, value);
         this.damage = damage;
     }
+    
+    public int getDamage(){return damage;}
 }
