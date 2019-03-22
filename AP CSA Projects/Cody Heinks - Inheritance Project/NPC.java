@@ -23,11 +23,6 @@ public class NPC extends Character{
         return 0;
     }
     
-    @Override
-    public void changeGold(int amount){
-        reward -= amount;
-    }
-    
     private String getQuest(){return quest;}
     
     public boolean checkChallenge(){

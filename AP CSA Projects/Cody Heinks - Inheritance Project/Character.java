@@ -7,6 +7,7 @@
  */
 public abstract class Character implements WeaponInterface, DefenseCommands{
     String name;
+    String condition;
     private final int baseHP;
     private int currentHP; private boolean alive = true;
     private int atk;
@@ -14,6 +15,7 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
     private int gold;
     public Character(String name, int health, int attack, int defense, int gold){
         this.name = name;
+        condition = "";
         baseHP = health;
         currentHP = health;
         atk = attack;
@@ -48,17 +50,28 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
         return finalDamage;
     }
     
+    public void setCondition(String newCond){condition = newCond;}
+    public int checkCondition(String action){
+        if(action.equals("ATK")){
+            
+        }else if(action.equals("DEF")){
+            
+        }else if(action.equals("HP")){
+            
+        }
+        return 0;
+    }
+    
     public String getName(){return name;}
     
     public void changeHealth(int amount){
         currentHP += amount;
     }
-    
     public boolean isAlive(){return alive;}
     public void kill(){alive = false;}
     
     public int getGold(){return gold;}
-    public void changeGold(int amount){
-        gold += amount;
-    }   
+    public void setGold(int newGold){
+        gold = newGold;
+    }
 }
