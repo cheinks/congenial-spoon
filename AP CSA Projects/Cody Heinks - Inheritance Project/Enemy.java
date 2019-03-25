@@ -16,6 +16,16 @@ public class Enemy extends Character{
         super(name, health, attack, defense, gold);
     }
     
+    @Override
+    public int attack(Character target){
+        int ranNum = (int)(1 + Math.random()*10);
+        if(ranNum <= 3){
+            return special(target);
+        }else{
+            return super.attack(target);
+        }
+    }
+    
     public int special(Character target){
         System.out.println("The enemy activates their special!");
         return 0;

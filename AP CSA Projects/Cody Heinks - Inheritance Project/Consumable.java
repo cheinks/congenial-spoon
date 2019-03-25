@@ -14,7 +14,7 @@ public class Consumable extends Item{
         super(keyword, name, value);
     }
     
-    public void interact(String command){
+    public void interact(String command, Character target){
         System.out.println("You use " + name);
     }
 }

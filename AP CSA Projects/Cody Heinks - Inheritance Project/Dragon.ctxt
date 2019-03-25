@@ -5,4 +5,6 @@ comment1.params=name\ health\ attack\ defense\ gold
 comment1.target=Dragon(java.lang.String,\ int,\ int,\ int,\ int)
 comment2.params=target
 comment2.target=int\ special(Character)
-numComments=3
+comment3.params=
+comment3.target=void\ passive()
+numComments=4

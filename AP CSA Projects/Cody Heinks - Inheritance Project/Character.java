@@ -5,9 +5,10 @@
  * @author Cody Heinks
  * @version (version number or date here)
  */
+import java.util.ArrayList;
 public abstract class Character implements WeaponInterface, DefenseCommands{
     String name;
-    String condition;
+    ArrayList<String> conditions;
     private final int baseHP;
     private int currentHP; private boolean alive = true;
     private int atk;
@@ -15,7 +16,7 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
     private int gold;
     public Character(String name, int health, int attack, int defense, int gold){
         this.name = name;
-        condition = "";
+        this.conditions = new ArrayList<String>();
         baseHP = health;
         currentHP = health;
         atk = attack;
@@ -50,8 +51,20 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
         return finalDamage;
     }
     
-    public void setCondition(String newCond){condition = newCond;}
-    public int checkCondition(String action){
+    //Accessors/Mutators
+    public String getName(){return name;}
+    
+    public void setCondition(String newCond){conditions.add(newCond);}
+    public void removeCondition(String oldCond){
+        int index = -1;
+        for(int i = 0; i < conditions.size(); i++){
+            if(conditions.get(i).equals(oldCond)){
+                index = i;
+            }
+        }
+        try{conditions.remove(index);}catch(IndexOutOfBoundsException e){}
+    }
+    public void checkCondition(String action){
         if(action.equals("ATK")){
             
         }else if(action.equals("DEF")){
@@ -59,19 +72,19 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
         }else if(action.equals("HP")){
             
         }
-        return 0;
     }
     
-    public String getName(){return name;}
-    
-    public void changeHealth(int amount){
-        currentHP += amount;
-    }
+    public int getBaseHP(){return baseHP;}
+    public void changeHealth(int amount){currentHP += amount;}
     public boolean isAlive(){return alive;}
     public void kill(){alive = false;}
     
+    public int getAtk(){return atk;}
+    public void changeAtk(int amount){atk += amount;}
+    
+    public int getDef(){return def;}
+    public void changeDef(int amount){def += amount;}
+    
     public int getGold(){return gold;}
-    public void setGold(int newGold){
-        gold = newGold;
-    }
+    public void setGold(int newGold){gold = newGold;}
 }
