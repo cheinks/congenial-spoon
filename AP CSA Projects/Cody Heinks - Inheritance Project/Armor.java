@@ -9,15 +9,15 @@ public class Armor extends Item{
     String name;
     int value;
     
-    private int durability;
+    private int defense;
     private String bodyPart;
-    public Armor(String keyword, String name, int value, int dur, String bodyPart){
+    public Armor(String keyword, String name, int value, int def, String bodyPart){
         super(keyword, name, value);
-        durability = dur;
+        defense = def;
         this.bodyPart = bodyPart;
     }
     
-    public int getDefense(){return durability;}
+    public int getDefense(){return defense;}
     
     public String getBodyPart(){return bodyPart;}
 }

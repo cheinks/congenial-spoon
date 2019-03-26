@@ -13,6 +13,6 @@ public class Food extends Consumable{
     
     @Override
     public void interact(String command, Character target){
-        System.out.println("You eat " + name + ".");
+        System.out.println("You eat " + name);
     }
 }

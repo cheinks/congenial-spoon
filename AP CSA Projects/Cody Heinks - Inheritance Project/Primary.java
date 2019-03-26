@@ -7,15 +7,15 @@
  */
 public class Primary extends Weapon{
     String name;
-    String description;
     int value;
     int damage;
     
     String fatality;
-    public Primary(String keyword, String name, int value, int damage, String fatality){
+    public Primary(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
-        this.fatality = fatality;
+        fatality = "The enemy, collapses to your feet, leaving you victorious";
     }
     
     public String getFatal(){return fatality;}
+    public void setFatal(String newFatal){fatality = newFatal;}
 }

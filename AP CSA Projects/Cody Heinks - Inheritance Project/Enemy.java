@@ -6,7 +6,7 @@
  * @version (a version number or a date)
  */
 import java.lang.Math;
-public class Enemy extends Character{
+public abstract class Enemy extends Character{
     String name;
     private int health; private boolean alive = true;
     private int atk;

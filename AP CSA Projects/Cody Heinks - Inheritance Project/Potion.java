@@ -9,4 +9,9 @@ public class Potion extends Consumable{
     public Potion(String keyword, String name, int value){
         super(keyword, name, value);
     }
+    
+    @Override
+    public void interact(String command, Character target){
+        System.out.println("You drink " + name);
+    }
 }
