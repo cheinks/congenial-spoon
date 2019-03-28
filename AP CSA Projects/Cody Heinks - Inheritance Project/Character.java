@@ -24,8 +24,8 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
         this.gold = gold;
     }
 
-    public boolean parry(int damage){
-        return damage < def;
+    public void parry(int damage){
+        System.out.println("You parry and deal " + damage + "counter damage.");
     }
     public boolean blocked(int damage){
         return damage == def;
@@ -36,7 +36,7 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
 
     public int takeDamage(int damage){
         int finalDamage = damage;
-        if(parry(damage)){
+        if(damage < def){
             finalDamage -= def; //Should be negative
         }else if(blocked(damage)){
             finalDamage = 0; //Blocked

@@ -20,5 +20,5 @@ public interface WeaponInterface{
      * 
      * @return        True if the attack was parried. 
      */
-    boolean parry(int damage);
+    void parry(int damage);
 }

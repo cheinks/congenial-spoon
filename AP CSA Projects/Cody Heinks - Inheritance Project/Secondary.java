@@ -12,4 +12,8 @@ public class Secondary extends Weapon{
     public Secondary(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
     }
+    
+    public void attack(int damage){
+        System.out.println("You attack with your secondary weapon.");
+    }
 }

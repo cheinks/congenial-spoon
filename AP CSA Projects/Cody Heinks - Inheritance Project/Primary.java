@@ -9,13 +9,11 @@ public class Primary extends Weapon{
     String name;
     int value;
     int damage;
-    
-    String fatality;
     public Primary(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
-        fatality = "The enemy, collapses to your feet, leaving you victorious";
     }
     
-    public String getFatal(){return fatality;}
-    public void setFatal(String newFatal){fatality = newFatal;}
+    public void attack(int damage){
+        System.out.println("You attack with your primary weapon.");
+    }
 }

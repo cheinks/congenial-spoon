@@ -19,11 +19,18 @@ public abstract class Enemy extends Character{
     @Override
     public int attack(Character target){
         int ranNum = (int)(1 + Math.random()*10);
+        int finalDamage = 0;
         if(ranNum <= 3){
             return special(target);
         }else{
-            return super.attack(target);
+            finalDamage = super.attack(target);
         }
+        
+        if(finalDamage < 0){
+            changeHealth(finalDamage);
+            target.parry(-finalDamage);
+        }
+        return finalDamage;
     }
     
     public int special(Character target){
