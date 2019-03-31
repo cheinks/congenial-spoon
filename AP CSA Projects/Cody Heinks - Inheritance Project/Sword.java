@@ -7,12 +7,13 @@
  */
 public class Sword extends Primary{
     private String name;
-    public Sword(String keyword, String name, int value, int damage, String fatality){
+    public Sword(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
     }
     
     @Override
     public void attack(int damage){
-        
+        System.out.println("With three quick slashes at the enemy, " 
+        + "you deal " + damage + "damage.");
     }
 }

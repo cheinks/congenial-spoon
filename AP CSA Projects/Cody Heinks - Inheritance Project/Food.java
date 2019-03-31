@@ -6,7 +6,7 @@
  * @version (a version number or a date)
  */
 public class Food extends Consumable{
-    
+    private String name;
     public Food(String keyword, String name, int value){
         super(keyword, name, value);
     }

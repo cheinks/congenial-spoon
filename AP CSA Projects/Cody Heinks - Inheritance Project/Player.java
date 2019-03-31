@@ -14,8 +14,8 @@ public class Player extends Character{
     private int gold;
     
     Backpack inventory = new Backpack();
-    Primary primary = null;
-    Secondary offHand = null;
+    Primary primary = new Hand(10);
+    Secondary offHand = new Foot();
     Armor[] armor = new Armor[4];
     //Room location;
     public Player(String name, int health, int attack, int defense, int gold){
@@ -30,7 +30,7 @@ public class Player extends Character{
         if(finalDamage > 0){
             primary.attack(finalDamage);
         }else if(finalDamage == 0){
-            System.out.println("Blocked!");
+            System.out.println("Your attack was blocked!");
         }else if(finalDamage < 0){
             changeHealth(finalDamage);
             System.out.println("They enemy parries! You lose " + finalDamage + "health.");
