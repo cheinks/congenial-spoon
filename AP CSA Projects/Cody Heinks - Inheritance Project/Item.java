@@ -6,7 +6,7 @@
  * @version 1.2
  */
 import java.util.ArrayList;
-public class Item implements ItemInterface{
+public abstract class Item implements ItemInterface{
     String keyword;
     String name;
     int value;

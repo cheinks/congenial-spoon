@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Collectable
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Collectable\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=keyword\ name\ value\ description
+comment1.target=Collectable(java.lang.String,\ java.lang.String,\ int,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getDesc()
+numComments=3
