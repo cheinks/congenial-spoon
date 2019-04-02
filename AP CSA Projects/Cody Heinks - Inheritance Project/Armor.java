@@ -6,9 +6,6 @@
  * @version (a version number or a date)
  */
 public class Armor extends Item{
-    String name;
-    int value;
-    
     private int defense;
     private String bodyPart;
     public Armor(String keyword, String name, int value, int def, String bodyPart){

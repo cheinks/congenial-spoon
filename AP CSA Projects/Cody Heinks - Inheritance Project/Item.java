@@ -7,9 +7,9 @@
  */
 import java.util.ArrayList;
 public abstract class Item implements ItemInterface{
-    String keyword;
-    String name;
-    int value;
+    protected String keyword;
+    protected String name;
+    protected int value;
     Item(String keyword, String name, int value){
         this.keyword = keyword;
         this.name = name;

@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Shield extends Secondary{
-    private String name;
     public Shield(String keyword, String name, int value){
         super(keyword, name, value);
     }

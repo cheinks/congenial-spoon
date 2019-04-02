@@ -6,8 +6,6 @@
  * @version (a version number or a date)
  */
 public class Goblin extends Enemy{
-    private int gold;
-    
     private double greed; //The percent (0.XXX) that the goblin will steal.
     public Goblin(String name, int health, int attack, int defense, int gold, double greed){
         super(name, health, attack, defense, gold);

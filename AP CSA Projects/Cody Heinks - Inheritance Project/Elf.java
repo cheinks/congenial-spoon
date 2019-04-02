@@ -6,8 +6,6 @@
  * @version (a version number or a date)
  */
 public class Elf extends Enemy{
-    private int def;
-    
     private int spirit; //The amount by which the Elf's defense will increase
     public Elf(String name, int health, int attack, int defense, int gold, int spirit){
         super(name, health, attack, defense, gold);

@@ -9,11 +9,11 @@ import java.util.ArrayList;
 public abstract class Character implements WeaponInterface, DefenseCommands{
     String name;
     ArrayList<String> conditions;
-    private final int baseHP;
-    private int currentHP; private boolean alive = true;
-    private int atk;
-    private int def;
-    private int gold;
+    protected final int baseHP;
+    protected int currentHP; private boolean alive = true;
+    protected int atk;
+    protected int def;
+    protected int gold;
     public Character(String name, int health, int attack, int defense, int gold){
         this.name = name;
         this.conditions = new ArrayList<String>();
@@ -86,5 +86,8 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
     public void changeDef(int amount){def += amount;}
     
     public int getGold(){return gold;}
-    public void setGold(int newGold){gold = newGold;}
+    public void setGold(int newGold){
+        gold = newGold;
+        if(gold < 0){gold = 0;}
+    }
 }

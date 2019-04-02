@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Dwarf
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Dwarf\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=name\ health\ attack\ defense\ gold\ height
+comment1.params=name\ health\ attack\ defense\ gold\ food
 comment1.target=Dwarf(java.lang.String,\ int,\ int,\ int,\ int,\ int)
 comment2.params=target
 comment2.target=int\ special(Character)

@@ -6,15 +6,16 @@
  * @version (a version number or a date)
  */
 public class Dwarf extends Enemy{
-    private int height; //centimeters
-    public Dwarf(String name, int health, int attack, int defense, int gold, int height){
+    private int food;
+    public Dwarf(String name, int health, int attack, int defense, int gold, int food){
         super(name, health, attack, defense, gold);
-        this.height = height;
+        this.food = food;
     }
     
     @Override
     public int special(Character target){
-        
+        System.out.println("The dwarf takes a fruit from its bag and eats it, gaining 50 health.");
+        currentHP += 50;
         return 0;
     }
 }

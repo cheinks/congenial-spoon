@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Sickle extends Primary{
-    private String name;
     public Sickle(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
     }

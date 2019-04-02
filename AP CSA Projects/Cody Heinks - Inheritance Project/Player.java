@@ -6,13 +6,6 @@
  * @version (a version number or a date)
  */
 public class Player extends Character{
-    String name;
-    private int baseHealth;
-    private int health; private boolean alive = true;
-    private int atk;
-    private int def; //Armor
-    private int gold;
-    
     Backpack inventory = new Backpack();
     Primary primary = new Hand(10);
     Secondary offHand = new Foot();
@@ -20,7 +13,6 @@ public class Player extends Character{
     //Room location;
     public Player(String name, int health, int attack, int defense, int gold){
         super(name, health, attack, defense, gold);
-        baseHealth = health;
         //this.location = location;
     }
     
@@ -57,7 +49,7 @@ public class Player extends Character{
     
     public void viewStats(){
         System.out.println(name);
-        System.out.println("Health: " + health);
+        System.out.println("Health: " + currentHP);
         System.out.println("Attack: " + atk);
         System.out.println("Defense: " + def);
     }

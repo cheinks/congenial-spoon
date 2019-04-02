@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Axe extends Primary{
-    private String name;
     public Axe(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
     }

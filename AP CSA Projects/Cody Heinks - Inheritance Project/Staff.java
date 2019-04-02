@@ -6,7 +6,7 @@
  * @version (a version number or a date)
  */
 public class Staff extends Primary{
-    String power;
+    private String power;
     public Staff(String keyword, String name, int value, int damage, String power){
         super(keyword, name, value, damage);
         this.power = power;
@@ -21,8 +21,13 @@ public class Staff extends Primary{
             System.out.println("The sky rumbles as lightning strikes the enemy. " 
             + "They lose " + damage + " health.");
         }else if(power.equals("energy")){
-            System.out.println("You blast the energy with a ball of plasma, dealing "
+            System.out.println("You blast the energy with a ray of plasma, dealing "
             + damage + " damage.");
+        }else if(power.equals("ice")){
+            System.out.println("The enemy is bombared with ice shards. They lose " 
+            + damage + " health.");
         }
     }
+    
+    public String getPower(){return power;}
 }

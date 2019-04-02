@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Dragon extends Boss{
-    private int def;
     public Dragon(String name, int health, int attack, int defense, int gold){
         super(name, health, attack, defense, gold);
     }

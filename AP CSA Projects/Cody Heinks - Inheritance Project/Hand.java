@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Hand extends Primary{
-    private String name;
     public Hand(int damage){
         super("", "", 0, damage);
     }

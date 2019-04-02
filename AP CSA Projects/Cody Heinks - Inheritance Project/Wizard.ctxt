@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Wizard
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Wizard\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ health\ attack\ defense\ gold\ threat\ staff
+comment1.target=Wizard(java.lang.String,\ int,\ int,\ int,\ int,\ java.lang.String,\ Staff)
+comment2.params=target
+comment2.target=int\ special(Character)
+numComments=3

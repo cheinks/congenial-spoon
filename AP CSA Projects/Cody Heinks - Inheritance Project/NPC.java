@@ -7,14 +7,11 @@
  */
 import java.util.ArrayList;
 public class NPC extends Character{
-    private String name;
-    
     private String quest;
-    private int reward;
     ArrayList<String> required;
     ArrayList<Item> possessions;
-    public NPC(String name, String quest, int reward, ArrayList<String> required){
-        super(name, 1, 0, 0, reward);
+    public NPC(String name, int gold, String quest, ArrayList<String> required){
+        super(name, 1, 0, 0, gold);
         this.quest = quest;
     }
     

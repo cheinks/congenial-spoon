@@ -6,7 +6,6 @@
  * @version (a version number or a date)
  */
 public class Hammer extends Secondary{
-    private String name;
     public Hammer(String keyword, String name, int value){
         super(keyword, name, value);
     }

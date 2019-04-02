@@ -6,9 +6,6 @@
  * @version (a version number or a date)
  */
 public class Primary extends Weapon{
-    String name;
-    int value;
-    int damage;
     public Primary(String keyword, String name, int value, int damage){
         super(keyword, name, value, damage);
     }

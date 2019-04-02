@@ -7,11 +7,6 @@
  */
 import java.lang.Math;
 public abstract class Enemy extends Character{
-    String name;
-    private int health; private boolean alive = true;
-    private int atk;
-    private int def;
-    private int gold;
     public Enemy(String name, int health, int attack, int defense, int gold){
         super(name, health, attack, defense, gold);
     }
