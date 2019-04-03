@@ -10,7 +10,8 @@ public class Consumable extends Item{
         super(keyword, name, value);
     }
     
-    public void interact(String command, Character target){
-        System.out.println("You use " + name);
+    public boolean interact(Character target){
+        System.out.println("You use the " + name);
+        return true;
     }
 }

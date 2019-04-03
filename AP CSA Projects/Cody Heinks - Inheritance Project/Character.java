@@ -7,7 +7,7 @@
  */
 import java.util.ArrayList;
 public abstract class Character implements WeaponInterface, DefenseCommands{
-    String name;
+    protected String name;
     ArrayList<String> conditions;
     protected final int baseHP;
     protected int currentHP; private boolean alive = true;
@@ -74,10 +74,14 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
         }
     }
     
-    public int getBaseHP(){return baseHP;}
-    public void changeHealth(int amount){currentHP += amount;}
     public boolean isAlive(){return alive;}
     public void kill(){alive = false;}
+    public int getBaseHP(){return baseHP;}
+    public int getCurrentHP(){return currentHP;}
+    public void changeHealth(int amount){
+        currentHP += amount;
+        if(currentHP <= 0){kill();}
+    }
     
     public int getAtk(){return atk;}
     public void changeAtk(int amount){atk += amount;}

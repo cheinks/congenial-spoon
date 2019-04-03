@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=HealthPotion
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ HealthPotion\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=keyword\ name\ value\ strength
+comment1.target=HealthPotion(java.lang.String,\ java.lang.String,\ int,\ int)
+comment2.params=target
+comment2.target=boolean\ interact(Character)
+numComments=3

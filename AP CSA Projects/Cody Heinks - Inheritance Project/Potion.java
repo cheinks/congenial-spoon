@@ -6,12 +6,15 @@
  * @version (a version number or a date)
  */
 public class Potion extends Consumable{
-    public Potion(String keyword, String name, int value){
+    protected int strength;
+    public Potion(String keyword, String name, int value, int strength){
         super(keyword, name, value);
+        this.strength = strength;
     }
     
     @Override
-    public void interact(String command, Character target){
+    public boolean interact(Character target){
         System.out.println("You drink " + name);
+        return true;
     }
 }
