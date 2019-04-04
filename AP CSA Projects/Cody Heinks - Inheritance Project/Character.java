@@ -62,7 +62,7 @@ public abstract class Character implements WeaponInterface, DefenseCommands{
                 index = i;
             }
         }
-        try{conditions.remove(index);}catch(IndexOutOfBoundsException e){}
+        if(index >= 0){conditions.remove(index);}
     }
     public void checkCondition(String action){
         if(action.equals("ATK")){

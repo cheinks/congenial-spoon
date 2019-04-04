@@ -35,7 +35,7 @@ public class Backpack implements BackpackInterface {
      * @param  item   The item of which to delete
      * @return     true if deleted
      */
-    public boolean useItem(Item item){
+    public boolean removeItem(Item item){
         for (int i = 0; i < backpack.size(); i++){
             if(backpack.get(i).equals(item)){
                 backpack.remove(i);
