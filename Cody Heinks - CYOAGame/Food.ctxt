@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Food
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Food\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=keyword\ name\ value\ hunger\ poisoned
+comment1.target=Food(java.lang.String,\ java.lang.String,\ int,\ int,\ boolean)
+comment2.params=target
+comment2.target=boolean\ interact(Character)
+numComments=3

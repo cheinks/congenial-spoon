@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Armor
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Armor\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=keyword\ name\ value\ def\ bodyPart
+comment1.target=Armor(java.lang.String,\ java.lang.String,\ int,\ int,\ java.lang.String)
+comment2.params=
+comment2.target=int\ getDefense()
+comment3.params=
+comment3.target=java.lang.String\ getBodyPart()
+numComments=4

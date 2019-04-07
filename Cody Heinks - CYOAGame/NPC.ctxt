@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=NPC
+comment1.params=name\ gold\ quest\ required
+comment1.target=NPC(java.lang.String,\ int,\ java.lang.String,\ java.util.ArrayList)
+comment2.params=damage
+comment2.target=int\ takeDamage(int)
+comment3.params=
+comment3.target=java.lang.String\ getQuest()
+comment4.params=
+comment4.target=boolean\ checkChallenge()
+numComments=5

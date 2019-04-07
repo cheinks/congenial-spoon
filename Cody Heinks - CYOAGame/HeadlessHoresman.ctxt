@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=HeadlessHoresman
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ HeadlessHoresman\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ health\ attack\ defense\ gold
+comment1.target=HeadlessHoresman(java.lang.String,\ int,\ int,\ int,\ int)
+comment2.params=target
+comment2.target=int\ special(Character)
+comment3.params=
+comment3.target=void\ passive()
+numComments=4

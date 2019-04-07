@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Elf
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Elf\ here.\r\n\r\n\ @author\ Cody\ Heinks\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=name\ health\ attack\ defense\ gold\ spirit
+comment1.target=Elf(java.lang.String,\ int,\ int,\ int,\ int,\ int)
+comment2.params=target
+comment2.target=int\ special(Character)
+numComments=3
