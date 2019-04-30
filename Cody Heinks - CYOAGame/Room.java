@@ -28,7 +28,7 @@ public class Room{
 
     public String getName(){return name;}
     public String getDesc(){return description;}
-    public String getPath(String direction){
+    public String getPath(String direction) throws NullPointerException{
         return paths.get(direction);
     }
     public Item takeItem(String keyword){
