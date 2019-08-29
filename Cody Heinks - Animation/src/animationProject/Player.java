@@ -20,15 +20,15 @@ public class Player {
 	
 	private boolean alive;
 	
-	public Player(int startX, int startY, int xVel, int yVel, String shape, boolean alive) {
-		xCoord = startX;
-		yCoord = startY;
+	public Player(int[] startCoords, int xVel, int yVel, String shape, boolean alive) {
+		xCoord = startCoords[0];
+		yCoord = startCoords[1];
 		this.xVel = xVel;
 		this.yVel = yVel;
 		
 		this.shape = shape;
-		width = 12;
-		height = 12;
+		width = 6;
+		height = 6;
 		this.alive = alive;
 		
 		if(!this.alive) {
@@ -64,23 +64,23 @@ public class Player {
 		//Top
 		if(yCoord < bounds[0]) {
 			yCoord = bounds[0];
-			yVel = 1;
+			yVel*=-1;
 			
 		}
 		//Bottom
 		if(yCoord + height > bounds[1]) {
 			yCoord = bounds[1] - height;
-			yVel = -1;
+			yVel*=-1;
 		}
 		//Left
 		if(xCoord < bounds[2]) {
 			xCoord = bounds[2];
-			xVel = 1;
+			xVel*=-1;
 		}
 		//Right
 		if(xCoord + width > bounds[3]) {
 			xCoord = bounds[3] - width;
-			xVel = -1;
+			xVel*=-1;
 		}
 	}
 	

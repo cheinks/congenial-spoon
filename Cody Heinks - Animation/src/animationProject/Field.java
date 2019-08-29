@@ -24,6 +24,8 @@ public class Field extends JPanel{
 	
 	public void addPlayer(Player newPlayer) {players.add(newPlayer);}
 	
+	public int getThick() {return borderThickness;}
+	
 	public int getXUpper() {return xUpper;}
 	public int getXLower() {return xLower;}
 	public int getYUpper() {return yUpper;}

@@ -13,15 +13,17 @@ public class Game {
 	Field mainField;
 	ArrayList<Player> players = new ArrayList<Player>();
 	
-	private int windowWidth = 300;
-	private int windowHeight = 300;
+	
+	private int windowWidth = 1000;
+	private int windowHeight = 500;
 	
 	public Game(){
 		playing = true;
         frame = new JFrame("Test");
         mainField = new Field(windowWidth, windowHeight);
         
-        Player player1 = new Player(50, 50, 1, 1, "DOT", true);
+        Player player1 = new Player(GameRunner.randomLocation(mainField.getThick(), getMax()), 
+        		GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", true);
         players.add(player1);
         
         for(Player p : players) {
@@ -46,7 +48,7 @@ public class Game {
 	    	for(int i = 0; i < players.size(); i++) {
 	    		Player cp = players.get(i);
 	    		if(cp.isAlive()) {
-	    			Player trail = new Player(cp.getX(), cp.getY(), 1, 1, cp.getShape(), false);
+	    			Player trail = new Player(new int[] {cp.getX(), cp.getY()}, 0, 0, cp.getShape(), false);
 	    			players.add(trail);
 	    			mainField.addPlayer(trail);
 	    			cp.moveSelf();
@@ -69,5 +71,13 @@ public class Game {
         	mainField.updateBounds(windowWidth, windowHeight);
         }
         public void componentShown(ComponentEvent e) {}
+	}
+	
+	private int getMax() {
+		if(windowWidth > windowHeight) {
+			return windowHeight/2;
+		}else {
+			return windowWidth/2;
+		}
 	}
 }
