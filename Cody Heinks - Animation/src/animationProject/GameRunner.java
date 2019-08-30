@@ -1,5 +1,6 @@
 package animationProject;
 
+import java.awt.Color;
 import java.lang.Math;
 
 public class GameRunner {
@@ -12,6 +13,16 @@ public class GameRunner {
 	}
 	
 	public static int randomSpeed() {
-		return (int)(1 + Math.random()*3);
+		int speed = (int)(-3 + Math.random()*7);
+		if(speed == 0) {speed++;}
+		return speed;
+	}
+	
+	public static Color randColor() {
+		return new Color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+	}
+	
+	public static int randomSize() {
+		return (int)(4+Math.random()*8);
 	}
 }

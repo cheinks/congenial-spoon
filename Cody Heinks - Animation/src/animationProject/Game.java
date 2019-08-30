@@ -1,8 +1,8 @@
 package animationProject;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Game {
@@ -13,18 +13,21 @@ public class Game {
 	Field mainField;
 	ArrayList<Player> players = new ArrayList<Player>();
 	
-	
-	private int windowWidth = 1000;
-	private int windowHeight = 500;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private int windowWidth = (int)(screenSize.getWidth()/2);
+	private int windowHeight = (int)(screenSize.getHeight()/2);
 	
 	public Game(){
 		playing = true;
-        frame = new JFrame("Test");
+        frame = new JFrame("My Animation");
         mainField = new Field(windowWidth, windowHeight);
         
-        Player player1 = new Player(GameRunner.randomLocation(mainField.getThick(), getMax()), 
-        		GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", true);
-        players.add(player1);
+        for(int i = 0; i < 2; i++) {
+        	Player newPlayer = new Player(i, GameRunner.randomLocation(mainField.getThick(), getMax()), 
+        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", GameRunner.randomSize(), 
+        			GameRunner.randColor(), true);
+            players.add(0, newPlayer);
+        }
         
         for(Player p : players) {
         	mainField.addPlayer(p);
@@ -37,7 +40,7 @@ public class Game {
         frame.getContentPane().add(BorderLayout.CENTER, mainField);
 
         frame.setVisible(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setSize(windowWidth, windowHeight);
         frame.setLocation(375, 55);
         move();
@@ -48,7 +51,8 @@ public class Game {
 	    	for(int i = 0; i < players.size(); i++) {
 	    		Player cp = players.get(i);
 	    		if(cp.isAlive()) {
-	    			Player trail = new Player(new int[] {cp.getX(), cp.getY()}, 0, 0, cp.getShape(), false);
+	    			Player trail = new Player(cp.getID(), new int[] {cp.getX(), cp.getY()}, 0, 0, 
+	    					cp.getShape(), cp.getSize(), cp.getTrailColor(cp.getColor()), false);
 	    			players.add(trail);
 	    			mainField.addPlayer(trail);
 	    			cp.moveSelf();
@@ -75,9 +79,9 @@ public class Game {
 	
 	private int getMax() {
 		if(windowWidth > windowHeight) {
-			return windowHeight/2;
+			return windowHeight;
 		}else {
-			return windowWidth/2;
+			return windowWidth;
 		}
 	}
 }

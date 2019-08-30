@@ -1,11 +1,12 @@
 package animationProject;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class Player {
 	
 	private Field currentField;
+	private int playerID;
 	
 	private int xCoord;
 	private int yCoord;
@@ -14,28 +15,35 @@ public class Player {
 	private int yVel;
 	
 	private String shape;
-	private Color color = Color.MAGENTA;
+	private Color color;
+	private int size;
 	private int width;
 	private int height;
 	
 	private boolean alive;
 	
-	public Player(int[] startCoords, int xVel, int yVel, String shape, boolean alive) {
+	public Player(int playerID, int[] startCoords, int xVel, int yVel, String shape, int size, Color color, boolean alive) {
+		this.playerID = playerID;
 		xCoord = startCoords[0];
 		yCoord = startCoords[1];
 		this.xVel = xVel;
 		this.yVel = yVel;
 		
 		this.shape = shape;
-		width = 6;
-		height = 6;
-		this.alive = alive;
+		this.size = size;
+		if(shape == "DOT") {
+			width = size;
+			height = size;
+		}
+		this.color = color;
 		
+		this.alive = alive;
 		if(!this.alive) {
-			color = Color.PINK;
+			this.color = getTrailColor(color);
 		}
 	}
 	public void setField(Field field) {currentField = field;}
+	public int getID() {return playerID;}
 	
 	public int getX() {return xCoord;}
 	public int getY() {return yCoord;}
@@ -47,7 +55,14 @@ public class Player {
 	
 	public String getShape() {return shape;}
 	public Color getColor() {return color;}
+	public Color getTrailColor(Color base) {
+		int red = base.getRed();
+		int green = base.getGreen();
+		int blue = base.getBlue();
+		return new Color(red, green, blue, (int)(base.getAlpha()*0.45));
+	}
 	
+	public int getSize() {return size;}
 	public int getWidth() {return width;}
 	public int getHeight() {return height;}
 	

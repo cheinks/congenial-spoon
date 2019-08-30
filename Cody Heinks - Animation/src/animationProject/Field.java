@@ -1,13 +1,12 @@
 package animationProject;
 
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Field extends JPanel{
 	
 	private static final long serialVersionUID = -3030379568821478211L;
-	private JFrame frame;
 	
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private Player currentPlayer;
@@ -33,9 +32,9 @@ public class Field extends JPanel{
 	
 	public void updateBounds(int newWidth, int newHeight) {
 		xUpper = borderThickness; //Left
-		xLower = newWidth - (borderThickness+16); //Right
+		xLower = newWidth - (borderThickness+6); //Right
 		yUpper = borderThickness; //Top
-		yLower = newHeight - (borderThickness+16 + 23); //Bottom
+		yLower = newHeight - (borderThickness+6 + 23); //Bottom
 	}
 	
 	public void paintComponent(Graphics g) {
