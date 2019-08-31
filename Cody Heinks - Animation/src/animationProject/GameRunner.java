@@ -23,6 +23,6 @@ public class GameRunner {
 	}
 	
 	public static int randomSize() {
-		return (int)(4+Math.random()*8);
+		return (int)(5+Math.random()*11);
 	}
 }

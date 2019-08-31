@@ -14,15 +14,15 @@ public class Game {
 	ArrayList<Player> players = new ArrayList<Player>();
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int windowWidth = (int)(screenSize.getWidth()/2);
-	private int windowHeight = (int)(screenSize.getHeight()/2);
+	private int windowWidth = (int)(screenSize.getWidth()*0.75);
+	private int windowHeight = (int)(screenSize.getHeight()*0.75);
 	
 	public Game(){
 		playing = true;
         frame = new JFrame("My Animation");
         mainField = new Field(windowWidth, windowHeight);
         
-        for(int i = 0; i < 2; i++) {
+        for(int i = 0; i < 3; i++) {
         	Player newPlayer = new Player(i, GameRunner.randomLocation(mainField.getThick(), getMax()), 
         			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", GameRunner.randomSize(), 
         			GameRunner.randColor(), true);
@@ -58,11 +58,13 @@ public class Game {
 	    			cp.moveSelf();
 	    			cp.checkBounds();
 	    		}
+	    		mainField.checkCollisions();
 	    	}
 	        try{
 	            Thread.sleep(10);
 	        } catch (Exception exc){}
 	        frame.repaint();
+	        playing = mainField.isAlive();
 	    }
 	}
 	

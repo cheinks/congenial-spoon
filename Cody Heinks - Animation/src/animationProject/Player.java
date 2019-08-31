@@ -67,7 +67,10 @@ public class Player {
 	public int getHeight() {return height;}
 	
 	public boolean isAlive() {return alive;}
-	public void kill() {alive = false;}
+	public void kill() {
+		alive = false;
+		color = getTrailColor(color);
+	}
 	
 	public void moveSelf() {
 		xCoord += xVel;
@@ -101,5 +104,22 @@ public class Player {
 	
 	private int[] getBounds() {
 		return new int[]{currentField.getYUpper(), currentField.getYLower(), currentField.getXUpper(), currentField.getXLower()};
+	}
+	
+	public boolean collidesWith(Player player) {
+		int otherPlayerID = player.getID();
+		if(otherPlayerID == this.playerID) {return false;}
+		int playerX = player.getX();
+		int playerY = player.getY();
+		int playerWidth = player.getWidth();
+		int playerHeight = player.getHeight();
+		
+		if(xCoord >= playerX && xCoord <= playerX + playerWidth) {
+			if(yCoord >= playerY && yCoord <= playerY + playerHeight) {
+				kill();
+				return true;
+			}
+		}
+		return false;
 	}
 }
