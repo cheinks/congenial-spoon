@@ -6,26 +6,31 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class Game {
-	
+	private int numPlayers;
 	boolean playing = false;
 	
 	JFrame frame;
 	Field mainField;
-	ArrayList<Player> players = new ArrayList<Player>();
+	ArrayList<Player> players;
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int windowWidth = (int)(screenSize.getWidth()*0.75);
 	private int windowHeight = (int)(screenSize.getHeight()*0.75);
 	
-	public Game(){
+	public Game(int pN){
+//		windowWidth = 300;
+//		windowHeight = 300;
+		numPlayers = pN;
+		if(numPlayers > 10) {numPlayers = 10;}
 		playing = true;
+		players = new ArrayList<Player>();
         frame = new JFrame("My Animation");
         mainField = new Field(windowWidth, windowHeight);
         
-        for(int i = 0; i < 3; i++) {
-        	Player newPlayer = new Player(i, GameRunner.randomLocation(mainField.getThick(), getMax()), 
-        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", GameRunner.randomSize(), 
-        			GameRunner.randColor(), true);
+        for(int i = 0; i < numPlayers; i++) {
+        	Player newPlayer = new Player(i, GameRunner.randomLocation(mainField.getThick(), 
+        			getMax()), GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", 
+        			GameRunner.randomSize(), GameRunner.randColor(), true);
             players.add(0, newPlayer);
         }
         
@@ -35,16 +40,22 @@ public class Game {
         }
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addComponentListener(new FrameListener());
-        
         frame.getContentPane().add(BorderLayout.CENTER, mainField);
 
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setSize(windowWidth, windowHeight);
         frame.setLocation(375, 55);
-        move();
     }
+	
+	public boolean run() {
+		move();
+		try{
+            Thread.sleep(1000);
+        } catch (Exception exc){}
+		frame.dispose();
+		return true;
+	}
 
 	private void move() {
 	    while(playing){
@@ -66,17 +77,6 @@ public class Game {
 	        frame.repaint();
 	        playing = mainField.isAlive();
 	    }
-	}
-	
-	private class FrameListener implements ComponentListener{
-		public void componentHidden(ComponentEvent e) {}
-        public void componentMoved(ComponentEvent e) {}
-        public void componentResized(ComponentEvent e) {
-        	windowWidth = frame.getWidth();
-        	windowHeight = frame.getHeight();
-        	mainField.updateBounds(windowWidth, windowHeight);
-        }
-        public void componentShown(ComponentEvent e) {}
 	}
 	
 	private int getMax() {

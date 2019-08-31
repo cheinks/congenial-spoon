@@ -2,10 +2,13 @@ package animationProject;
 
 import java.awt.Color;
 import java.lang.Math;
+//import java.util.Scanner;
 
 public class GameRunner {
 	public static void main(String[] args) {
-		Game game = new Game();
+		Game game = new Game(5);
+		boolean newGame = game.run();
+		if(newGame) {GameRunner.main(null);}
 	}
 	
 	public static int[] randomLocation(int min, int max) {
@@ -19,6 +22,11 @@ public class GameRunner {
 	}
 	
 	public static Color randColor() {
+		Color[] colors = new Color[] {Color.BLACK, Color.BLUE, Color.CYAN, Color.GREEN, 
+				Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, 
+				Color.YELLOW};
+		//10
+//		return colors[(int)(Math.random()*colors.length)];
 		return new Color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	
