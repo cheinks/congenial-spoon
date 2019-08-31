@@ -59,7 +59,15 @@ public class Player {
 		int red = base.getRed();
 		int green = base.getGreen();
 		int blue = base.getBlue();
-		return new Color(red, green, blue, (int)(base.getAlpha()*0.45));
+//		return new Color(red, green, blue, (int)(base.getAlpha()*0.45));
+		
+		red += 37;
+		green += 37;
+		blue += 37;
+		if(red > 255) {red = 255;}
+		if(green > 255) {green = 255;}
+		if(blue > 255) {blue = 255;}
+		return new Color(red, green, blue);
 	}
 	
 	public int getSize() {return size;}
@@ -69,7 +77,8 @@ public class Player {
 	public boolean isAlive() {return alive;}
 	public void kill() {
 		alive = false;
-		color = getTrailColor(color);
+		Color newColor = getTrailColor(color);
+		color = newColor;
 	}
 	
 	public void moveSelf() {
@@ -103,7 +112,8 @@ public class Player {
 	}
 	
 	private int[] getBounds() {
-		return new int[]{currentField.getYUpper(), currentField.getYLower(), currentField.getXUpper(), currentField.getXLower()};
+		return new int[]{currentField.getYUpper(), currentField.getYLower(), 
+				currentField.getXUpper(), currentField.getXLower()};
 	}
 	
 	public boolean collidesWith(Player player) {

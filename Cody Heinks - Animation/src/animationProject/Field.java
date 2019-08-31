@@ -11,9 +11,10 @@ public class Field extends JPanel{
 	
 	private ArrayList<Player> allPlayers = new ArrayList<Player>();
 	private ArrayList<Player> alivePlayers = new ArrayList<Player>();
+	private int numPlayers;
 	private Player currentPlayer;
 	
-	private int borderThickness = 6;
+	private int borderThickness = 8;
 	
 	//Bounds
 	private int xUpper;
@@ -21,11 +22,18 @@ public class Field extends JPanel{
 	private int yUpper;
 	private int yLower;
 	
-	public Field(int width, int height){updateBounds(width, height);}
+	public Field(int width, int height){
+		updateBounds(width, height);
+		numPlayers = GameRunner.getNumPlayers();
+	}
 	
 	public void addPlayer(Player newPlayer) {
-		allPlayers.add(newPlayer);
-		if(newPlayer.isAlive()) {alivePlayers.add(newPlayer);}
+		if(newPlayer.isAlive()) {
+			alivePlayers.add(newPlayer);
+			allPlayers.add(newPlayer);
+		}else {
+			allPlayers.add(numPlayers, newPlayer);
+		}
 	}
 	
 	public int getThick() {return borderThickness;}
@@ -52,7 +60,8 @@ public class Field extends JPanel{
         	currentPlayer = allPlayers.get(i);
         	if(currentPlayer.getShape() == "DOT") {
     	    	g.setColor(currentPlayer.getColor());
-    	    	g.fillRect(currentPlayer.getX(), currentPlayer.getY(), currentPlayer.getWidth(), currentPlayer.getHeight());
+    	    	g.fillRect(currentPlayer.getX(), currentPlayer.getY(), 
+    	    			currentPlayer.getWidth(), currentPlayer.getHeight());
             }
         }
     }

@@ -70,7 +70,7 @@ public class Game {
 	    			cp.moveSelf();
 	    			cp.checkBounds();
 	    		}
-	    		mainField.checkCollisions();
+	    	mainField.checkCollisions();
 	    	}
 	        try{
 	            Thread.sleep(10);
