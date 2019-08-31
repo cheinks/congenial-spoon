@@ -46,6 +46,7 @@ public class Game {
         frame.setResizable(false);
         frame.setSize(windowWidth, windowHeight);
         frame.setLocation(375, 55);
+//        frame.setAlwaysOnTop(true);
     }
 	
 	public boolean run() {

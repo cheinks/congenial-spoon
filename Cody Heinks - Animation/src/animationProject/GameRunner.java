@@ -2,10 +2,20 @@ package animationProject;
 
 import java.awt.Color;
 import java.lang.Math;
-//import java.util.Scanner;
+import java.util.Scanner;
 
 public class GameRunner {
 	public static void main(String[] args) {
+//		Scanner scanner = new Scanner(System.in);
+//		int numVictims = 0;
+//		System.out.println("How many players? ");
+//		
+//		try {
+//			numVictims = scanner.nextInt();
+//		}catch( java.util.InputMismatchException e){
+//			System.out.print("Nice try, but I need an int, dummy.");
+//		}
+		
 		Game game = new Game(5);
 		boolean newGame = game.run();
 		if(newGame) {GameRunner.main(null);}
@@ -16,7 +26,7 @@ public class GameRunner {
 	}
 	
 	public static int randomSpeed() {
-		int speed = (int)(-3 + Math.random()*7);
+		int speed = (int)(-4 + Math.random()*9);
 		if(speed == 0) {speed++;}
 		return speed;
 	}
@@ -31,6 +41,6 @@ public class GameRunner {
 	}
 	
 	public static int randomSize() {
-		return (int)(5+Math.random()*11);
+		return (int)(6+Math.random()*10);
 	}
 }
