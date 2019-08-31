@@ -9,10 +9,9 @@ public class Field extends JPanel{
 	private static final long serialVersionUID = -3030379568821478211L;
 	private boolean alive = true;
 	
-	private ArrayList<Player> allPlayers = new ArrayList<Player>();
+	private ArrayList<Player> deadPlayers = new ArrayList<Player>();
 	private ArrayList<Player> alivePlayers = new ArrayList<Player>();
 	private int numPlayers;
-	private Player currentPlayer;
 	
 	private int borderThickness = 8;
 	
@@ -30,9 +29,8 @@ public class Field extends JPanel{
 	public void addPlayer(Player newPlayer) {
 		if(newPlayer.isAlive()) {
 			alivePlayers.add(newPlayer);
-			allPlayers.add(newPlayer);
 		}else {
-			allPlayers.add(numPlayers, newPlayer);
+			deadPlayers.add(newPlayer);
 		}
 	}
 	
@@ -56,14 +54,20 @@ public class Field extends JPanel{
 	public void paintComponent(Graphics g) {
     	makeBorder(g);
         //Draw Players
-        for(int i = allPlayers.size()-1; i >= 0; i--) {
-        	currentPlayer = allPlayers.get(i);
-        	if(currentPlayer.getShape() == "DOT") {
-    	    	g.setColor(currentPlayer.getColor());
-    	    	g.fillRect(currentPlayer.getX(), currentPlayer.getY(), 
-    	    			currentPlayer.getWidth(), currentPlayer.getHeight());
-            }
-        }
+    	for(int i = 0; i < deadPlayers.size(); i++) {
+    		Player t = deadPlayers.get(i);
+    		if(t.getShape() == "DOT") {
+    			g.setColor(t.getColor());
+    			g.fillRect(t.getX(), t.getY(), t.getWidth(), t.getHeight());
+    		}
+    	}
+    	for(int j = 0; j < alivePlayers.size(); j++) {
+    		Player p = alivePlayers.get(j);
+    		if(p.getShape() == "DOT") {
+    			g.setColor(p.getColor());
+    			g.fillRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+    		}
+    	}
     }
 	private void makeBorder(Graphics g) {
 		//White Border
@@ -85,22 +89,16 @@ public class Field extends JPanel{
 			for(int j = i-1; j >= 0; j--) {
 				Player p2 = alivePlayers.get(j);
 				if(p1.collidesWith(p2)) {
+					p1.kill();
 					p2.kill();
 					alivePlayers.remove(i);
 					alivePlayers.remove(j);
+					deadPlayers.add(p1);
+					deadPlayers.add(p2);
 					j = -1;
 					i--;
 				}
 			}
-//			for(int j = 0; j < allPlayers.size(); j++) {
-//				if(currentPlayer.collidesWith(allPlayers.get(j))) {
-//					currentPlayer.kill();
-//					allPlayers.set(allPlayers.indexOf(alivePlayers.get(i)), currentPlayer);
-//					alivePlayers.remove(i);
-//					j = allPlayers.size();
-//				}
-//			}
-			
 		}
 		if(alivePlayers.size() <= 1) {alive = false;}
 	}

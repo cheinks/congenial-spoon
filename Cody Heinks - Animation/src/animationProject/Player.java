@@ -126,7 +126,6 @@ public class Player {
 		
 		if(xCoord >= playerX && xCoord <= playerX + playerWidth) {
 			if(yCoord >= playerY && yCoord <= playerY + playerHeight) {
-				kill();
 				return true;
 			}
 		}

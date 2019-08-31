@@ -11,7 +11,7 @@ public class Game {
 	
 	JFrame frame;
 	Field mainField;
-	ArrayList<Player> players;
+	ArrayList<Player> allPlayers;
 	
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private int windowWidth = (int)(screenSize.getWidth()*0.75);
@@ -23,7 +23,7 @@ public class Game {
 		numPlayers = pN;
 		if(numPlayers > 10) {numPlayers = 10;}
 		playing = true;
-		players = new ArrayList<Player>();
+		allPlayers = new ArrayList<Player>();
         frame = new JFrame("My Animation");
         mainField = new Field(windowWidth, windowHeight);
         
@@ -31,10 +31,10 @@ public class Game {
         	Player newPlayer = new Player(i, GameRunner.randomLocation(mainField.getThick(), 
         			getMax()), GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", 
         			GameRunner.randomSize(), GameRunner.randColor(), true);
-            players.add(0, newPlayer);
+            allPlayers.add(0, newPlayer);
         }
         
-        for(Player p : players) {
+        for(Player p : allPlayers) {
         	mainField.addPlayer(p);
         	p.setField(mainField);
         }
@@ -60,18 +60,17 @@ public class Game {
 
 	private void move() {
 	    while(playing){
-	    	for(int i = 0; i < players.size(); i++) {
-	    		Player cp = players.get(i);
+	    	for(int i = 0; i < allPlayers.size(); i++) {
+	    		Player cp = allPlayers.get(i);
 	    		if(cp.isAlive()) {
 	    			Player trail = new Player(cp.getID(), new int[] {cp.getX(), cp.getY()}, 0, 0, 
 	    					cp.getShape(), cp.getSize(), cp.getTrailColor(cp.getColor()), false);
-	    			players.add(trail);
 	    			mainField.addPlayer(trail);
 	    			cp.moveSelf();
 	    			cp.checkBounds();
 	    		}
-	    	mainField.checkCollisions();
 	    	}
+	    	mainField.checkCollisions();
 	        try{
 	            Thread.sleep(10);
 	        } catch (Exception exc){}

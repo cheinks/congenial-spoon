@@ -2,6 +2,7 @@ package animationProject;
 
 import java.awt.Color;
 import java.lang.Math;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameRunner {
@@ -39,25 +40,39 @@ public class GameRunner {
 		return speed;
 	}
 	
-	public static Color randColor() {
-		Color[] colors = new Color[] {Color.BLACK, Color.BLUE, Color.CYAN, Color.GREEN, 
-				Color.LIGHT_GRAY, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, 
-				Color.YELLOW};
-		//10
-//		return colors[(int)(Math.random()*colors.length)];
-		
-		int red = (int)(Math.random()*256);
-		int green = (int)(Math.random()*256);
-		int blue = (int)(Math.random()*256);
-		if(red + green + blue > 574) {
-			Math.abs(red-=150);
-			Math.abs(green-=150);
-			Math.abs(blue-=150);
-		}
-		return new Color(red, green, blue);
-	}
-	
 	public static int randomSize() {
 		return (int)(6+Math.random()*10);
+	}
+	
+	public static Color randColor() {
+		ArrayList<Color> colors = new ArrayList<Color>();
+		
+		colors.add(new Color(0, 0, 128)); //Navy
+		colors.add(new Color(0, 0, 255)); //Blue
+		colors.add(new Color(0, 128, 0)); //Green
+		colors.add(new Color(0, 128, 128)); //Teal
+			colors.add(new Color(0, 128, 255)); //??
+		colors.add(new Color(0, 255, 0)); //Lime
+			colors.add(new Color(0, 255, 128)); //Spring Green
+		colors.add(new Color(0, 255, 255)); //Cyan
+		colors.add(new Color(128, 0, 0)); //Maroon
+		colors.add(new Color(128, 0, 128)); //Purple
+			colors.add(new Color(128, 0, 255)); //??
+		colors.add(new Color(128, 128, 0)); //Olive
+		colors.add(new Color(128, 128, 128)); //Gray
+			colors.add(new Color(128, 128, 255)); //??
+			colors.add(new Color(128, 255, 0)); //Chartreuse
+			colors.add(new Color(128, 255, 128)); //Aquamarine?
+			colors.add(new Color(128, 255, 255)); //
+		colors.add(new Color(255, 0, 0)); //Red
+		colors.add(new Color(255, 0, 128)); //??
+		colors.add(new Color(255, 0, 255)); //Magenta
+		colors.add(new Color(255, 128, 0)); // Orange?
+		colors.add(new Color(255, 128, 128)); //Salmon?
+		colors.add(new Color(255, 128, 255)); //Violet?
+		colors.add(new Color(255, 255, 0)); //Yellow
+		colors.add(new Color(255, 255, 128)); //?
+		
+		return colors.get((int)(Math.random()*colors.size()));
 	}
 }
