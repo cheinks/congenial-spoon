@@ -31,7 +31,7 @@ public class Game {
         	colorsPicked.add(randColor);
         	
         	Player newPlayer = new Player(i, GameRunner.randomLocation(getMin(), getMax()), 
-        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "DOT", 
+        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "CIRCLE", 
         			GameRunner.randomSize(), randColor, true);
             allPlayers.add(0, newPlayer);
         }

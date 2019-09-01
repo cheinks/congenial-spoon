@@ -8,12 +8,17 @@ import java.util.ArrayList;
 
 public class GameRunner {
 	
-	private static int numVictims = (int)(3 + Math.random() * 10);
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private static int width = (int)(screenSize.getWidth());
-	private static int height = (int)(screenSize.getHeight());
+	private static int numVictims;
+	private static Dimension screenSize;
+	private static int width;
+	private static int height;
 	
 	public static void main(String[] args) {
+		numVictims = (int)(3 + Math.random() * 10);
+		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		width = (int)(screenSize.getWidth());
+		height = (int)(screenSize.getHeight());
+		
 		Game game = new Game(numVictims);
 		boolean newGame = game.run();
 		if(newGame) {GameRunner.main(null);}

@@ -50,13 +50,17 @@ public class Field extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
-    	makeBorder(g);
+    	drawBorder(g);
         //Draw Players
     	for(int i = 0; i < deadPlayers.size(); i++) {
     		Player t = deadPlayers.get(i);
     		if(t.getShape() == "DOT") {
     			g.setColor(t.getTrailColor());
     			g.fillRect(t.getX(), t.getY(), t.getWidth(), t.getHeight());
+    		}
+    		else if(t.getShape() == "CIRCLE") {
+    			g.setColor(t.getTrailColor());
+    			g.drawOval(t.getX(), t.getY(), t.getWidth(), t.getHeight());
     		}
     	}
     	for(int j = 0; j < alivePlayers.size(); j++) {
@@ -65,9 +69,13 @@ public class Field extends JPanel {
     			g.setColor(p.getHeadColor());
     			g.fillRect(p.getX(), p.getY(), p.getWidth(), p.getHeight());
     		}
+    		else if(p.getShape() == "CIRCLE") {
+    			g.setColor(p.getTrailColor());
+    			g.fillOval(p.getX(), p.getY(), p.getWidth(), p.getHeight());
+    		}
     	}
     }
-	private void makeBorder(Graphics g) {
+	private void drawBorder(Graphics g) {
 		//White Border
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
