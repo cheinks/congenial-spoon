@@ -54,7 +54,7 @@ public class GameRunner {
 				"DOT", "DOT", "DOT", "DOT", "DOT",
 				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
 				"4STAR", "4STAR", "4STAR",
-				"GEOM1", "GEOM1",
+				"GEOM1", "GEOM2",
 				"WIEBE"};
 		return shapes[(int)(Math.random() * shapes.length)];
 	}

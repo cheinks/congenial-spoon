@@ -118,19 +118,8 @@ public class Field extends JPanel {
 		else if(shape == "4STAR") {
 			g.fillPolygon(fourPointedStar(x, y, width, height));
 		}
-		else if(shape == "GEOM1") {
-			g.fillRect(x, y, width, (int)(height / 4));
-			g.fillRect(x, y + (int)(height / 4), 
-					(int)(width / 4), (int)(height / 4));
-			g.fillRect(x + (int)((3 * width) / 4), y + (int)((2 * height) / 4), 
-					(int)(width / 4), (int)(height / 4));
-			g.fillRect(x, y + (int)((3 * height) / 4), width, (int)(height / 4));
-			
-			g.setColor(Color.WHITE);
-			g.fillRect(x + (int)(width / 4), y + (int)(height / 4), 
-					(int)((3 * width) / 4), (int)(height / 4));
-			g.fillRect(x, y + (int)((2 * height) / 4), 
-					(int)((3 * width) / 4), (int)(height / 4));
+		else if(shape.indexOf("GEOM") >= 0) {
+			g.fillPolygon(geometric(shape, x, y, width, height));
 		}
 		else if(shape == "WIEBE") {
 			g.setFont(new Font("Courier", Font.ITALIC, height));
@@ -151,6 +140,21 @@ public class Field extends JPanel {
 				y + (int)((4 * height) / 10), y + (int)(height / 2), y + (int)((6 * height) / 10), 
 				y + height, y + (int)((6 * height) / 10)};
 		return new Polygon(xCoords, yCoords, 8);
+	}
+	private Polygon geometric(String version, int x, int y, int width, int height) {
+		int[] xCoords = new int[0];
+		int[] yCoords = new int[0];
+		int points = 0;
+		if(version == "GEOM1") {
+			xCoords = new int[] {x + (int)((2 * width) / 3), x + width, x + (int)(width / 3), x};
+			yCoords = new int[] {y, y + (int)(height / 3), y + height, y + (int)((2 * height) / 3)};
+			points = 4;
+		}else if(version == "GEOM2") {
+			xCoords = new int[] {x + (int)(width / 3), x + width, x + (int)((2 * width) / 3), x};
+			yCoords = new int[] {y, y + (int)((2 * height) / 3), y + height, y + (int)(height / 3)};
+			points = 4;
+		}
+		return new Polygon(xCoords, yCoords, points);
 	}
 	
 	public void resetGame() {

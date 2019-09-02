@@ -27,11 +27,14 @@ public class Game {
     }
 
 	public void run() {
-		numPlayers = (int)(3 + Math.random() * 8);
+		numPlayers = 7 - allPlayers.size();
 		playing = true;
 		mainField.resetGame();
         
 		ArrayList<Color> colorsPicked = new ArrayList<Color>();
+		for(Player w: allPlayers) {
+			colorsPicked.add(w.getTrailColor());
+		}
         colorsPicked.add(Color.WHITE);
         Color randColor = Color.WHITE;
         
