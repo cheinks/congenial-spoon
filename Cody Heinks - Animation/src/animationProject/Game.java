@@ -11,18 +11,27 @@ public class Game {
 	
 	JFrame frame;
 	Field mainField;
-	ArrayList<Player> allPlayers;
+	ArrayList<Player> allPlayers = new ArrayList<Player>();
 	private int windowWidth = (int)(GameRunner.getScreenSize().getWidth());
 	private int windowHeight = (int)(GameRunner.getScreenSize().getHeight());
 	
-	public Game(int pN) {
-		numPlayers = pN;
-		playing = true;
-		allPlayers = new ArrayList<Player>();
+	public Game() {
         frame = new JFrame("My Animation");
         mainField = new Field(windowWidth, windowHeight);
+        frame.getContentPane().add(BorderLayout.CENTER, mainField);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setResizable(false);
+        frame.setSize(windowWidth, windowHeight);
+        frame.setLocation(0, 0);
+    }
+
+	public void run() {
+		numPlayers = (int)(3 + Math.random() * 8);
+		playing = true;
+		mainField.resetGame();
         
-        ArrayList<Color> colorsPicked = new ArrayList<Color>();
+		ArrayList<Color> colorsPicked = new ArrayList<Color>();
         colorsPicked.add(Color.WHITE);
         Color randColor = Color.WHITE;
         
@@ -31,7 +40,7 @@ public class Game {
         	colorsPicked.add(randColor);
         	
         	Player newPlayer = new Player(i, GameRunner.randomLocation(getMin(), getMax()), 
-        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), "CIRCLE", 
+        			GameRunner.randomSpeed(), GameRunner.randomSpeed(), GameRunner.randomShape(), 
         			GameRunner.randomSize(), randColor, true);
             allPlayers.add(0, newPlayer);
         }
@@ -41,22 +50,16 @@ public class Game {
         	p.setField(mainField);
         }
         
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(BorderLayout.CENTER, mainField);
-
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setSize(windowWidth, windowHeight);
-        frame.setLocation(0, 0);
-    }
-	
-	public boolean run() {
 		move();
-		try {
-            Thread.sleep(1000);
-        } catch (Exception exc) {}
-		frame.dispose();
-		return true;
+		try {Thread.sleep(1000);} catch (Exception exc) {}
+	}
+	
+	public void celebrate() {
+		ArrayList<Player> winners = mainField.getWinners();
+		allPlayers.clear();
+		for(Player w: winners) {
+			allPlayers.add(w);
+		}
 	}
 
 	private void move() {
@@ -79,13 +82,13 @@ public class Game {
 	        playing = mainField.isAlive();
 	    }
 	}
-	private int getMin() {return mainField.getThick();}
+	private int getMin() {return mainField.getThick() + 10;}
 	
 	private int getMax() {
 		if(windowWidth > windowHeight) {
-			return windowHeight - mainField.getThick();
+			return windowHeight - (mainField.getThick() + 10);
 		}else {
-			return windowWidth - mainField.getThick();
+			return windowWidth - (mainField.getThick() + 10);
 		}
 	}
 }

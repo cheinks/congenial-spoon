@@ -37,8 +37,11 @@ public class Player {
 		
 		this.shape = shape;
 		this.size = size;
-		width = size;
-		height = size;
+		width = this.size;
+		height = this.size;
+		if(this.shape == "WIEBE") {
+			width *= 3;
+		}
 		trailColor = color;
 		
 		int red = (int)(color.getRed() * 0.60);

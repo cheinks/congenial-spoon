@@ -7,21 +7,23 @@ import java.lang.Math;
 import java.util.ArrayList;
 
 public class GameRunner {
-	
-	private static int numVictims;
+
 	private static Dimension screenSize;
 	private static int width;
 	private static int height;
+	private static boolean playing = true;
 	
 	public static void main(String[] args) {
-		numVictims = (int)(3 + Math.random() * 10);
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		width = (int)(screenSize.getWidth());
 		height = (int)(screenSize.getHeight());
 		
-		Game game = new Game(numVictims);
-		boolean newGame = game.run();
-		if(newGame) {GameRunner.main(null);}
+		Game game = new Game();
+		try {Thread.sleep(10);} catch (Exception exc) {}
+		while(playing) {
+			game.run();
+			game.celebrate();
+		}
 	}
 	
 	public static Dimension getScreenSize() {return screenSize;}
@@ -41,11 +43,20 @@ public class GameRunner {
 		return speed;
 	}
 	
-	public static int randomSize() { //6 to 24
+	public static int randomSize() { //12 to 24
 		int maxSize = width;
-		if(width > height) {maxSize = height;}
+		if(width < height) {maxSize = height;}
 		
-		return (int)((maxSize / 160) + Math.random() * (width / 80));
+		return (int)((maxSize / 160) + Math.random() * (maxSize / 64));
+	}
+	public static String randomShape() {
+		String[] shapes = new String[] {
+				"DOT", "DOT", "DOT", "DOT", "DOT",
+				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
+				"4STAR", "4STAR", "4STAR",
+				"GEOM1", "GEOM1",
+				"WIEBE"};
+		return shapes[(int)(Math.random() * shapes.length)];
 	}
 	
 	public static Color randomColor() {
