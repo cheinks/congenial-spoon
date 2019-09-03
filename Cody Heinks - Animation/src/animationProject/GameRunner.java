@@ -13,6 +13,8 @@ public class GameRunner {
 	private static int height;
 	private static boolean playing = true;
 	
+	private static Color rainbow = new Color(0, 0, 0);
+	
 	public static void main(String[] args) {
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		width = (int)(screenSize.getWidth());
@@ -22,6 +24,7 @@ public class GameRunner {
 		try {Thread.sleep(10);} catch (Exception exc) {}
 		while(playing) {
 			game.run();
+			try {Thread.sleep(1000);} catch (Exception exc) {}
 			game.celebrate();
 		}
 	}
@@ -54,9 +57,33 @@ public class GameRunner {
 				"DOT", "DOT", "DOT", "DOT", "DOT",
 				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
 				"4STAR", "4STAR", "4STAR",
-				"GEOM1", "GEOM2",
+				"GEOM1", "GEOM1",
+				"DIEGO",
 				"WIEBE"};
 		return shapes[(int)(Math.random() * shapes.length)];
+	}
+	
+	public static Color nextColor() {
+		int red = rainbow.getRed();
+		int green = rainbow.getGreen();
+		int blue = rainbow.getBlue();
+		
+		red++;
+		if(red > 255) {
+			red--;
+			green++;
+		}
+		if(green > 255) {
+			green--;
+			blue++;
+		}
+		if(blue > 255) {
+			red = 0;
+			green = 0;
+			blue = 0;
+		}
+		rainbow = new Color(red, green, blue);
+		return rainbow;
 	}
 	
 	public static Color randomColor() {

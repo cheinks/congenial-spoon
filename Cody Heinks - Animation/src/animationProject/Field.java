@@ -34,7 +34,17 @@ public class Field extends JPanel {
 	public int getYLower() {return yLower;}
 	
 	public boolean isAlive() {return alive;}
-	public ArrayList<Player> getWinners(){return alivePlayers;}
+	public ArrayList<Player> getWinners(){
+		ArrayList<Player> winners = alivePlayers;
+		Player player = winners.get(0);
+		int winID = player.getID();
+		for(Player t: deadPlayers) {
+			if(t.getID() == winID) {
+				winners.add(t);
+			}
+		}
+		return winners;
+	}
 	
 	public void addPlayer(Player newPlayer) {
 		if(newPlayer.isAlive()) {
@@ -48,8 +58,8 @@ public class Field extends JPanel {
 		xUpper = borderThickness; //Left
 		xLower = newWidth - (borderThickness+6); //Right
 		yUpper = borderThickness; //Top
-		yLower = newHeight - (borderThickness+6 + 29);
-//		yLower = newHeight - (borderThickness+6 + 23); //Bottom
+//		yLower = newHeight - (borderThickness+6 + 29);
+		yLower = newHeight - (borderThickness+6 + 23); //Bottom
 	}
 	
 	public void checkCollisions() {
@@ -108,6 +118,7 @@ public class Field extends JPanel {
 		if(shape == "DOT") {
 			g.fillRect(x, y, width, height);
 		}
+		
 		else if(shape == "CIRCLE") {
 			if(alive) {
 				g.fillOval(x, y, width, height);
@@ -115,12 +126,15 @@ public class Field extends JPanel {
 				g.drawOval(x, y, width, height);
 			}
 		}
+		
 		else if(shape == "4STAR") {
 			g.fillPolygon(fourPointedStar(x, y, width, height));
 		}
+		
 		else if(shape.indexOf("GEOM") >= 0) {
 			g.fillPolygon(geometric(shape, x, y, width, height));
 		}
+		
 		else if(shape == "WIEBE") {
 			g.setFont(new Font("Courier", Font.ITALIC, height));
 			if(alive) {
@@ -130,6 +144,10 @@ public class Field extends JPanel {
 				g.setColor(Color.WHITE);
 				g.fillRect(x, y, width, height);
 			}
+		}
+		
+		else if(shape == "DIEGO") {
+			g.fill3DRect(x, y, width, height, true);
 		}
 	}
 	private Polygon fourPointedStar(int x, int y, int width, int height) {
@@ -146,13 +164,9 @@ public class Field extends JPanel {
 		int[] yCoords = new int[0];
 		int points = 0;
 		if(version == "GEOM1") {
-			xCoords = new int[] {x + (int)((2 * width) / 3), x + width, x + (int)(width / 3), x};
-			yCoords = new int[] {y, y + (int)(height / 3), y + height, y + (int)((2 * height) / 3)};
-			points = 4;
-		}else if(version == "GEOM2") {
-			xCoords = new int[] {x + (int)(width / 3), x + width, x + (int)((2 * width) / 3), x};
-			yCoords = new int[] {y, y + (int)((2 * height) / 3), y + height, y + (int)(height / 3)};
-			points = 4;
+			xCoords = new int[] {x, x + width, x + (int)(width / 3), x + width, x};
+			yCoords = new int[] {y, y, y + (int)(width / 2), y + height, y + height};
+			points = 5;
 		}
 		return new Polygon(xCoords, yCoords, points);
 	}

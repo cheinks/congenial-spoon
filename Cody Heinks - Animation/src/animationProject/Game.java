@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 public class Game {
 	private int numPlayers;
 	boolean playing = false;
+	private int winners = 0;
 	
 	JFrame frame;
 	Field mainField;
@@ -27,13 +28,12 @@ public class Game {
     }
 
 	public void run() {
-		numPlayers = 7 - allPlayers.size();
+		numPlayers = 7 - winners;
 		playing = true;
-		mainField.resetGame();
         
 		ArrayList<Color> colorsPicked = new ArrayList<Color>();
-		for(Player w: allPlayers) {
-			colorsPicked.add(w.getTrailColor());
+		if(allPlayers.size() > 0) {
+			colorsPicked.add(allPlayers.get(0).getTrailColor());
 		}
         colorsPicked.add(Color.WHITE);
         Color randColor = Color.WHITE;
@@ -54,15 +54,16 @@ public class Game {
         }
         
 		move();
-		try {Thread.sleep(1000);} catch (Exception exc) {}
 	}
 	
 	public void celebrate() {
+		winners = 1;
 		ArrayList<Player> winners = mainField.getWinners();
 		allPlayers.clear();
 		for(Player w: winners) {
 			allPlayers.add(w);
 		}
+		mainField.resetGame();
 	}
 
 	private void move() {
@@ -85,13 +86,13 @@ public class Game {
 	        playing = mainField.isAlive();
 	    }
 	}
-	private int getMin() {return mainField.getThick() + 10;}
+	private int getMin() {return mainField.getThick() + 20;}
 	
 	private int getMax() {
 		if(windowWidth > windowHeight) {
-			return windowHeight - (mainField.getThick() + 10);
+			return windowHeight - (mainField.getThick() + 20);
 		}else {
-			return windowWidth - (mainField.getThick() + 10);
+			return windowWidth - (mainField.getThick() + 20);
 		}
 	}
 }

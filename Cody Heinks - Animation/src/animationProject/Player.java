@@ -39,14 +39,15 @@ public class Player {
 		this.size = size;
 		width = this.size;
 		height = this.size;
-		if(this.shape == "WIEBE") {
-			width *= 3;
-		}
-		trailColor = color;
+		if(this.shape == "WIEBE") {width *= 3;}
 		
-		int red = (int)(color.getRed() * 0.60);
-		int green = (int)(color.getGreen() * 0.60);
-		int blue = (int)(color.getBlue() * 0.60);
+		trailColor = color;
+		if(this.shape == "DIEGO") {
+			trailColor = GameRunner.nextColor();
+		}
+		int red = (int)(trailColor.getRed() * 0.60);
+		int green = (int)(trailColor.getGreen() * 0.60);
+		int blue = (int)(trailColor.getBlue() * 0.60);
 		headColor = new Color(red, green, blue);
 		
 		this.alive = alive;
