@@ -57,13 +57,15 @@ public class Game {
 	}
 	
 	public void celebrate() {
-		winners = 1;
-		ArrayList<Player> winners = mainField.getWinners();
 		allPlayers.clear();
+		ArrayList<Player> winners = mainField.getWinners();
+		this.winners = winners.size();
+		mainField.resetGame();
+		
 		for(Player w: winners) {
 			allPlayers.add(w);
 		}
-		mainField.resetGame();
+		
 	}
 
 	private void move() {
@@ -71,12 +73,12 @@ public class Game {
 	    	for(int i = 0; i < allPlayers.size(); i++) {
 	    		Player cp = allPlayers.get(i);
 	    		if(cp.isAlive()) {
-	    			Player trail = new Player(cp.getID(), new int[] {cp.getX(), cp.getY()}, 0, 0, 
-	    					cp.getShape(), cp.getSize(), cp.getTrailColor(), false);
-	    			mainField.addPlayer(trail);
-	    			cp.moveSelf();
-	    			cp.checkBounds();
-	    		}
+    			Player trail = new Player(cp.getID(), new int[] {cp.getX(), cp.getY()}, 0, 0, 
+    					cp.getShape(), cp.getSize(), cp.getTrailColor(), false);
+    			mainField.addPlayer(trail);
+    			cp.moveSelf();
+    			cp.checkBounds();
+    			}
 	    	}
 	    	mainField.checkCollisions();
 	        try {

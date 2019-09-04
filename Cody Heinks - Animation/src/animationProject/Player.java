@@ -43,12 +43,9 @@ public class Player {
 		
 		trailColor = color;
 		if(this.shape == "DIEGO") {
-			trailColor = GameRunner.nextColor();
+			trailColor = GameRunner.nextColor(true);
 		}
-		int red = (int)(trailColor.getRed() * 0.60);
-		int green = (int)(trailColor.getGreen() * 0.60);
-		int blue = (int)(trailColor.getBlue() * 0.60);
-		headColor = new Color(red, green, blue);
+		headColor = GameRunner.makeHeadColor(trailColor);
 		
 		this.alive = alive;
 	}
@@ -73,13 +70,21 @@ public class Player {
 	public int getHeight() {return height;}
 	
 	public boolean isAlive() {return alive;}
-	public void kill() {alive = false;}
+	public void kill() {
+		alive = false;
+		if(shape == "DIEGO") {
+			trailColor = GameRunner.nextColor(true);
+		}
+	}
 	
 // --- Other Class Methods ---
 	
 	public void moveSelf() {
 		xCoord += xVel;
 		yCoord += yVel;
+		if(shape == "DIEGO") {
+			headColor = GameRunner.makeHeadColor(GameRunner.nextColor(false));
+		}
 	}
 	
 	/*

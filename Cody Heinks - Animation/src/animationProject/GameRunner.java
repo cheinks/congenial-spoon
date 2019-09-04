@@ -13,7 +13,7 @@ public class GameRunner {
 	private static int height;
 	private static boolean playing = true;
 	
-	private static Color rainbow = new Color(0, 0, 0);
+	private static Color rainbow = new Color(255, 0, 0);
 	
 	public static void main(String[] args) {
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,36 +54,26 @@ public class GameRunner {
 	}
 	public static String randomShape() {
 		String[] shapes = new String[] {
-				"DOT", "DOT", "DOT", "DOT", "DOT",
-				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
-				"4STAR", "4STAR", "4STAR",
-				"GEOM1", "GEOM1",
+				"DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT",
+				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
+				"4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR",
 				"DIEGO",
 				"WIEBE"};
 		return shapes[(int)(Math.random() * shapes.length)];
 	}
 	
-	public static Color nextColor() {
-		int red = rainbow.getRed();
-		int green = rainbow.getGreen();
-		int blue = rainbow.getBlue();
-		
-		red++;
-		if(red > 255) {
-			red--;
-			green++;
-		}
-		if(green > 255) {
-			green--;
-			blue++;
-		}
-		if(blue > 255) {
-			red = 0;
-			green = 0;
-			blue = 0;
-		}
-		rainbow = new Color(red, green, blue);
+	public static Color nextColor(boolean trail) {
+		if(!trail) {return rainbow;}
+		float[] hsbvals = Color.RGBtoHSB(rainbow.getRed(), rainbow.getGreen(), rainbow.getBlue(), null);
+		rainbow = Color.getHSBColor(hsbvals[0] + (float)(0.0015), hsbvals[1], hsbvals[2]);
 		return rainbow;
+	}
+	
+	public static Color makeHeadColor(Color base) {
+		int red = (int)(base.getRed() * 0.60);
+		int green = (int)(base.getGreen() * 0.60);
+		int blue = (int)(base.getBlue() * 0.60);
+		return new Color(red, green, blue); 
 	}
 	
 	public static Color randomColor() {

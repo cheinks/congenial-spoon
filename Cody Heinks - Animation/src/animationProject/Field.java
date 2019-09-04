@@ -35,13 +35,9 @@ public class Field extends JPanel {
 	
 	public boolean isAlive() {return alive;}
 	public ArrayList<Player> getWinners(){
-		ArrayList<Player> winners = alivePlayers;
-		Player player = winners.get(0);
-		int winID = player.getID();
-		for(Player t: deadPlayers) {
-			if(t.getID() == winID) {
-				winners.add(t);
-			}
+		ArrayList<Player> winners = new ArrayList<Player>();
+		for(Player p: alivePlayers) {
+			winners.add(p);
 		}
 		return winners;
 	}
@@ -58,8 +54,8 @@ public class Field extends JPanel {
 		xUpper = borderThickness; //Left
 		xLower = newWidth - (borderThickness+6); //Right
 		yUpper = borderThickness; //Top
-//		yLower = newHeight - (borderThickness+6 + 29);
-		yLower = newHeight - (borderThickness+6 + 23); //Bottom
+		yLower = newHeight - (borderThickness+6 + 29);
+//		yLower = newHeight - (borderThickness+6 + 23); //Bottom
 	}
 	
 	public void checkCollisions() {
@@ -79,7 +75,7 @@ public class Field extends JPanel {
 				}
 			}
 		}
-		if(alivePlayers.size() <= 2) {alive = false;}
+		if(alivePlayers.size() <= 1) {alive = false;}
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -120,6 +116,7 @@ public class Field extends JPanel {
 		}
 		
 		else if(shape == "CIRCLE") {
+			width--; height--;
 			if(alive) {
 				g.fillOval(x, y, width, height);
 			}else {
@@ -131,23 +128,15 @@ public class Field extends JPanel {
 			g.fillPolygon(fourPointedStar(x, y, width, height));
 		}
 		
-		else if(shape.indexOf("GEOM") >= 0) {
-			g.fillPolygon(geometric(shape, x, y, width, height));
-		}
-		
 		else if(shape == "WIEBE") {
-			g.setFont(new Font("Courier", Font.ITALIC, height));
+			g.setFont(new Font("Courier", Font.BOLD, height));
 			if(alive) {
 				g.drawString("Wiebe", x, y + height - 2);
-			}
-			else {
-				g.setColor(Color.WHITE);
-				g.fillRect(x, y, width, height);
 			}
 		}
 		
 		else if(shape == "DIEGO") {
-			g.fill3DRect(x, y, width, height, true);
+			g.fillRoundRect(x, y, width, height, (int)(width / 2), (int)(height / 2));
 		}
 	}
 	private Polygon fourPointedStar(int x, int y, int width, int height) {
@@ -158,17 +147,6 @@ public class Field extends JPanel {
 				y + (int)((4 * height) / 10), y + (int)(height / 2), y + (int)((6 * height) / 10), 
 				y + height, y + (int)((6 * height) / 10)};
 		return new Polygon(xCoords, yCoords, 8);
-	}
-	private Polygon geometric(String version, int x, int y, int width, int height) {
-		int[] xCoords = new int[0];
-		int[] yCoords = new int[0];
-		int points = 0;
-		if(version == "GEOM1") {
-			xCoords = new int[] {x, x + width, x + (int)(width / 3), x + width, x};
-			yCoords = new int[] {y, y, y + (int)(width / 2), y + height, y + height};
-			points = 5;
-		}
-		return new Polygon(xCoords, yCoords, points);
 	}
 	
 	public void resetGame() {
