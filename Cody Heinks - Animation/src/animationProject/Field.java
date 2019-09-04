@@ -41,6 +41,16 @@ public class Field extends JPanel {
 		}
 		return winners;
 	}
+	public ArrayList<Player> getFans(Player player){
+		ArrayList<Player> fans = new ArrayList<Player>();
+		int winID = player.getID();
+		for(Player d: deadPlayers) {
+			if(d.getID() == winID) {
+				fans.add(d);
+			}
+		}
+		return fans;
+	}
 	
 	public void addPlayer(Player newPlayer) {
 		if(newPlayer.isAlive()) {
@@ -54,8 +64,8 @@ public class Field extends JPanel {
 		xUpper = borderThickness; //Left
 		xLower = newWidth - (borderThickness+6); //Right
 		yUpper = borderThickness; //Top
-		yLower = newHeight - (borderThickness+6 + 29);
-//		yLower = newHeight - (borderThickness+6 + 23); //Bottom
+//		yLower = newHeight - (borderThickness+6 + 29);
+		yLower = newHeight - (borderThickness+6 + 23); //Bottom
 	}
 	
 	public void checkCollisions() {
@@ -80,6 +90,7 @@ public class Field extends JPanel {
 	
 	public void paintComponent(Graphics g) {
     	drawBorder(g);
+    	drawObstacles();
         //Draw Players
     	for(int i = 0; i < deadPlayers.size(); i++) {
     		Player t = deadPlayers.get(i);
@@ -92,7 +103,7 @@ public class Field extends JPanel {
     				p.getShape(), p.getHeadColor(), true);
     	}
     }
-	
+
 	private void drawBorder(Graphics g) {
 		//White Border
         g.setColor(Color.WHITE);
@@ -104,8 +115,13 @@ public class Field extends JPanel {
         
         //Inside Color
         g.setColor(Color.WHITE);
+        g.setColor(GameRunner.nextColor());
         g.fillRect(borderThickness, borderThickness, this.getWidth()-(borderThickness * 2), 
         		this.getHeight() - (borderThickness * 2));
+	}
+	
+	private void drawObstacles() {
+		
 	}
 	
 	private void drawPlayer(Graphics g, int x, int y, int width, int height, 
@@ -117,11 +133,7 @@ public class Field extends JPanel {
 		
 		else if(shape == "CIRCLE") {
 			width--; height--;
-			if(alive) {
-				g.fillOval(x, y, width, height);
-			}else {
-				g.drawOval(x, y, width, height);
-			}
+			g.fillOval(x, y, width, height);
 		}
 		
 		else if(shape == "4STAR") {
@@ -133,10 +145,6 @@ public class Field extends JPanel {
 			if(alive) {
 				g.drawString("Wiebe", x, y + height - 2);
 			}
-		}
-		
-		else if(shape == "DIEGO") {
-			g.fillRoundRect(x, y, width, height, (int)(width / 2), (int)(height / 2));
 		}
 	}
 	private Polygon fourPointedStar(int x, int y, int width, int height) {

@@ -60,12 +60,17 @@ public class Game {
 		allPlayers.clear();
 		ArrayList<Player> winners = mainField.getWinners();
 		this.winners = winners.size();
+		ArrayList<Player> fans = mainField.getFans(winners.get(0));
 		mainField.resetGame();
 		
 		for(Player w: winners) {
+			w.setWinID(-1);
 			allPlayers.add(w);
 		}
-		
+		for(Player f: fans) {
+			f.setWinID(-1);
+			mainField.addPlayer(f);
+		}
 	}
 
 	private void move() {

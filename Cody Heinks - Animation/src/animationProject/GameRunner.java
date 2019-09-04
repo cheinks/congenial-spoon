@@ -12,7 +12,6 @@ public class GameRunner {
 	private static int width;
 	private static int height;
 	private static boolean playing = true;
-	
 	private static Color rainbow = new Color(255, 0, 0);
 	
 	public static void main(String[] args) {
@@ -57,15 +56,13 @@ public class GameRunner {
 				"DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT", "DOT",
 				"CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE", "CIRCLE",
 				"4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR", "4STAR",
-				"DIEGO",
 				"WIEBE"};
 		return shapes[(int)(Math.random() * shapes.length)];
 	}
 	
-	public static Color nextColor(boolean trail) {
-		if(!trail) {return rainbow;}
+	public static Color nextColor() {
 		float[] hsbvals = Color.RGBtoHSB(rainbow.getRed(), rainbow.getGreen(), rainbow.getBlue(), null);
-		rainbow = Color.getHSBColor(hsbvals[0] + (float)(0.0015), hsbvals[1], hsbvals[2]);
+		rainbow = Color.getHSBColor(hsbvals[0] + (float)(0.001), hsbvals[1], hsbvals[2]);
 		return rainbow;
 	}
 	

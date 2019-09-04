@@ -42,9 +42,6 @@ public class Player {
 		if(this.shape == "WIEBE") {width *= 3;}
 		
 		trailColor = color;
-		if(this.shape == "DIEGO") {
-			trailColor = GameRunner.nextColor(true);
-		}
 		headColor = GameRunner.makeHeadColor(trailColor);
 		
 		this.alive = alive;
@@ -53,6 +50,7 @@ public class Player {
 // --- Accessor / Mutator Methods ---
 	
 	public void setField(Field field) {currentField = field;}
+	public void setWinID(int i) {playerID = i;}
 	public int getID() {return playerID;}
 	
 	public int getX() {return xCoord;}
@@ -70,21 +68,13 @@ public class Player {
 	public int getHeight() {return height;}
 	
 	public boolean isAlive() {return alive;}
-	public void kill() {
-		alive = false;
-		if(shape == "DIEGO") {
-			trailColor = GameRunner.nextColor(true);
-		}
-	}
+	public void kill() {alive = false;}
 	
 // --- Other Class Methods ---
 	
 	public void moveSelf() {
 		xCoord += xVel;
 		yCoord += yVel;
-		if(shape == "DIEGO") {
-			headColor = GameRunner.makeHeadColor(GameRunner.nextColor(false));
-		}
 	}
 	
 	/*
@@ -99,17 +89,17 @@ public class Player {
 			yVel *= -1;
 		}
 		//Floor
-		if(yCoord + height > bounds[1]) {
+		else if(yCoord + height > bounds[1]) {
 			yCoord = bounds[1] - height;
 			yVel *= -1;
 		}
 		//Left Wall
-		if(xCoord < bounds[2]) {
+		else if(xCoord < bounds[2]) {
 			xCoord = bounds[2];
 			xVel *= -1;
 		}
 		//Right Wall
-		if(xCoord + width > bounds[3]) {
+		else if(xCoord + width > bounds[3]) {
 			xCoord = bounds[3] - width;
 			xVel *= -1;
 		}
