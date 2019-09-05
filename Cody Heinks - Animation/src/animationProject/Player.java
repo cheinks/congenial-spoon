@@ -116,6 +116,7 @@ public class Player {
 	 * the rectangles have intersected.
 	 */
 	public boolean collidesWith(Player player) {
+		if(GameRunner.getInvincible()) {return false;}
 		int otherPlayerID = player.getID();
 		if(otherPlayerID == this.playerID) {return false;}
 		

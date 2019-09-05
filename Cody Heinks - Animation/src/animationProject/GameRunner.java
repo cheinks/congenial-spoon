@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.lang.Math;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameRunner {
 
@@ -12,6 +14,10 @@ public class GameRunner {
 	private static int width;
 	private static int height;
 	private static boolean playing = true;
+	private static boolean invincible;
+	private static int delay = 5;
+	private static Timer gameTimer = new Timer();
+	private static int time = 0;
 	private static Color rainbow = new Color(255, 0, 0);
 	
 	public static void main(String[] args) {
@@ -22,13 +28,37 @@ public class GameRunner {
 		Game game = new Game();
 		try {Thread.sleep(10);} catch (Exception exc) {}
 		while(playing) {
+			invincible = true;
+			doTimer();
 			game.run();
 			try {Thread.sleep(1000);} catch (Exception exc) {}
 			game.celebrate();
 		}
 	}
 	
+	private static void doTimer() {
+		TimerTask task = new TimerTask() {
+			@Override
+			public void run() {
+				if(time < delay) {
+					time++;
+				}else {
+					invincible = false;
+					time = 0;
+					cancel();
+				}
+			}
+		};
+		gameTimer.schedule(task, (long)0, (long)1000);
+	}
+	
 	public static Dimension getScreenSize() {return screenSize;}
+	public static boolean getInvincible() {return invincible;}
+	
+//	public static Image getMinage() {
+//		//ImageIcon ii = get
+//		return new Image();
+//	}
 	
 	public static int[] randomLocation(int min, int max) {
 		return new int[]{(int)(min + Math.random() * (max - min)), 

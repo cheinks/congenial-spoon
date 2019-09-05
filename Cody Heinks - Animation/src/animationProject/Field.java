@@ -3,6 +3,7 @@ package animationProject;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.util.ArrayList;
 
@@ -89,8 +90,8 @@ public class Field extends JPanel {
 	}
 	
 	public void paintComponent(Graphics g) {
+		//Graphics2D g2d = (Graphics2D)g;
     	drawBorder(g);
-    	drawObstacles();
         //Draw Players
     	for(int i = 0; i < deadPlayers.size(); i++) {
     		Player t = deadPlayers.get(i);
@@ -115,17 +116,18 @@ public class Field extends JPanel {
         
         //Inside Color
         g.setColor(Color.WHITE);
-        g.setColor(GameRunner.nextColor());
+        //g.setColor(GameRunner.nextColor());
         g.fillRect(borderThickness, borderThickness, this.getWidth()-(borderThickness * 2), 
         		this.getHeight() - (borderThickness * 2));
 	}
 	
-	private void drawObstacles() {
-		
-	}
-	
 	private void drawPlayer(Graphics g, int x, int y, int width, int height, 
 			String shape, Color color, boolean alive) {
+		if(GameRunner.getInvincible() && alive) {
+			g.setColor(Color.BLACK);
+			g.drawRect(x-1, y-1, width+1, height+1);
+		}
+		
 		g.setColor(color);
 		if(shape == "DOT") {
 			g.fillRect(x, y, width, height);
