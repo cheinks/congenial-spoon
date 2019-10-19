@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TicTacToe
+comment1.params=difficulty
+comment1.target=TicTacToe(int)
+comment2.params=
+comment2.target=javax.swing.JPanel\ addGameBoard()
+comment3.params=
+comment3.target=javax.swing.JPanel\ addScore()
+comment4.params=
+comment4.target=javax.swing.JPanel\ addNewGame()
+comment5.params=e
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment6.params=
+comment6.target=javax.swing.JPanel\ getPanel()
+numComments=7

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=MinesweeperBoard
+comment1.params=row\ col\ bombs\ board\ flagBtn\ bombsLeft
+comment1.target=MinesweeperBoard(int,\ int,\ int,\ Cell[][],\ javax.swing.JButton,\ javax.swing.JLabel)
+comment2.params=safeX\ safeY
+comment2.target=void\ playGame(int,\ int)
+comment3.params=bombs\ safeX\ safeY
+comment3.target=void\ addBombs(int,\ int,\ int)
+comment4.params=
+comment4.target=void\ addNums()
+comment5.params=
+comment5.target=boolean\ getMode()
+comment6.params=startRow\ startCol
+comment6.target=void\ revealBlanks(int,\ int)
+comment7.params=
+comment7.target=void\ cellCleared()
+comment8.params=win
+comment8.target=void\ endGame(boolean)
+numComments=9
