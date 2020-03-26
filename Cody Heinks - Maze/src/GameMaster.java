@@ -28,6 +28,7 @@ public class GameMaster {
 	private Runner mainRunner;
 	
 	private ArrayList<Wall> test2;
+	private Snake test3;
 
 	public GameMaster() {
 		initializeGame();
@@ -41,6 +42,9 @@ public class GameMaster {
 		makeField();
 		makeLevel();
 		makeRunner();
+		
+		test3 = new Snake(Color.RED,  200, 200,  14, 10, 10);
+		maze.addSprite(test3);
 		
 		finalizeGame();
         
@@ -73,7 +77,7 @@ public class GameMaster {
 	private void makeLevel() {
 		test2 = new ArrayList<Wall>();
 		
-		Wall temp = new Wall(Color.GREEN, 100, 100, 100);
+		Wall temp = new Wall(Color.GREEN, 100, 100, 10);
 		test2.add(temp);
 		maze.addSprite(temp);
 	}
@@ -99,6 +103,8 @@ public class GameMaster {
 	private void play() {
 		while(playing) {
 			mainRunner.move();
+			
+			test3.move();
 			
 			try { Thread.sleep(10); } catch (Exception exc) {}
 			frame.repaint();
