@@ -7,23 +7,25 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/* This class controls the GUI of the entire game. */
+
 public class Maze extends JPanel {
 	
 	private static final long serialVersionUID = -5386529132944306261L;
 	
+	//the total area of u.i. space
 	private int gameWidth;
 	private int gameHeight;
 	
+	//values for the maze u.i.
 	private Color outsideColor;
 	private int outThick;
-	
 	private Color borderColor;
 	private int borderThick;
-	
 	private Color insideColor;
 	
-	private ArrayList<Runner> players;
-
+	private ArrayList<Sprite> sprites; //the sprites to be drawn
+	
 	public Maze(int w, int h) {
 		gameWidth = w;
 		gameHeight = h;
@@ -36,23 +38,26 @@ public class Maze extends JPanel {
 		
 		insideColor = Manual.color3;
 		
-		players = new ArrayList<Runner>();
+		sprites = new ArrayList<Sprite>();
 	}
 	
 	public void paintComponent(Graphics g) {
 		drawBase(g);
 		
-		drawPlayers(g);
+		drawSprites(g);
+		
 		Toolkit.getDefaultToolkit().sync();
 	}
 	
+	//Makes the maze u.i.
 	private void drawBase(Graphics g) {
 		drawOutside(g);
 		drawBorder(g);
 		drawInside(g);
 	}
 	
-	private void drawOutside(Graphics g) {
+	//Get the corresponding color and rectangle and draw it
+	private void drawOutside(Graphics g) { //the space between the frame and the maze border
 		Color c = outsideColor;
 		int x = 0;
 		int y = 0;
@@ -62,7 +67,7 @@ public class Maze extends JPanel {
 		g.setColor(c);
 		g.fillRect(x, y, width, height);
 	}
-	private void drawBorder(Graphics g) {
+	private void drawBorder(Graphics g) { //teh maze border
 		Color c = borderColor;
 		int x = outThick;
 		int y = outThick;
@@ -72,7 +77,7 @@ public class Maze extends JPanel {
 		g.setColor(c);
 		g.fillRect(x, y, width, height);
 	}
-	private void drawInside(Graphics g) {
+	private void drawInside(Graphics g) { //the background within the maze
 		Color c = insideColor;
 		int x = outThick + borderThick;
 		int y = outThick + borderThick;
@@ -83,16 +88,19 @@ public class Maze extends JPanel {
 		g.fillRect(x, y, width, height);
 	}
 	
-	private void drawPlayers(Graphics g) {
-		for(Runner r : players) {
-			Color c = r.getColor();
-			Rectangle rect = r.getRect();
+	//Gets the corresponding color and rectangle for each sprite and draws them
+	private void drawSprites(Graphics g) {
+		for(Sprite s : sprites) {
+			Color c = s.getColor();
+			Rectangle rect = s.getRect();
 			
 			g.setColor(c);
 			g.fillRect(rect.x, rect.y, rect.width, rect.height);
 		}
 	}
 	
-	public void addPlayer(Runner r) { players.add(r); }
+	//Mutators
+	public void addSprite(Sprite s) { sprites.add(s); }
+	public void addSprite(ArrayList<Sprite> ss) { for(Sprite s : ss) { addSprite(s); } }
 
 }

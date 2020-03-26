@@ -5,16 +5,20 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+/* This class stores predetermined values to be used by elements of the game. */
+
 public class Manual {
 	
 	//values for the game window
 	public static final int windowX = 0;
 	public static final int windowY = 0;
-	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	public static final int windowWidth = gd.getDisplayMode().getWidth();
-	public static final int windowHeight = gd.getDisplayMode().getHeight();
+	//private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	//public static final int windowWidth = gd.getDisplayMode().getWidth();
+	//public static final int windowHeight = gd.getDisplayMode().getHeight();
+	public static final int windowWidth = 500;
+	public static final int windowHeight = 500;
 	
-	public static final int bufferX = 6;
+	public static final int bufferX = 6; //space for the panel to exist within the frame
 	public static final int bufferY = 35;
 	
 	//values for the maze u.i.
@@ -30,14 +34,8 @@ public class Manual {
 	private static Dimension d = new Dimension(windowWidth - bufferX - 2 * (p.x), windowHeight - bufferY - 2 * (p.y));
 	public static final Rectangle bounds = new Rectangle(p, d);
 	
-	//color loop
-	private static int r = 255;
-	private static int g = 0;
-	private static int b = 0;
-	public static Color nextColor() {
-		g++;
-
-		
-		return new Color(r, g, b);
-	}
+	public static final Point start = new Point(50, 50);
+	public static final int playerSize = 100;
+	public static final int playerSpeed = 66;
+	
 }

@@ -2,30 +2,39 @@ import java.awt.Color;
 import java.awt.Rectangle;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
-public class Runner{
-	
-	private Color color;
+/* This class is the main character of the 
+ * game and is controlled by the user. 
+ * */
+
+public class Runner extends Player{
 	
 	private Rectangle rect;
-	private int speed = 0;
-	private int dx = 0;
-	private int dy = 0;
+	private int dx; //(+) is to the right, (-) is to the left
+	private int dy; //(+) is downwards, (-) is upwards
 	
-	private boolean up = false;
-	private boolean down = false;
-	private boolean left = false;
-	private boolean right = false;
+	//values for movement
+	private int speed;
+	private boolean up; //true if the object is moving upwards
+	private boolean down;
+	private boolean left;
+	private boolean right;
+	
+	private ArrayList<Wall> walls; //the barriers
 
-	public Runner(Color c, int x, int y, int size, int speed) {
-		color = c;
+	public Runner(Color c, int x, int y, int size, int speed, ArrayList<Wall> w) {
+		super(c, x, y, size);
+		
 		rect = new Rectangle(x, y, size, size);
 		this.speed = speed;
+		walls = w;
 	}
 	
+	//Called when a user input is given via the keyboard
 	public void action(boolean keyDown, int key) {
-		if(keyDown) {
-			if(key == KeyEvent.VK_W && !up) { 
+		if(keyDown) { //Increments the dx or dy value
+			if(key == KeyEvent.VK_W && !up) {
 				dy -= speed;
 				up = true;
 			}
@@ -41,7 +50,7 @@ public class Runner{
 				dx += speed;
 				right = true;
 			}
-		} else {
+		} else { //Resets the dx or dy value
 			if(key == KeyEvent.VK_W && up) { 
 				dy += speed;
 				up = false;
@@ -61,15 +70,46 @@ public class Runner{
 		}
 	}
 	
+	@Override
 	public void move() {
 		rect.translate(dx, dy);
-		if(!Manual.bounds.contains(rect)) {
+		checkCollisions();
+		
+	}
+	
+	//Computes the collision of the runner with bounds and walls
+	private void checkCollisions() {
+		if(!Manual.bounds.contains(rect)) { //if the player is outside the bounds, move it back in
 			Rectangle u = Manual.bounds.union(rect);
 			rect.translate((int)(Math.signum(dx)) * (Manual.bounds.width - u.width), (int)(Math.signum(dy)) * (Manual.bounds.height - u.height));
 		}
+		
+		for(Wall w : walls) {
+			Rectangle wRect = w.getRect(); //the space of the wall
+			
+			if(wRect.intersects(rect)){
+				Rectangle i = wRect.intersection(rect); //the overlap
+				int idx = 0; //the value to correct the player's movement
+				int idy = 0;
+				
+				//if the object were to move again in the same direction
+				Rectangle futureRect = new Rectangle(rect.x + dx, rect.y + dy, rect.width, rect.height);
+				Rectangle futureI = wRect.intersection(futureRect);
+				
+				//will be false if the object is moving parallel to its axis of collision
+				if(futureI.width > i.width) { idx = (int)(Math.signum(dx)) * -i.width; }
+				if(futureI.height > i.height) { idy = (int)(Math.signum(dy)) * -i.height; }
+				
+				rect.translate(idx, idy);
+			}
+		}
 	}
 	
-	public Color getColor() {return color;}
-	public Rectangle getRect() {return rect;}
+	@Override
+	public Rectangle getRect() { return rect; }
+	@Override
+	public int getDX() { return dx; }
+	@Override
+	public int getDY() { return dy; }
 
 }
