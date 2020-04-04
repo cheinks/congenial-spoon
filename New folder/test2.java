@@ -7,11 +7,11 @@ import javax.swing.*;
 public class test2 extends JPanel{
 
 	private static final long serialVersionUID = 6493216308618135969L;
-	private static final String colorAlphabet  = "qjzxvkwyfbghmpduclsntoirae";
+	private static final String colorAlphabet  = "qj9zxv8kw7yfb6ghm5pd4ucl 3sn2toi1rae0";
 	private Color color;
 
 	public test2(String s) {
-		color = stir(hexToColors(asciiToHex(s)));
+		color = stir(asciiToColors(s));
 	}
 	
 	public void paintComponent(Graphics g)
@@ -58,7 +58,7 @@ public class test2 extends JPanel{
 		return new Color(rTotal, gTotal, bTotal);
 	}
 	
-	private String asciiToHex(String ascii) 
+	/*private String asciiToHex(String ascii) 
 	{
 		char[] chars = ascii.toCharArray();
 	    StringBuffer hex = new StringBuffer();
@@ -67,35 +67,28 @@ public class test2 extends JPanel{
 	        hex.append(Integer.toHexString((int) chars[i]));
 	    }
 	    return hex.toString();
-	}
+	}*/
 	
-	private Color[] hexToColors(String hex) 
+	private Color[] asciiToColors(String ascii) 
 	{
-		hex = hex.substring(0, hex.length() - (hex.length() % 6));
-//		int numChannels = hex.length() / 2;
-//		while (numChannels % 3 != 0) 
-//		{
-//			numChannels++;
-//			hex += "00";
-//		}
-//		
-//		Color[] newColors = new Color[numChannels / 3];
-		Color[] newColors = new Color[hex.length() / 6];
+		String input = ascii.substring(0, ascii.length() - (ascii.length() % 3)).toLowerCase();
+		Color[] newColors = new Color[input.length() / 3];
+		
 		int currentColor = 0;
-		for(int i = 0; i <= hex.length() - 6; i += 6) 
+		for(int i = 0; i <= input.length() - 3; i += 3) 
 		{
-			newColors[currentColor] = hexToColor(hex.substring(i, i+6));
+			newColors[currentColor] = charsToColor(input.substring(i, i + 3));
 			currentColor++;
 		}
 		
 		return newColors;
 	}
 	
-	private Color hexToColor(String hexCode)
+	private Color charsToColor(String chars)
 	{
-		int r = Integer.parseInt(hexCode.substring(0, 2), 16);
-		int g = Integer.parseInt(hexCode.substring(2, 4), 16);
-		int b = Integer.parseInt(hexCode.substring(4, 6), 16);
+		int r = (int)(colorAlphabet.indexOf(chars.substring(0, 1)) * 255 / (float)(colorAlphabet.length()));
+		int g = (int)(colorAlphabet.indexOf(chars.substring(1, 2)) * 255 / (float)(colorAlphabet.length()));
+		int b = (int)(colorAlphabet.indexOf(chars.substring(2, 3)) * 255 / (float)(colorAlphabet.length()));
 		
 		return new Color(r, g, b);
 	}

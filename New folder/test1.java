@@ -14,7 +14,7 @@ public class test1 {
         frame.setVisible(true);
         frame.setSize(500, 500);
         
-        String text = "I don't think this works as well as I hoped";
+        String text = "supercalifragilisticexpialidocious";
 		JPanel test2 = new test2(text);
 		
 		frame.getContentPane().add(BorderLayout.CENTER, test2);
