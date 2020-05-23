@@ -1,7 +1,9 @@
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.Rectangle;
 
 import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 
 /* This class is the main character of the 
@@ -86,19 +88,33 @@ public class Runner extends Player{
 		
 		for(Wall w : walls) {
 			Rectangle wRect = w.getRect(); //the space of the wall
+			Point wCenter = new Point(wRect.x + (wRect.width / 2), wRect.y + (wRect.height / 2));
 			
 			if(wRect.intersects(rect)){
 				Rectangle i = wRect.intersection(rect); //the overlap
 				int idx = 0; //the value to correct the player's movement
 				int idy = 0;
+				int iWidth = i.width;
+				int iHeight = i.height;
+				
+				//whatever axis is shorter, move it back that way
+				//if that axis is zero, use the other axis.
+				if(iWidth < iHeight || dy == 0) {
+					idx = (int)(Math.signum(dx)) * -iWidth;
+				}else if(iHeight < iWidth || dx == 0) {
+					idy = (int)(Math.signum(dy)) * -iHeight;
+				}else { //if width = height, move the player diagonally away from the corner of the wall
+					idx = (int)(Math.signum(wCenter.x - i.x)) * -iWidth;
+					idy = (int)(Math.signum(wCenter.y - i.y)) * -iHeight;
+				}
 				
 				//if the object were to move again in the same direction
-				Rectangle futureRect = new Rectangle(rect.x + dx, rect.y + dy, rect.width, rect.height);
-				Rectangle futureI = wRect.intersection(futureRect);
-				
-				//will be false if the object is moving parallel to its axis of collision
-				if(futureI.width > i.width) { idx = (int)(Math.signum(dx)) * -i.width; }
-				if(futureI.height > i.height) { idy = (int)(Math.signum(dy)) * -i.height; }
+//				Rectangle futureRect = new Rectangle(rect.x + dx, rect.y + dy, rect.width, rect.height);
+//				Rectangle futureI = wRect.intersection(futureRect);
+//				
+//				//will be false if the object is moving parallel to its axis of collision
+//				if(futureI.width > i.width) { idx = (int)(Math.signum(dx)) * -i.width; }
+//				if(futureI.height > i.height) { idy = (int)(Math.signum(dy)) * -i.height; }
 				
 				rect.translate(idx, idy);
 			}

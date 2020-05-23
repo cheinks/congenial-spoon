@@ -35,7 +35,7 @@ public class Manual {
 	public static final Rectangle bounds = new Rectangle(p, d);
 	
 	public static final Point start = new Point(50, 50);
-	public static final int playerSize = 10;
+	public static final int playerSize = 25;
 	public static final int playerSpeed = 6;
 	
 }
