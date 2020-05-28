@@ -32,9 +32,9 @@ public class Manual {
 	public static final int wallThick = 10;
 	
 	//values for the runner
-	private static Point p = new Point(thick1 + thick2, thick1 + thick2);
-	private static Dimension d = new Dimension(windowWidth - bufferX - 2 * (p.x), windowHeight - bufferY - 2 * (p.y));
-	public static final Rectangle bounds = new Rectangle(p, d);
+	public static final Point origin = new Point(thick1 + thick2, thick1 + thick2);
+	private static Dimension d = new Dimension(windowWidth - bufferX - 2 * (origin.x), windowHeight - bufferY - 2 * (origin.y));
+	public static final Rectangle bounds = new Rectangle(origin, d);
 	
 	public static final Point start = new Point(50, 50);
 	public static final int playerSize = 25;

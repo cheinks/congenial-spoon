@@ -17,8 +17,8 @@ public class Runner extends Player{
 	private int dy; //(+) is downwards, (-) is upwards
 	
 	//values for movement
-	private int speed;
 	private boolean up; //true if the object is moving upwards
+	private int speed;
 	private boolean down;
 	private boolean left;
 	private boolean right;
@@ -76,7 +76,6 @@ public class Runner extends Player{
 	public void move() {
 		rect.translate(dx, dy);
 		checkCollisions();
-		
 	}
 	
 	//Computes the collision of the runner with bounds and walls

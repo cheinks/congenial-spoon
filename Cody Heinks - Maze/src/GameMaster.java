@@ -26,8 +26,8 @@ public class GameMaster {
 	private Maze maze;
 	//private ArrayList<Sprite> allSprites;
 	private Runner mainRunner;
-	
 	private ArrayList<Wall> walls;
+	
 	private Snake test3;
 
 	public GameMaster() {
@@ -74,14 +74,15 @@ public class GameMaster {
 	private void makeLevel() {
 		walls = new ArrayList<Wall>();
 		
-		Wall temp = new Wall(Color.GREEN, 100, 100, Manual.wallThick, 'x', 100);
+		Wall temp = new Wall(Color.GREEN, 100, 100, Manual.wallThick, 'x', 1000);
 		walls.add(temp);
 		
-		for(Wall w : walls) 
-		{
+		for(Wall w : walls) {
 			maze.addSprite(w);
 		}
-		//maze.addSprite(temp);
+		
+		test3 = new Snake(Color.red, Manual.origin.x , Manual.origin.y, 20, 4, 10);
+		maze.addSprite(test3);
 	}
 	
 	//Creates the main player sprite
@@ -105,6 +106,8 @@ public class GameMaster {
 	private void play() {
 		while(playing) {
 			mainRunner.move();
+			
+			test3.move();
 			
 			try { Thread.sleep(10); } catch (Exception exc) {}
 			frame.repaint();

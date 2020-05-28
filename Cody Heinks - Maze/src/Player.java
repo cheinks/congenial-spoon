@@ -20,7 +20,7 @@ public abstract class Player extends Sprite {
 	
 	//change the sprite's position
 	public void move() { rect.translate(dx, dy); }
-	public void move(int xDist, int yDist) { rect.translate(xDist, yDist); }
+	public void move(int xDist, int yDist) { rect.translate(xDist, yDist); }	
 	
 	//Accessor
 	@Override

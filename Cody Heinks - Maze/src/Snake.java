@@ -8,26 +8,26 @@ public class Snake extends Player{
 	private int dx;
 	private int dy;
 	
-	private double heading; //0 is +x, pi/2 is +y, pi is -x, 3pi/2 is -y
 	private int speed;
+	private double heading; //0 is +x, pi/2 is +y, pi is -x, 3pi/2 is -y
 	private int interval; //number of moves before trying to change direction
 	private int current = 0;
 	
-	private Point destination = new Point(450, 450);
+	private Point destination = new Point(1600, 900);
+	private boolean thereYet = false;
 	
 	public Snake(Color c, int x, int y, int size, int speed, int i) {
 		super(c, x, y, size);
 		
 		rect = new Rectangle(x, y, size, size);
-		
 		this.speed = speed;
+		
 		this.interval = i;
 		
 		changeDirection();
 	}
 	
 	private void changeDirection() {
-		
 		heading = newHeading(destination);
 		
 		dx = (int)(speed * Math.cos(heading));
@@ -61,14 +61,19 @@ public class Snake extends Player{
 	
 	@Override
 	public void move() {
-		rect.translate(dx, dy);
-		
-		current++;
-		if(current >= interval) {
-			current = 0;
-			changeDirection();
-		}
+		if(!thereYet) {
+			rect.translate(dx, dy);
+						
+			current++;
+			if(current >= interval) {
+				current = 0;
+				if(Math.abs(destination.x - rect.x) < speed * interval && Math.abs(destination.y - rect.y) < speed * interval) 
+				{ thereYet = true; }
+				changeDirection();
+			}
+		}	
 	}
+	
 	
 	@Override
 	public Rectangle getRect() { return rect; }
