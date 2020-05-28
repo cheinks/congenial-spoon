@@ -12,11 +12,11 @@ public class Manual {
 	//values for the game window
 	public static final int windowX = 0;
 	public static final int windowY = 0;
-	//private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	//public static final int windowWidth = gd.getDisplayMode().getWidth();
-	//public static final int windowHeight = gd.getDisplayMode().getHeight();
-	public static final int windowWidth = 500;
-	public static final int windowHeight = 500;
+	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+	public static final int windowWidth = gd.getDisplayMode().getWidth();
+	public static final int windowHeight = gd.getDisplayMode().getHeight();
+//	public static final int windowWidth = 500;
+//	public static final int windowHeight = 500;
 	
 	public static final int bufferX = 6; //space for the panel to exist within the frame
 	public static final int bufferY = 35;
@@ -29,6 +29,8 @@ public class Manual {
 	public static final int thick1 = 3; //exterior
 	public static final int thick2 = 5; //border
 	
+	public static final int wallThick = 10;
+	
 	//values for the runner
 	private static Point p = new Point(thick1 + thick2, thick1 + thick2);
 	private static Dimension d = new Dimension(windowWidth - bufferX - 2 * (p.x), windowHeight - bufferY - 2 * (p.y));
@@ -36,6 +38,6 @@ public class Manual {
 	
 	public static final Point start = new Point(50, 50);
 	public static final int playerSize = 25;
-	public static final int playerSpeed = 6;
+	public static final int playerSpeed = 4;
 	
 }

@@ -67,7 +67,7 @@ public class Maze extends JPanel {
 		g.setColor(c);
 		g.fillRect(x, y, width, height);
 	}
-	private void drawBorder(Graphics g) { //teh maze border
+	private void drawBorder(Graphics g) { //the maze border
 		Color c = borderColor;
 		int x = outThick;
 		int y = outThick;

@@ -5,10 +5,16 @@ public class Wall extends Sprite{
 
 	private Rectangle rect;
 	
-	public Wall(Color c, int x, int y, int size) {
+	public Wall(Color c, int x, int y, int size, char plane, int length) {
 		super(c, x, y, size);
 		
-		rect = new Rectangle(x, y, size, size);
+		if(plane == 'x') {
+			rect = new Rectangle(x, y, length, size);
+		}else if(plane == 'y') {
+			rect = new Rectangle(x, y, size, length);
+		}else {
+			rect = new Rectangle(x, y, size, size);
+		}
 	}
 
 	@Override

@@ -27,7 +27,7 @@ public class GameMaster {
 	//private ArrayList<Sprite> allSprites;
 	private Runner mainRunner;
 	
-	private ArrayList<Wall> test2;
+	private ArrayList<Wall> walls;
 	private Snake test3;
 
 	public GameMaster() {
@@ -72,16 +72,21 @@ public class GameMaster {
 	}
 	
 	private void makeLevel() {
-		test2 = new ArrayList<Wall>();
+		walls = new ArrayList<Wall>();
 		
-		Wall temp = new Wall(Color.GREEN, 100, 100, 100);
-		test2.add(temp);
-		maze.addSprite(temp);
+		Wall temp = new Wall(Color.GREEN, 100, 100, Manual.wallThick, 'x', 100);
+		walls.add(temp);
+		
+		for(Wall w : walls) 
+		{
+			maze.addSprite(w);
+		}
+		//maze.addSprite(temp);
 	}
 	
 	//Creates the main player sprite
 	private void makeRunner() {
-		mainRunner = new Runner(Color.BLUE, Manual.start.x, Manual.start.y, Manual.playerSize, Manual.playerSpeed, test2);
+		mainRunner = new Runner(Color.BLUE, Manual.start.x, Manual.start.y, Manual.playerSize, Manual.playerSpeed, walls);
 		maze.addSprite(mainRunner); //so it can be drawn
 		
 		//gives the user control over the runner sprite
