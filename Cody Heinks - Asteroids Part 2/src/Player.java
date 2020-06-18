@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 
@@ -5,12 +6,12 @@ public class Player extends Sprite{
 	
 	private Rectangle rect;
 	
-	private Polygon poly; //triangle for now
+	private Polygon poly;
 	 
 
-	public Player(int x, int y, int width, int height) {
-		super(x, y, width, height);
-		rect = new Rectangle(x, y, width, height);
+	public Player(Point p, int width, int height) {
+		super(p, width, height);
+		rect = new Rectangle(p.x, p.y, width, height);
 		
 		poly = Manual.newIsoTriang(rect);
 	}

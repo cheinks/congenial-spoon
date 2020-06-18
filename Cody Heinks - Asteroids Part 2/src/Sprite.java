@@ -1,12 +1,13 @@
+import java.awt.Point;
 import java.awt.Rectangle;
 
 public abstract class Sprite {
 
 	private Rectangle rect;
 	
-	public Sprite(int x, int y, int width, int height) {
+	public Sprite(Point p, int width, int height) {
 		
-		rect = new Rectangle(x, y, width, height);
+		rect = new Rectangle(p.x, p.y, width, height);
 	}
 	
 	//Access
