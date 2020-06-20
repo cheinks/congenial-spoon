@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
@@ -49,17 +51,30 @@ public class GameRunner {
 		space = new Space();
 		frame.getContentPane().add(BorderLayout.CENTER, space);
 	}
-	private void makeLevel() {}
+	private void makeLevel() {
+		
+	}
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, rect), 
 				Manual.playerWidth, Manual.playerHeight);
+		space.addPlayer(player1);
 		
-		space.addPlayer(player1.getPoly());
+		//gives the user control over player1
+		frame.addKeyListener(new KeyListener(){
+			public void keyPressed(KeyEvent e) {
+				player1.action(true, e.getKeyCode());
+			}
+			public void keyReleased(KeyEvent e) {
+				player1.action(false, e.getKeyCode());
+			}
+			public void keyTyped(KeyEvent e) {}
+		});
 	}
 	
 	private void play() {
 		while(playing) {
+			player1.move();
 			
 			try { Thread.sleep(10); } catch (Exception exc) {}
 			frame.repaint();

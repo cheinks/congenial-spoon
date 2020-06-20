@@ -11,7 +11,7 @@ public class Space extends JPanel{
 	
 	//private ArrayList<> asteroids;
 	
-	private Polygon explorer;
+	private Player explorer;
 
 	public Space() {
 	}
@@ -26,7 +26,7 @@ public class Space extends JPanel{
 	
 	private void drawPlayer(Graphics g) {
 		g.setColor(Color.white);
-		g.drawPolygon(explorer);
+		g.drawPolygon(explorer.getPoly());
 	}
 	
 	private void drawSpace(Graphics g) {
@@ -37,6 +37,6 @@ public class Space extends JPanel{
 	//Access
 	
 	//Mutate
-	public void addPlayer(Polygon p) {explorer = p;}
+	public void addPlayer(Player p) {explorer = p;}
 
 }
