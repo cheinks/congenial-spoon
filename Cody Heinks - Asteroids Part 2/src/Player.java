@@ -8,33 +8,39 @@ public class Player extends Sprite{
 	private Rectangle rect;
 	
 	private Polygon poly;
-	private double accel; //pixels per frame per frame
-	private double maxSpeed;
-	private double angularSpeed;
+	private Point center;
+	private double[] heading = new double[3]; //0 is right, pi/2 is down, pi is left, 3pi/2 is up
+	private double[] radii = new double[3]; //
 	
 	private double d0 = 0; //the change in angular position (in pixels) every frame
-	private double heading = 3*Math.PI*0.5; //0 is right, 90 is down, 180 is left, 270 is up
-	private boolean left = false;
+	private double angularSpeed;
+	private boolean left = false; //eliminates angular acceleration
 	private boolean right = false;
 	
+	private double speed = 0; //pixels per frame
+	private double accel; //pixels per frame per frame
+	private double maxSpeed;
 	private boolean boost = false;
-	private double dx; //the resulting change in position (in pixels) every frame
-	private double dy;
 
 	public Player(Point p, int width, int height) {
 		super(p, width, height);
 		rect = new Rectangle(p.x, p.y, width, height);
 		
 		poly = Manual.newIsoTriang(rect);
+		calculate();
+		
 		accel = 1; //temporary
-		maxSpeed = 0; //temporary
-		angularSpeed = Math.PI / 12;
+		maxSpeed = 2; //temporary
+		angularSpeed = Math.PI / 20;
 	}
 	
 	public void action(boolean keyDown, int key) {
 		if(keyDown) {
-			if(key == KeyEvent.VK_W) {
-				boost = true;
+			if(key == KeyEvent.VK_W && !boost) {
+				speed += accel;
+				if(speed > maxSpeed) {
+					boost = true;
+				}
 			}
 			else if(key == KeyEvent.VK_A && !left) {
 				d0 += -angularSpeed;
@@ -61,19 +67,38 @@ public class Player extends Sprite{
 	}
 	
 	public void move() {
-		heading += d0;
-		if(heading >= 2*Math.PI) {heading -= 2*Math.PI;}
-		
-		Point center = Manual.equidistant(poly);
-		Polygon newPoly = new Polygon();
-		for(int i = 0; i < poly.npoints; i++) {
-			Point a = new Point(poly.xpoints[i], poly.ypoints[i]);
-			Point b = Manual.rotate(center, a, d0);
-			newPoly.addPoint(b.x, b.y);
+		if(d0 != 0) {
+			Polygon newPoly = new Polygon();
+			
+			for(int i = 0; i < poly.npoints; i++) {
+				heading[i] += d0;
+				double x = radii[i] * Math.cos(heading[i]) + center.getX();
+				double y = radii[i] * Math.sin(heading[i]) + center.getY();
+				newPoly.addPoint((int)x, (int)y);
+			}
+			
+			poly = newPoly;
+			rect = newPoly.getBounds(); //obligatory
 		}
-		poly = newPoly;
-		rect = newPoly.getBounds();
 		
+		if(speed != 0) {
+			double dx = speed * Math.cos(heading[0]);
+			double dy = speed * Math.sin(heading[0]);
+			poly.translate((int)dx, (int)dy);
+			center.translate((int)dx, (int)dy);
+		}
+		
+	}
+	
+	private void calculate() {
+		center = Manual.equidistant(poly);
+		for(int i = 0; i < poly.npoints; i++) { //the distance between the center and each vertex
+			radii[i] = Math.hypot(center.getX() - poly.xpoints[i], center.getY() - poly.ypoints[i]);
+		}
+		
+		heading[0] = 3*Math.PI*0.5;
+		heading[1] = Math.PI*0.5 + Math.atan((0.5 * rect.getWidth()) / ((double)poly.ypoints[1] - center.getY()));
+		heading[2] = Math.atan(((double)poly.ypoints[2] - center.getY()) / (0.5 * rect.getWidth()));
 	}
 	
 	//Access
