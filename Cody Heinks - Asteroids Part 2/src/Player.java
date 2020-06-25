@@ -13,14 +13,15 @@ public class Player extends Sprite{
 	private double[] radii = new double[3]; //
 	
 	private double d0 = 0; //the change in angular position (in pixels) every frame
-	private double angularSpeed;
 	private boolean left = false; //eliminates angular acceleration
 	private boolean right = false;
+	private double angularSpeed;
 	
-	private double speed = 0; //pixels per frame
+	private double dx = 0;
+	private double dy = 0;
+	private boolean boost = false;
 	private double accel; //pixels per frame per frame
 	private double maxSpeed;
-	private boolean boost = false;
 
 	public Player(Point p, int width, int height) {
 		super(p, width, height);
@@ -29,18 +30,15 @@ public class Player extends Sprite{
 		poly = Manual.newIsoTriang(rect);
 		calculate();
 		
-		accel = 1; //temporary
-		maxSpeed = 2; //temporary
-		angularSpeed = Math.PI / 20;
+		accel = 0.15; //temporary
+		maxSpeed = 5; //temporary
+		angularSpeed = Math.PI / 42;
 	}
 	
 	public void action(boolean keyDown, int key) {
 		if(keyDown) {
 			if(key == KeyEvent.VK_W && !boost) {
-				speed += accel;
-				if(speed > maxSpeed) {
-					boost = true;
-				}
+				boost = true;
 			}
 			else if(key == KeyEvent.VK_A && !left) {
 				d0 += -angularSpeed;
@@ -81,13 +79,16 @@ public class Player extends Sprite{
 			rect = newPoly.getBounds(); //obligatory
 		}
 		
-		if(speed != 0) {
-			double dx = speed * Math.cos(heading[0]);
-			double dy = speed * Math.sin(heading[0]);
-			poly.translate((int)dx, (int)dy);
-			center.translate((int)dx, (int)dy);
+		if(boost) {
+			dx += accel * Math.cos(heading[0]);
+			dy += accel * Math.sin(heading[0]);
+			
+			if(Math.abs(dx) > maxSpeed) {dx = Math.signum(dx) * maxSpeed;}
+			if(Math.abs(dy) > maxSpeed) {dy = Math.signum(dy) * maxSpeed;}
 		}
 		
+		poly.translate((int)dx, (int)dy);
+		center.translate((int)dx, (int)dy);
 	}
 	
 	private void calculate() {
