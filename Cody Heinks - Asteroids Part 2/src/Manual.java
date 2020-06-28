@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
@@ -9,12 +10,23 @@ public class Manual {
 	//Variables
 	
 	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-	//the total game area (screen size)
 	public static final int screenWidth = gd.getDisplayMode().getWidth();
 	public static final int screenHeight = gd.getDisplayMode().getHeight();
 	
-	public static final int playerWidth = 20;
-	public static final int playerHeight = 30;
+	public static final int playerWidth = 24;
+	public static final int playerHeight = 36;
+	public static final double[][] playerValues = new double[][] {
+		{Math.PI / 42, 0.25, 5}, 
+		{Math.PI / 42, 0.25, 6}, 
+		{Math.PI / 40, 0.275, 6},
+		{Math.PI / 40, 0.3, 7},
+		{Math.PI / 38, 0.325, 7},
+		{Math.PI / 38, 0.35, 8},
+		{Math.PI / 36, 0.375, 8},
+		{Math.PI / 36, 0.4, 8},
+		{Math.PI / 32, 0.5, 10}};
+	public static final Color[] rankColors = new Color[] {Color.white, Color.yellow, Color.orange, Color.green, 
+			Color.cyan, Color.blue, Color.red, Color.magenta};
 	
 	//Methods
 	
@@ -54,6 +66,10 @@ public class Manual {
 		int y3 = r.y + r.height;
 		
 		return new Polygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
+	}
+	
+	public static int randInt(int min, int max) { //(inclusive, inclusive)
+		return min + (int)(Math.random()*(max - min + 1));
 	}
 
 }

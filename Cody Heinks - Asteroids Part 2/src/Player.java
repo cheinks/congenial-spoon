@@ -6,11 +6,12 @@ import java.awt.event.KeyEvent;
 public class Player extends Sprite{
 	
 	private Rectangle rect;
+	private int rank;
 	
 	private Polygon poly;
 	private Point center;
 	private double[] heading = new double[3]; //0 is right, pi/2 is down, pi is left, 3pi/2 is up
-	private double[] radii = new double[3]; //
+	private double[] radii = new double[3]; //distance from center to each vertex
 	
 	private double d0 = 0; //the change in angular position (in pixels) every frame
 	private boolean left = false; //eliminates angular acceleration
@@ -23,16 +24,17 @@ public class Player extends Sprite{
 	private double accel; //pixels per frame per frame
 	private double maxSpeed;
 
-	public Player(Point p, int width, int height) {
+	public Player(Point p, int width, int height, int lvl) {
 		super(p, width, height);
 		rect = new Rectangle(p.x, p.y, width, height);
 		
 		poly = Manual.newIsoTriang(rect);
 		calculate();
+		rank = lvl;
 		
-		accel = 0.15; //temporary
-		maxSpeed = 5; //temporary
-		angularSpeed = Math.PI / 42;
+		angularSpeed = Manual.playerValues[rank][0];
+		accel = Manual.playerValues[rank][1];
+		maxSpeed = Manual.playerValues[rank][2];
 	}
 	
 	public void action(boolean keyDown, int key) {
@@ -65,32 +67,16 @@ public class Player extends Sprite{
 	}
 	
 	public void move() {
-		if(d0 != 0) {
-			Polygon newPoly = new Polygon();
-			
-			for(int i = 0; i < poly.npoints; i++) {
-				heading[i] += d0;
-				double x = radii[i] * Math.cos(heading[i]) + center.getX();
-				double y = radii[i] * Math.sin(heading[i]) + center.getY();
-				newPoly.addPoint((int)x, (int)y);
-			}
-			
-			poly = newPoly;
-			rect = newPoly.getBounds(); //obligatory
-		}
+		if(d0 != 0) {rotate();}
+		if(boost) {translate();}
 		
-		if(boost) {
-			dx += accel * Math.cos(heading[0]);
-			dy += accel * Math.sin(heading[0]);
-			
-			if(Math.abs(dx) > maxSpeed) {dx = Math.signum(dx) * maxSpeed;}
-			if(Math.abs(dy) > maxSpeed) {dy = Math.signum(dy) * maxSpeed;}
-		}
-		
-		poly.translate((int)dx, (int)dy);
-		center.translate((int)dx, (int)dy);
+		poly.translate((int)dx, (int)dy); //Move both the polygon and the center by the same amount 
+		center.translate((int)dx, (int)dy); //to keep everything in-line.
 	}
 	
+	/*
+	 * Calculates the radius and starting angle of each vertex.
+	 */
 	private void calculate() {
 		center = Manual.equidistant(poly);
 		for(int i = 0; i < poly.npoints; i++) { //the distance between the center and each vertex
@@ -102,13 +88,38 @@ public class Player extends Sprite{
 		heading[2] = Math.atan(((double)poly.ypoints[2] - center.getY()) / (0.5 * rect.getWidth()));
 	}
 	
+	/*
+	 * Creates a new Polygon that is a copy of 'poly' rotated 
+	 * 'd0' radians about the point 'center'.
+	 */
+	private void rotate() {
+		Polygon newPoly = new Polygon();
+		
+		for(int i = 0; i < poly.npoints; i++) {
+			heading[i] += d0;
+			double x = radii[i] * Math.cos(heading[i]) + center.getX();
+			double y = radii[i] * Math.sin(heading[i]) + center.getY();
+			newPoly.addPoint((int)x, (int)y);
+		}
+		
+		poly = newPoly;
+		rect = newPoly.getBounds(); //obligatory
+	}
+	/*
+	 * Determines the appropriate change in x and y velocity 
+	 * given the main heading and the acceleration.
+	 */
+	private void translate() {
+		dx += accel * Math.cos(heading[0]);
+		dy += accel * Math.sin(heading[0]);
+		
+		if(Math.abs(dx) > maxSpeed) {dx = Math.signum(dx) * maxSpeed;}
+		if(Math.abs(dy) > maxSpeed) {dy = Math.signum(dy) * maxSpeed;}
+	}
+	
 	//Access
+	@Override
 	public Rectangle getRect() {return rect;}
-	
 	public Polygon getPoly() {return poly;}
-	
-	//Mutate
-	
-	
-
+	public int getRank() {return rank;}
 }

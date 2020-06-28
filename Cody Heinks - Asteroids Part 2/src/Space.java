@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -12,23 +13,42 @@ public class Space extends JPanel{
 	//private ArrayList<> asteroids;
 	
 	private Player explorer;
+	private Color explColor;
+	private boolean elite = false;
+	private ArrayList<Asteroid> field;
 
 	public Space() {
+		field = new ArrayList<Asteroid>();
 	}
 	
 	public void paintComponent(Graphics g) {
 		drawSpace(g);
-		
-		drawPlayer(g);
+		drawField(g);
+		drawPlayer(g, elite);
 		
 		Toolkit.getDefaultToolkit().sync();
 	}
 	
-	private void drawPlayer(Graphics g) {
-		g.setColor(Color.white);
-		g.drawPolygon(explorer.getPoly());
+	private void drawPlayer(Graphics g, boolean e) {
+		g.setColor(explColor);
+		if(e) {g.drawPolygon(explorer.getPoly());}
+		else {g.fillPolygon(explorer.getPoly());}
+		
 	}
-	
+	private void drawField(Graphics g) {
+		g.setColor(Color.lightGray);
+		for(int i = 0; i < field.size(); i++) {
+			Asteroid a = field.get(i);
+			if(a.getExist()) {
+				Rectangle aRect = a.getRect();
+				g.fillOval(aRect.x, aRect.y, aRect.width, aRect.height);
+			}
+			else {
+				field.remove(i);
+				i--;
+			}
+		}
+	}
 	private void drawSpace(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, Manual.screenWidth, Manual.screenHeight);
@@ -37,6 +57,11 @@ public class Space extends JPanel{
 	//Access
 	
 	//Mutate
-	public void addPlayer(Player p) {explorer = p;}
-
+	public void addPlayer(Player p) {
+		explorer = p;
+		try{explColor = Manual.rankColors[p.getRank()];}
+		catch(Exception exc) {explColor = Color.white; elite = true;}
+	}
+	public void addAsteroid(Asteroid a) {field.add(a);}
+	public void addAsteroid(ArrayList<Asteroid> aa) {for(Asteroid a : aa) {addAsteroid(a);}}
 }
