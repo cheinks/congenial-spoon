@@ -78,7 +78,7 @@ public class GameRunner {
 	private void play() {
 		while(playing) {
 			player1.move();
-			//for(Asteroid a : asteroids) {a.move();}
+			for(Asteroid a : asteroids) {a.move();}
 			
 			try { Thread.sleep(10); } catch (Exception exc) {}
 			frame.repaint();

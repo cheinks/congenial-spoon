@@ -10,11 +10,13 @@ public class Space extends JPanel{
 
 	private static final long serialVersionUID = 5255690644129320697L;
 	
-	//private ArrayList<> asteroids;
+	private int offsetX; //too keep the player in the center
+	private int offsetY;
 	
 	private Player explorer;
 	private Color explColor;
 	private boolean elite = false;
+	
 	private ArrayList<Asteroid> field;
 
 	public Space() {
@@ -22,9 +24,7 @@ public class Space extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.translate(-100, -100);
-		//g.clipRect(100, 100, Manual.screenWidth, Manual.screenHeight);
-		
+		//g.translate(-explorer.getRect().x + offsetX, -explorer.getRect().y + offsetY);
 		
 		drawSpace(g);
 		drawField(g);
@@ -63,9 +63,16 @@ public class Space extends JPanel{
 	//Mutate
 	public void addPlayer(Player p) {
 		explorer = p;
-		try{explColor = Manual.rankColors[p.getRank()];}
-		catch(Exception exc) {explColor = Color.white; elite = true;}
+		try{
+			explColor = Manual.rankColors[p.getRank()];
+		}
+		catch(Exception exc) {
+			explColor = Color.white; elite = true;
+		}
+		offsetX = p.getRect().x;
+		offsetY = p.getRect().y;
 	}
+	
 	public void addAsteroid(Asteroid a) {field.add(a);}
 	public void addAsteroid(ArrayList<Asteroid> aa) {for(Asteroid a : aa) {addAsteroid(a);}}
 }

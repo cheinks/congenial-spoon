@@ -23,7 +23,6 @@ public class Player extends Sprite{
 	private boolean boost = false;
 	private double accel; //pixels per frame per frame
 	private double maxSpeed;
-	
 
 	public Player(Point p, int width, int height, int lvl) {
 		super(p, width, height);
@@ -72,6 +71,7 @@ public class Player extends Sprite{
 		if(boost) {translate();}
 		
 		poly.translate((int)dx, (int)dy); //Move both the polygon and the center by the same amount 
+		rect.translate((int)dx, (int)dy);
 		center.translate((int)dx, (int)dy); //to keep everything in-line.
 	}
 	
@@ -95,16 +95,13 @@ public class Player extends Sprite{
 	 */
 	private void rotate() {
 		Polygon newPoly = new Polygon();
-		
 		for(int i = 0; i < poly.npoints; i++) {
 			heading[i] += d0;
 			double x = radii[i] * Math.cos(heading[i]) + center.getX();
 			double y = radii[i] * Math.sin(heading[i]) + center.getY();
 			newPoly.addPoint((int)x, (int)y);
 		}
-		
 		poly = newPoly;
-		rect = newPoly.getBounds(); //obligatory
 	}
 	/*
 	 * Determines the appropriate change in x and y velocity 
