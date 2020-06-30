@@ -22,6 +22,10 @@ public class Space extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
+		g.translate(-100, -100);
+		//g.clipRect(100, 100, Manual.screenWidth, Manual.screenHeight);
+		
+		
 		drawSpace(g);
 		drawField(g);
 		drawPlayer(g, elite);
@@ -29,9 +33,9 @@ public class Space extends JPanel{
 		Toolkit.getDefaultToolkit().sync();
 	}
 	
-	private void drawPlayer(Graphics g, boolean e) {
+	private void drawPlayer(Graphics g, boolean elite) {
 		g.setColor(explColor);
-		if(e) {g.drawPolygon(explorer.getPoly());}
+		if(elite) {g.drawPolygon(explorer.getPoly());}
 		else {g.fillPolygon(explorer.getPoly());}
 		
 	}

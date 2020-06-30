@@ -23,6 +23,7 @@ public class Player extends Sprite{
 	private boolean boost = false;
 	private double accel; //pixels per frame per frame
 	private double maxSpeed;
+	
 
 	public Player(Point p, int width, int height, int lvl) {
 		super(p, width, height);

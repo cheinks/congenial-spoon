@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -14,7 +13,7 @@ public class GameRunner {
 	private JFrame frame;
 	private Rectangle rect;
 	
-	private Space space;
+	private Space mainSpace;
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
 
@@ -50,19 +49,19 @@ public class GameRunner {
 	}
 	
 	private void makeField() {
-		space = new Space();
-		frame.getContentPane().add(BorderLayout.CENTER, space);
+		mainSpace = new Space();
+		frame.add(mainSpace);
 	}
 	private void makeLevel() {
 		Asteroid temp = new Asteroid(new Point(500, 300), 100, 100);
-		space.addAsteroid(temp);
+		mainSpace.addAsteroid(temp);
 		asteroids.add(temp);
 	}
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, rect), 
-				Manual.playerWidth, Manual.playerHeight, 8);
-		space.addPlayer(player1);
+				Manual.playerWidth, Manual.playerHeight, 0);
+		mainSpace.addPlayer(player1);
 		
 		//gives the user control over player1
 		frame.addKeyListener(new KeyListener(){
@@ -79,7 +78,7 @@ public class GameRunner {
 	private void play() {
 		while(playing) {
 			player1.move();
-			for(Asteroid a : asteroids) {a.move();}
+			//for(Asteroid a : asteroids) {a.move();}
 			
 			try { Thread.sleep(10); } catch (Exception exc) {}
 			frame.repaint();

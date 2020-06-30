@@ -13,6 +13,9 @@ public class Manual {
 	public static final int screenWidth = gd.getDisplayMode().getWidth();
 	public static final int screenHeight = gd.getDisplayMode().getHeight();
 	
+	public static final int gameWidth = screenWidth;//the largest possible play area
+	public static final int gameHeight = screenHeight;
+	
 	public static final int playerWidth = 24;
 	public static final int playerHeight = 36;
 	public static final double[][] playerValues = new double[][] {
