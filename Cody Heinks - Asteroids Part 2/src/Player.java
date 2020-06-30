@@ -119,5 +119,7 @@ public class Player extends Sprite{
 	@Override
 	public Rectangle getRect() {return rect;}
 	public Polygon getPoly() {return poly;}
+	public int getX() {return rect.x;}
+	public int getY() {return rect.y;}
 	public int getRank() {return rank;}
 }

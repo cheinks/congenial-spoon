@@ -24,12 +24,11 @@ public class Space extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
-		//g.translate(-explorer.getRect().x + offsetX, -explorer.getRect().y + offsetY);
-		
 		drawSpace(g);
+		//g.translate(-explorer.getX() + offsetX, -explorer.getY() + offsetY);
 		drawField(g);
 		drawPlayer(g, elite);
-		
+		//g.translate(0, 0);
 		Toolkit.getDefaultToolkit().sync();
 	}
 	

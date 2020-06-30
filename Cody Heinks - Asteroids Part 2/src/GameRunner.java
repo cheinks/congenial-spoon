@@ -60,7 +60,7 @@ public class GameRunner {
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, rect), 
-				Manual.playerWidth, Manual.playerHeight, 0);
+				Manual.playerWidth, Manual.playerHeight, 8);
 		mainSpace.addPlayer(player1);
 		
 		//gives the user control over player1
@@ -80,7 +80,7 @@ public class GameRunner {
 			player1.move();
 			for(Asteroid a : asteroids) {a.move();}
 			
-			try { Thread.sleep(10); } catch (Exception exc) {}
+			try { Thread.sleep(16); } catch (Exception exc) {}
 			frame.repaint();
 		}
 	}
