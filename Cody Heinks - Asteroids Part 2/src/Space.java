@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class Space extends JPanel{
 	
 	private int offsetX; //too keep the player in the center
 	private int offsetY;
+	private Rectangle bounds;
+	private Point loc = new Point();
 	
 	private Player explorer;
 	private Color explColor;
@@ -19,17 +22,38 @@ public class Space extends JPanel{
 	
 	private ArrayList<Asteroid> field;
 
-	public Space() {
+	public Space(Rectangle bounds) {
 		field = new ArrayList<Asteroid>();
+		this.bounds = bounds;
 	}
 	
 	public void paintComponent(Graphics g) {
+		g.setClip(0, 0, 1000/*Manual.screenWidth*/, 1000/*Manual.screenHeight*/);
 		drawSpace(g);
-		//g.translate(-explorer.getX() + offsetX, -explorer.getY() + offsetY);
+		checkBounds(g);
 		drawField(g);
 		drawPlayer(g, elite);
-		//g.translate(0, 0);
 		Toolkit.getDefaultToolkit().sync();
+	}
+	
+	private void checkBounds(Graphics g) {
+		//the location of 'g' is the inverse of the location of the player
+		loc.setLocation(offsetX - explorer.getX(), offsetY - explorer.getY());
+		
+		if(-loc.x < bounds.x) {//left
+			loc.move(-bounds.x, loc.y);
+		}
+		else if(-loc.x > bounds.x + bounds.width) {//right
+			loc.move(-(bounds.x + bounds.width), loc.y);
+		}
+		if(-loc.y > bounds.y + bounds.height) {//bottom
+			loc.move(loc.x, -(bounds.y + bounds.height));
+		}
+		else if(-loc.y < bounds.y) {//top
+			loc.move(loc.x, -bounds.y);
+		}
+		
+		g.translate(loc.x, loc.y);
 	}
 	
 	private void drawPlayer(Graphics g, boolean elite) {
