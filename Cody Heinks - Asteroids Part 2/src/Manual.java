@@ -33,15 +33,6 @@ public class Manual {
 	
 	//Methods
 	
-	public static Point fakeMiddle(int w, int h, Rectangle r) { //the "magnetic center" of rectangle r, given w and h 
-		Point p = new Point();
-		int x = (r.width / 2) - (w / 2) + r.x;
-		int y = (r.height / 2) - (h / 2) + r.y;
-		
-		p.setLocation(x, y);
-		return p;
-	}
-	
 	public static Point equidistant(Polygon poly) {
 		Point o = new Point();
 		double x = 0;
@@ -56,6 +47,29 @@ public class Manual {
 		y /= poly.npoints;
 		o.setLocation(x, y);
 		return o;
+	}
+	
+	public static Point fakeMiddle(int w, int h, Rectangle r) { //the "magnetic center" of rectangle r, given w and h 
+		Point p = new Point();
+		int x = (r.width / 2) - (w / 2) + r.x;
+		int y = (r.height / 2) - (h / 2) + r.y;
+		
+		p.setLocation(x, y);
+		return p;
+	}
+	
+	public static Polygon newAsteroid(int points, int min, int max) {
+		Polygon poly = new Polygon();
+		double theta = Math.random() * 2*Math.PI;
+		double d0 = 2*Math.PI / (double)points;
+		
+		for(int i = 0; i < points; i++) {
+			int radius = (int)((1 + max - min) * Math.random() + min);
+			poly.addPoint((int)(radius*Math.cos(theta)), (int)(radius*Math.sin(theta)));
+			theta += d0;
+		}
+		
+		return poly;
 	}
 		
 	public static Polygon newIsoTriang(Rectangle r) {

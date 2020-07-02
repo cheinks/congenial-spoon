@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -53,7 +54,8 @@ public class GameRunner {
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
-		Asteroid temp = new Asteroid(new Point(500, 300), 100, 100);
+		Polygon ap = Manual.newAsteroid(16, 60, 80);
+		Asteroid temp = new Asteroid(new Point(500, 300), ap.getBounds(), ap);
 		mainSpace.addAsteroid(temp);
 		asteroids.add(temp);
 	}

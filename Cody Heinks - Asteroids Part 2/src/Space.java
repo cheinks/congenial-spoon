@@ -28,7 +28,7 @@ public class Space extends JPanel{
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.setClip(0, 0, 1000/*Manual.screenWidth*/, 1000/*Manual.screenHeight*/);
+		g.setClip(0, 0, Manual.screenWidth, Manual.screenHeight);
 		drawSpace(g);
 		checkBounds(g);
 		drawField(g);
@@ -67,8 +67,7 @@ public class Space extends JPanel{
 		for(int i = 0; i < field.size(); i++) {
 			Asteroid a = field.get(i);
 			if(a.getExist()) {
-				Rectangle aRect = a.getRect();
-				g.fillOval(aRect.x, aRect.y, aRect.width, aRect.height);
+				g.fillPolygon(a.getPoly());
 			}
 			else {
 				field.remove(i);
