@@ -54,7 +54,7 @@ public class GameRunner {
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
-		Polygon ap = Manual.newAsteroid(16, 60, 80);
+		Polygon ap = Manual.newAsteroid(60, 80);
 		Asteroid temp = new Asteroid(new Point(500, 300), ap.getBounds(), ap);
 		mainSpace.addAsteroid(temp);
 		asteroids.add(temp);

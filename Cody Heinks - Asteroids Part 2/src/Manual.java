@@ -12,7 +12,6 @@ public class Manual {
 	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	public static final int screenWidth = gd.getDisplayMode().getWidth();
 	public static final int screenHeight = gd.getDisplayMode().getHeight();
-	
 	public static final int gameWidth = screenWidth;//the largest possible play area
 	public static final int gameHeight = screenHeight;
 	
@@ -31,7 +30,23 @@ public class Manual {
 	public static final Color[] rankColors = new Color[] {Color.white, Color.yellow, Color.orange, Color.green, 
 			Color.cyan, Color.blue, Color.red, Color.magenta};
 	
+	public static final int minPoints = 16;
+	public static final int maxPoints = 20;
+	
 	//Methods
+	
+	public static int randInt(int min, int max) { //(inclusive, inclusive)
+		return min + (int)(Math.random()*(max - min + 1));
+	}
+	
+	public static Point fakeMiddle(int w, int h, Rectangle r) { //the "magnetic center" of rectangle r, given w and h 
+		Point p = new Point();
+		int x = (r.width / 2) - (w / 2) + r.x;
+		int y = (r.height / 2) - (h / 2) + r.y;
+		
+		p.setLocation(x, y);
+		return p;
+	}
 	
 	public static Point equidistant(Polygon poly) {
 		Point o = new Point();
@@ -49,29 +64,6 @@ public class Manual {
 		return o;
 	}
 	
-	public static Point fakeMiddle(int w, int h, Rectangle r) { //the "magnetic center" of rectangle r, given w and h 
-		Point p = new Point();
-		int x = (r.width / 2) - (w / 2) + r.x;
-		int y = (r.height / 2) - (h / 2) + r.y;
-		
-		p.setLocation(x, y);
-		return p;
-	}
-	
-	public static Polygon newAsteroid(int points, int min, int max) {
-		Polygon poly = new Polygon();
-		double theta = Math.random() * 2*Math.PI;
-		double d0 = 2*Math.PI / (double)points;
-		
-		for(int i = 0; i < points; i++) {
-			int radius = (int)((1 + max - min) * Math.random() + min);
-			poly.addPoint((int)(radius*Math.cos(theta)), (int)(radius*Math.sin(theta)));
-			theta += d0;
-		}
-		
-		return poly;
-	}
-		
 	public static Polygon newIsoTriang(Rectangle r) {
 		int x1 = r.x + (r.width / 2); //the apex
 		int y1 = r.y;
@@ -85,8 +77,18 @@ public class Manual {
 		return new Polygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
 	}
 	
-	public static int randInt(int min, int max) { //(inclusive, inclusive)
-		return min + (int)(Math.random()*(max - min + 1));
+	public static Polygon newAsteroid(int minSize, int maxSize) {
+		Polygon poly = new Polygon();
+		int points = randInt(minPoints, maxPoints);
+		double d0 = 2*Math.PI / (double)points;
+		double theta = Math.random() * 2*Math.PI;
+		
+		for(int i = 0; i < points; i++) {
+			int radius = randInt(minSize, maxSize);
+			poly.addPoint((int)(radius*Math.cos(theta)), (int)(radius*Math.sin(theta)));
+			theta += d0;
+		}
+		
+		return poly;
 	}
-
 }
