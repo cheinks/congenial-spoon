@@ -13,8 +13,9 @@ public class Space extends JPanel{
 	
 	private int offsetX; //too keep the player in the center
 	private int offsetY;
-	private Rectangle bounds;
 	private Point loc = new Point();
+	private Rectangle bounds;
+	private Rectangle rect;
 	
 	private Player explorer;
 	private Color explColor;
@@ -22,13 +23,14 @@ public class Space extends JPanel{
 	
 	private ArrayList<Asteroid> field;
 
-	public Space(Rectangle bounds) {
+	public Space(Rectangle bounds, Rectangle clip) {
 		field = new ArrayList<Asteroid>();
 		this.bounds = bounds;
+		this.rect = clip;
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.setClip(0, 0, Manual.screenWidth, Manual.screenHeight);
+		g.setClip(rect.x, rect.y, rect.width, rect.height);
 		drawSpace(g);
 		checkBounds(g);
 		drawField(g);
@@ -37,17 +39,17 @@ public class Space extends JPanel{
 	}
 	
 	private void checkBounds(Graphics g) {
-		//the location of 'g' is the inverse of the location of the player
+		//the location of 'g' is the opposite of the location of the player
 		loc.setLocation(offsetX - explorer.getX(), offsetY - explorer.getY());
 		
 		if(-loc.x < bounds.x) {//left
 			loc.move(-bounds.x, loc.y);
 		}
-		else if(-loc.x > bounds.x + bounds.width) {//right
-			loc.move(-(bounds.x + bounds.width), loc.y);
+		else if(-loc.x + rect.width > bounds.x + bounds.width) {//right
+			loc.move(-(bounds.x + bounds.width - rect.width), loc.y);
 		}
-		if(-loc.y > bounds.y + bounds.height) {//bottom
-			loc.move(loc.x, -(bounds.y + bounds.height));
+		if(-loc.y + rect.height > bounds.y + bounds.height) {//bottom
+			loc.move(loc.x, -(bounds.y + bounds.height - rect.height));
 		}
 		else if(-loc.y < bounds.y) {//top
 			loc.move(loc.x, -bounds.y);
@@ -74,6 +76,8 @@ public class Space extends JPanel{
 				i--;
 			}
 		}
+		g.setColor(Color.red);
+		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 	private void drawSpace(Graphics g) {
 		g.setColor(Color.black);

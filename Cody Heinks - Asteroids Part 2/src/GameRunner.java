@@ -50,7 +50,7 @@ public class GameRunner {
 	}
 	
 	private void makeField() {
-		mainSpace = new Space(new Rectangle(0, 0, 1000, 1000));
+		mainSpace = new Space(new Rectangle(0, 0, 2000, 2000), rect);
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
@@ -62,7 +62,7 @@ public class GameRunner {
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, rect), 
-				Manual.playerWidth, Manual.playerHeight, 8);
+				Manual.playerWidth, Manual.playerHeight, 0);
 		mainSpace.addPlayer(player1);
 		
 		//gives the user control over player1
