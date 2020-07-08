@@ -13,9 +13,9 @@ public class Space extends JPanel{
 	
 	private int offsetX; //too keep the player in the center
 	private int offsetY;
-	private Point loc = new Point();
-	private Rectangle bounds;
-	private Rectangle rect;
+	private Point loc = new Point(); //position of the graphics context
+	private Rectangle bounds; //the total game area
+	private Rectangle rect; //the camera space (should be at 0, 0)
 	
 	private Player explorer;
 	private Color explColor;
@@ -23,10 +23,11 @@ public class Space extends JPanel{
 	
 	private ArrayList<Asteroid> field;
 
-	public Space(Rectangle bounds, Rectangle clip) {
-		field = new ArrayList<Asteroid>();
+	public Space(Rectangle bounds, Rectangle camera) {
 		this.bounds = bounds;
-		this.rect = clip;
+		this.rect = camera;
+		
+		field = new ArrayList<Asteroid>();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -65,6 +66,8 @@ public class Space extends JPanel{
 		
 	}
 	private void drawField(Graphics g) {
+		g.setColor(Color.red);
+		g.fillRect(-10, -10, 20, 20);
 		g.setColor(Color.lightGray);
 		for(int i = 0; i < field.size(); i++) {
 			Asteroid a = field.get(i);
@@ -76,12 +79,10 @@ public class Space extends JPanel{
 				i--;
 			}
 		}
-		g.setColor(Color.red);
-		g.drawRect(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 	private void drawSpace(Graphics g) {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, Manual.screenWidth, Manual.screenHeight);
+		g.fillRect(rect.x, rect.y, rect.width, rect.height);
 	}
 	
 	//Access
@@ -95,8 +96,8 @@ public class Space extends JPanel{
 		catch(Exception exc) {
 			explColor = Color.white; elite = true;
 		}
-		offsetX = p.getRect().x;
-		offsetY = p.getRect().y;
+		offsetX = (int)((rect.width * 0.5) - (p.getRect().width * 0.5));
+		offsetY = (int)((rect.height * 0.5) - (p.getRect().height * 0.5));
 	}
 	
 	public void addAsteroid(Asteroid a) {field.add(a);}

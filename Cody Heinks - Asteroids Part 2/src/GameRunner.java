@@ -15,6 +15,7 @@ public class GameRunner {
 	private Rectangle rect;
 	
 	private Space mainSpace;
+	private Rectangle level;
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
 
@@ -50,7 +51,8 @@ public class GameRunner {
 	}
 	
 	private void makeField() {
-		mainSpace = new Space(new Rectangle(0, 0, 2000, 2000), rect);
+		level = new Rectangle(0, 0, 5000, 5000);
+		mainSpace = new Space(level, rect);
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
@@ -61,7 +63,7 @@ public class GameRunner {
 	}
 	private void makePlayer() {
 		player1 = new Player(
-				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, rect), 
+				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, level), /*center of the level for now*/
 				Manual.playerWidth, Manual.playerHeight, 0);
 		mainSpace.addPlayer(player1);
 		
