@@ -21,13 +21,16 @@ public class Space extends JPanel{
 	private Color explColor;
 	private boolean elite = false;
 	
-	private ArrayList<Asteroid> field;
+	private ArrayList<Star> stars;
+	private ArrayList<Asteroid> asteroids;
 
 	public Space(Rectangle bounds, Rectangle camera) {
 		this.bounds = bounds;
 		this.rect = camera;
 		
-		field = new ArrayList<Asteroid>();
+		stars = new ArrayList<Star>();
+		asteroids = new ArrayList<Asteroid>();
+
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -60,22 +63,33 @@ public class Space extends JPanel{
 	}
 	
 	private void drawPlayer(Graphics g, boolean elite) {
-		g.setColor(explColor);
-		if(elite) {g.drawPolygon(explorer.getPoly());}
-		else {g.fillPolygon(explorer.getPoly());}
+		g.setColor(Color.black);
+		if(elite) {
+			g.fillPolygon(explorer.getPoly());
+			g.setColor(explColor);
+			g.drawPolygon(explorer.getPoly());
+		}
+		else {
+			g.setColor(explColor);
+			g.fillPolygon(explorer.getPoly());
+		}
 		
 	}
 	private void drawField(Graphics g) {
-		g.setColor(Color.red);
-		g.fillRect(-10, -10, 20, 20);
+		g.setColor(Manual.starCol);
+		for(Star s : stars) {
+			Rectangle sRect = s.getRect();
+			g.fillRect(sRect.x, sRect.y, sRect.width, sRect.height);
+		}
+		
 		g.setColor(Color.lightGray);
-		for(int i = 0; i < field.size(); i++) {
-			Asteroid a = field.get(i);
+		for(int i = 0; i < asteroids.size(); i++) {
+			Asteroid a = asteroids.get(i);
 			if(a.getExist()) {
 				g.fillPolygon(a.getPoly());
 			}
 			else {
-				field.remove(i);
+				asteroids.remove(i);
 				i--;
 			}
 		}
@@ -100,6 +114,9 @@ public class Space extends JPanel{
 		offsetY = (int)((rect.height * 0.5) - (p.getRect().height * 0.5));
 	}
 	
-	public void addAsteroid(Asteroid a) {field.add(a);}
+	public void addAsteroid(Asteroid a) {asteroids.add(a);}
 	public void addAsteroid(ArrayList<Asteroid> aa) {for(Asteroid a : aa) {addAsteroid(a);}}
+	
+	public void addStar(Star s) {stars.add(s);}
+	public void addStar(ArrayList<Star> ss) {for(Star s : ss) {addStar(s);}}
 }
