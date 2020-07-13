@@ -33,6 +33,7 @@ public class Space extends JPanel{
 
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 		g.setClip(rect.x, rect.y, rect.width, rect.height);
 		drawSpace(g);

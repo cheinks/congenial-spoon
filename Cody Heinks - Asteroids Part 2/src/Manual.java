@@ -10,6 +10,8 @@ public class Manual {
 	
 	//Variables
 	
+	public static final int delay = 16; //(1000 / fps) = appropriate milliseconds per frame delay
+	
 	//The game area
 	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 	public static final int screenWidth = gd.getDisplayMode().getWidth();
@@ -18,8 +20,8 @@ public class Manual {
 	public static final int gameHeight = screenHeight;
 	
 	//Background
-	public static final double minStarFreq = 0.0001;
-	public static final double maxStarFreq = 0.0005;
+	public static final double minStarFreq = 0.00001;
+	public static final double maxStarFreq = 0.00005;
 	public static final Color starCol = new Color(191, 234, 255);
 	
 	//Player balancing

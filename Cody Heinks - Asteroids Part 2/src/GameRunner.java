@@ -51,13 +51,13 @@ public class GameRunner {
 	}
 	
 	private void makeField() {
-		//level = new Rectangle(0, 0, 5000, 5000);
-		level = rect;
+		level = new Rectangle(0, 0, 5000, 5000);
+//		level = rect;
 		mainSpace = new Space(level, rect);
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
-		mainSpace.addStar(Manual.starArray(level, 0.0001));
+		mainSpace.addStar(Manual.starArray(level, Manual.maxStarFreq));
 		
 		Polygon ap = Manual.newAsteroid(60, 80);
 		Asteroid temp = new Asteroid(new Point(500, 300), ap.getBounds(), ap);
@@ -67,7 +67,7 @@ public class GameRunner {
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, level), /*center of the level for now*/
-				Manual.playerWidth, Manual.playerHeight, 8);
+				Manual.playerWidth, Manual.playerHeight, 0);
 		mainSpace.addPlayer(player1);
 		
 		//gives the user control over player1

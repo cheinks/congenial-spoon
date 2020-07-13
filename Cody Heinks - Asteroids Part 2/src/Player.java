@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 public class Player extends Sprite{
-	
+
 	private Rectangle rect;
 	private int rank;
 	
@@ -67,8 +67,8 @@ public class Player extends Sprite{
 	}
 	
 	public void move() {
-		if(d0 != 0) {rotate();}
-		if(boost) {translate();}
+		if(d0 != 0) {poly = rotate();}
+		if(boost) {accelerate();}
 		
 		poly.translate((int)dx, (int)dy); //Move both the polygon and the center by the same amount 
 		rect.translate((int)dx, (int)dy);
@@ -93,7 +93,7 @@ public class Player extends Sprite{
 	 * Creates a new Polygon that is a copy of 'poly' rotated 
 	 * 'd0' radians about the point 'center'.
 	 */
-	private void rotate() {
+	private Polygon rotate() {
 		Polygon newPoly = new Polygon();
 		for(int i = 0; i < poly.npoints; i++) {
 			heading[i] += d0;
@@ -101,13 +101,13 @@ public class Player extends Sprite{
 			double y = radii[i] * Math.sin(heading[i]) + center.getY();
 			newPoly.addPoint((int)x, (int)y);
 		}
-		poly = newPoly;
+		return newPoly;
 	}
 	/*
 	 * Determines the appropriate change in x and y velocity 
 	 * given the main heading and the acceleration.
 	 */
-	private void translate() {
+	private void accelerate() {
 		dx += accel * Math.cos(heading[0]);
 		dy += accel * Math.sin(heading[0]);
 		
