@@ -13,6 +13,7 @@ public class Star extends Sprite{
 	
 	//Access
 	
+	@Override
 	public Rectangle getRect() {return rect;}
 
 }

@@ -20,14 +20,14 @@ public class Space extends JPanel{
 	private Player explorer;
 	private Color explColor;
 	private boolean elite = false;
-	
+
 	private ArrayList<Star> stars;
 	private ArrayList<Asteroid> asteroids;
 
 	public Space(Rectangle bounds, Rectangle camera) {
 		this.bounds = bounds;
 		this.rect = camera;
-		
+
 		stars = new ArrayList<Star>();
 		asteroids = new ArrayList<Asteroid>();
 
@@ -36,8 +36,9 @@ public class Space extends JPanel{
 	@Override
 	public void paintComponent(Graphics g) {
 		g.setClip(rect.x, rect.y, rect.width, rect.height);
-		drawSpace(g);
+		drawBackground(g);
 		checkBounds(g);
+		drawSpace(g);
 		drawField(g);
 		drawPlayer(g, elite);
 		Toolkit.getDefaultToolkit().sync();
@@ -77,12 +78,6 @@ public class Space extends JPanel{
 		
 	}
 	private void drawField(Graphics g) {
-		g.setColor(Manual.starCol);
-		for(Star s : stars) {
-			Rectangle sRect = s.getRect();
-			g.fillRect(sRect.x, sRect.y, sRect.width, sRect.height);
-		}
-		
 		g.setColor(Color.lightGray);
 		for(int i = 0; i < asteroids.size(); i++) {
 			Asteroid a = asteroids.get(i);
@@ -96,6 +91,27 @@ public class Space extends JPanel{
 		}
 	}
 	private void drawSpace(Graphics g) {
+		g.setColor(Manual.starCol);
+		for(Star s : stars) {
+			Rectangle sRect = s.getRect();
+			g.fillRect(sRect.x, sRect.y, sRect.width, sRect.height);
+			
+			//makes the stars appear to flicker
+			int dist = Manual.randInt(1, 1000);
+			if(dist == 1) {
+				int sx = sRect.x;
+				int[] xPoints = new int[]{sx + 2, sx, sx -2, sx};
+				
+				int sy = sRect.y;
+				int[] yPoints = new int[] {sy, sy - 2, sy, sy + 2};
+				
+				g.drawPolygon(xPoints, yPoints, 4);
+			}
+			
+			
+		}
+	}
+	private void drawBackground(Graphics g) {
 		g.setColor(Color.black);
 		g.fillRect(rect.x, rect.y, rect.width, rect.height);
 	}

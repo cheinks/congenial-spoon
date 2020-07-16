@@ -111,6 +111,7 @@ public class Manual {
 			double x = Math.random() * bounds.width;
 			double y = Math.random() * bounds.height;
 			p.setLocation(x, y);
+			
 			stars.add(new Star(p, 1, 1));
 		}
 		return stars;
