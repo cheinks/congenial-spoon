@@ -107,8 +107,6 @@ public class Space extends JPanel{
 				
 				g.drawPolygon(xPoints, yPoints, 4);
 			}
-			
-			
 		}
 	}
 	private void drawBackground(Graphics g) {

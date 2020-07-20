@@ -10,7 +10,7 @@ public class Manual {
 	
 	//Variables
 	
-	public static final int delay = 16; //(1000 / fps) = appropriate milliseconds per frame delay
+	public static final int delay = 17; //(1000 / fps) = appropriate milliseconds per frame delay
 	
 	//The game area
 	private static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
@@ -43,6 +43,7 @@ public class Manual {
 	//Asteroid balancing
 	public static final int minPoints = 16;
 	public static final int maxPoints = 20;
+	public static final int maxAstVel = 5;
 	
 	//Methods
 	

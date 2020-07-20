@@ -19,8 +19,8 @@ public class Asteroid extends Sprite{
 		this.poly = poly;
 		this.poly.translate(p.x, p.y);
 		
-		dx = Manual.randInt(-5, 5);
-		dy = Manual.randInt(-5, 5);
+		dx = Manual.randInt(-Manual.maxAstVel, Manual.maxAstVel);
+		dy = Manual.randInt(-Manual.maxAstVel, Manual.maxAstVel);
 	}
 	
 	public void move() {
