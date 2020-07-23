@@ -1,15 +1,21 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Space extends JPanel{
 
 	private static final long serialVersionUID = 5255690644129320697L;
+	private GridBagConstraints c;
 	
 	private int offsetX; //too keep the player in the center
 	private int offsetY;
@@ -25,12 +31,25 @@ public class Space extends JPanel{
 	private ArrayList<Asteroid> asteroids;
 
 	public Space(Rectangle bounds, Rectangle camera) {
+		super(new GridBagLayout());
+		c = new GridBagConstraints();
+		
 		this.bounds = bounds;
 		this.rect = camera;
 
 		stars = new ArrayList<Star>();
 		asteroids = new ArrayList<Asteroid>();
-
+		
+		makeLabel();
+	}
+	
+	private void makeLabel() {
+		JLabel l = new JLabel("Hello world!");
+		l.setFont(new Font("gamer", Font.BOLD, 20));
+		l.setForeground(Color.red);
+		
+		c.insets = new Insets(0, 0, 1000, 1500);
+		this.add(l, c);
 	}
 	
 	@Override
@@ -41,6 +60,7 @@ public class Space extends JPanel{
 		drawSpace(g);
 		drawField(g);
 		drawPlayer(g, elite);
+		
 		Toolkit.getDefaultToolkit().sync();
 	}
 	
