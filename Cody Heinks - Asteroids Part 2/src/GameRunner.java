@@ -15,9 +15,10 @@ public class GameRunner {
 	private Rectangle rect;
 	
 	private Space mainSpace;
-	private Rectangle level;
+	private Rectangle level; //the current total level space
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
+	private HUD mainHUD;
 
 	public GameRunner() {
 		initializeGame();
@@ -80,6 +81,10 @@ public class GameRunner {
 			}
 			public void keyTyped(KeyEvent e) {}
 		});
+	}
+	private void makeHUD() {
+		mainHUD = new HUD();
+		mainHUD.incomTrans("Hello world!");
 	}
 	
 	private void play() {

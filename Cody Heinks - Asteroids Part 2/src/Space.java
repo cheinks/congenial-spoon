@@ -3,7 +3,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
@@ -15,7 +14,6 @@ import javax.swing.JPanel;
 public class Space extends JPanel{
 
 	private static final long serialVersionUID = 5255690644129320697L;
-	private GridBagConstraints c;
 	
 	private int offsetX; //too keep the player in the center
 	private int offsetY;
@@ -32,36 +30,12 @@ public class Space extends JPanel{
 
 	public Space(Rectangle bounds, Rectangle camera) {
 		super(new GridBagLayout());
-		c = new GridBagConstraints();
 		
 		this.bounds = bounds;
 		this.rect = camera;
-
+		
 		stars = new ArrayList<Star>();
 		asteroids = new ArrayList<Asteroid>();
-		
-		makeLabel();
-	}
-	
-	private void makeLabel() {
-		JLabel l = new JLabel("Hello world!");
-		l.setFont(new Font("gamer", Font.BOLD, 20));
-		l.setForeground(Color.red);
-		
-		c.insets = new Insets(0, 0, 1000, 1500);
-		this.add(l, c);
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		g.setClip(rect.x, rect.y, rect.width, rect.height);
-		drawBackground(g);
-		checkBounds(g);
-		drawSpace(g);
-		drawField(g);
-		drawPlayer(g, elite);
-		
-		Toolkit.getDefaultToolkit().sync();
 	}
 	
 	private void checkBounds(Graphics g) {
@@ -82,6 +56,17 @@ public class Space extends JPanel{
 		}
 		
 		g.translate(loc.x, loc.y);
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		g.setClip(rect.x, rect.y, rect.width, rect.height);
+		drawBackground(g);
+		checkBounds(g);
+		drawSpace(g);
+		drawField(g);
+		drawPlayer(g, elite);
+		Toolkit.getDefaultToolkit().sync();
 	}
 	
 	private void drawPlayer(Graphics g, boolean elite) {
