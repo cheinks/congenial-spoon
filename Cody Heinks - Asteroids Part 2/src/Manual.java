@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.Rectangle;
@@ -44,6 +45,10 @@ public class Manual {
 	public static final int minPoints = 16;
 	public static final int maxPoints = 20;
 	public static final int maxAstVel = 5;
+	
+	//HUD
+	public static final Font radioFont = new Font(null, Font.PLAIN, 50);
+	public static final int radioTextSpeed = 12;
 	
 	//Methods
 	

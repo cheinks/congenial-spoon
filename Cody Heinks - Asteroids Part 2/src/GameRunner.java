@@ -18,7 +18,7 @@ public class GameRunner {
 	private Rectangle level; //the current total level space
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
-	private HUD mainHUD;
+	private Radio mainHUD;
 
 	public GameRunner() {
 		initializeGame();
@@ -30,6 +30,7 @@ public class GameRunner {
 		makeField();
 		makeLevel();
 		makePlayer();
+		makeHUD();
 		
 		finalizeGame();
 		
@@ -83,14 +84,16 @@ public class GameRunner {
 		});
 	}
 	private void makeHUD() {
-		mainHUD = new HUD();
-		mainHUD.incomTrans("Hello world!");
+		mainHUD = new Radio();
+		mainHUD.incomTrans("Once upon a time in a galaxy far far away...");
+		mainSpace.addHUD(mainHUD);
 	}
 	
 	private void play() {
 		while(playing) {
 			player1.move();
 			for(Asteroid a : asteroids) {a.move();}
+			mainHUD.updateDisplay();
 			
 			try { Thread.sleep(Manual.delay); } catch (Exception exc) {}
 			frame.repaint();

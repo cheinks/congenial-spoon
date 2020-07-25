@@ -27,6 +27,8 @@ public class Space extends JPanel{
 
 	private ArrayList<Star> stars;
 	private ArrayList<Asteroid> asteroids;
+	
+	private Radio mainHUD;
 
 	public Space(Rectangle bounds, Rectangle camera) {
 		super(new GridBagLayout());
@@ -66,7 +68,14 @@ public class Space extends JPanel{
 		drawSpace(g);
 		drawField(g);
 		drawPlayer(g, elite);
+		drawHUD(g);
 		Toolkit.getDefaultToolkit().sync();
+	}
+	
+	private void drawHUD(Graphics g) {
+		g.setColor(Color.red);
+		g.setFont(Manual.radioFont);
+		g.drawString(mainHUD.getDisplay(), -loc.x, -loc.y + 100);
 	}
 	
 	private void drawPlayer(Graphics g, boolean elite) {
@@ -134,9 +143,11 @@ public class Space extends JPanel{
 		offsetY = (int)((rect.height * 0.5) - (p.getRect().height * 0.5));
 	}
 	
+	public void addStar(Star s) {stars.add(s);}
+	public void addStar(ArrayList<Star> ss) {for(Star s : ss) {addStar(s);}}
+	
 	public void addAsteroid(Asteroid a) {asteroids.add(a);}
 	public void addAsteroid(ArrayList<Asteroid> aa) {for(Asteroid a : aa) {addAsteroid(a);}}
 	
-	public void addStar(Star s) {stars.add(s);}
-	public void addStar(ArrayList<Star> ss) {for(Star s : ss) {addStar(s);}}
+	public void addHUD(Radio hud) {mainHUD = hud;}
 }
