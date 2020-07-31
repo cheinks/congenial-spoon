@@ -21,7 +21,7 @@ public class Manual {
 	public static final int gameHeight = screenHeight;
 	
 	//Background
-	public static final double minStarFreq = 0.00001;
+	public static final double minStarFreq = 0.00001; //each level will have more stars (+0.00001 each level)
 	public static final double maxStarFreq = 0.00005;
 	public static final Color starCol = new Color(191, 234, 255);
 	
@@ -42,13 +42,14 @@ public class Manual {
 			Color.cyan, Color.blue, Color.red, Color.magenta};
 	
 	//Asteroid balancing
-	public static final int minPoints = 16;
-	public static final int maxPoints = 20;
+	public static final int[] astSizes = new int[] {40, 60, 80}; //small, medium, large
+	public static final int minPoints = 15;
+	public static final int maxPoints = 19;
 	public static final int maxAstVel = 5;
 	
 	//HUD
 	public static final Font radioFont = new Font(null, Font.PLAIN, 50);
-	public static final int radioTextSpeed = 12;
+	public static final int radioTextDelay = 10;
 	
 	//Methods
 	
@@ -81,6 +82,21 @@ public class Manual {
 		return o;
 	}
 	
+	public static Polygon newAsteroid(int maxSize) {
+		Polygon poly = new Polygon();
+		int points = randInt(minPoints, maxPoints);
+		double d0 = 2*Math.PI / (double)points;
+		double theta = Math.random() * 2*Math.PI;
+		
+		for(int i = 0; i < points; i++) {
+			int radius = randInt((int)(0.75 * maxSize), maxSize);
+			poly.addPoint((int)(radius*Math.cos(theta)), (int)(radius*Math.sin(theta)));
+			theta += d0;
+		}
+		
+		return poly;
+	}
+	
 	public static Polygon newIsoTriang(Rectangle r) {
 		int x1 = r.x + (r.width / 2); //the apex
 		int y1 = r.y;
@@ -92,21 +108,6 @@ public class Manual {
 		int y3 = r.y + r.height;
 		
 		return new Polygon(new int[] {x1, x2, x3}, new int[] {y1, y2, y3}, 3);
-	}
-	
-	public static Polygon newAsteroid(int minSize, int maxSize) {
-		Polygon poly = new Polygon();
-		int points = randInt(minPoints, maxPoints);
-		double d0 = 2*Math.PI / (double)points;
-		double theta = Math.random() * 2*Math.PI;
-		
-		for(int i = 0; i < points; i++) {
-			int radius = randInt(minSize, maxSize);
-			poly.addPoint((int)(radius*Math.cos(theta)), (int)(radius*Math.sin(theta)));
-			theta += d0;
-		}
-		
-		return poly;
 	}
 	
 	public static ArrayList<Star> starArray(Rectangle bounds, double frequency){

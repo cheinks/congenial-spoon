@@ -61,7 +61,7 @@ public class GameRunner {
 	private void makeLevel() {
 		mainSpace.addStar(Manual.starArray(level, Manual.maxStarFreq));
 		
-		Polygon ap = Manual.newAsteroid(60, 80);
+		Polygon ap = Manual.newAsteroid(Manual.astSizes[1]);
 		Asteroid temp = new Asteroid(new Point(500, 300), ap.getBounds(), ap);
 		mainSpace.addAsteroid(temp);
 		asteroids.add(temp);
@@ -92,7 +92,7 @@ public class GameRunner {
 	private void play() {
 		while(playing) {
 			player1.move();
-			for(Asteroid a : asteroids) {a.move();}
+			//for(Asteroid a : asteroids) {a.move();}
 			mainHUD.updateDisplay();
 			
 			try { Thread.sleep(Manual.delay); } catch (Exception exc) {}

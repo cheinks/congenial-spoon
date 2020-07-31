@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Radio{
 	
 	private int buffer = 0;
-	private int bufferLimit = Manual.radioTextSpeed;
+	private int bufferLimit = Manual.radioTextDelay;
 
 	private String transmission = " "; //bottom left for now
 	private String display = "";
@@ -24,7 +24,6 @@ public class Radio{
 	}
 	
 	public void updateDisplay() {
-		
 		if(newTrans && buffer == bufferLimit) {
 			if(transIndex < transmission.length()) {
 				display += transmission.substring(transIndex, transIndex + 1);
@@ -42,9 +41,7 @@ public class Radio{
 				}
 			}
 			buffer = 0;
-			System.out.println(getDisplay());
 		}
-		
 		
 		buffer++;
 	}
