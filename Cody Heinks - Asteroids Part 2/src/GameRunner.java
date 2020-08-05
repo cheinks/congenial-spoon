@@ -18,7 +18,7 @@ public class GameRunner {
 	private Rectangle level; //the current total level space
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
-	private Radio mainHUD;
+	private HUD mainHUD;
 
 	public GameRunner() {
 		initializeGame();
@@ -59,7 +59,7 @@ public class GameRunner {
 		frame.add(mainSpace);
 	}
 	private void makeLevel() {
-		mainSpace.addStar(Manual.starArray(level, Manual.maxStarFreq));
+		mainSpace.addStar(Manual.starArray(level, Manual.minStarFreq));
 		
 		Polygon ap = Manual.newAsteroid(Manual.astSizes[1]);
 		Asteroid temp = new Asteroid(new Point(500, 300), ap.getBounds(), ap);
@@ -69,7 +69,7 @@ public class GameRunner {
 	private void makePlayer() {
 		player1 = new Player(
 				Manual.fakeMiddle(Manual.playerWidth, Manual.playerHeight, level), /*center of the level for now*/
-				Manual.playerWidth, Manual.playerHeight, 0);
+				Manual.playerWidth, Manual.playerHeight, 8);
 		mainSpace.addPlayer(player1);
 		
 		//gives the user control over player1
@@ -84,8 +84,7 @@ public class GameRunner {
 		});
 	}
 	private void makeHUD() {
-		mainHUD = new Radio();
-		mainHUD.incomTrans("Once upon a time in a galaxy far far away...");
+		mainHUD = new HUD();
 		mainSpace.addHUD(mainHUD);
 	}
 	

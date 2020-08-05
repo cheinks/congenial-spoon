@@ -6,7 +6,7 @@ public class Radio{
 	private int bufferLimit = Manual.radioTextDelay;
 
 	private String transmission = " "; //bottom left for now
-	private String display = "";
+	private String displayText = "";
 	private int transIndex = 0;
 	
 	private ArrayList<String> log;
@@ -26,7 +26,7 @@ public class Radio{
 	public void updateDisplay() {
 		if(newTrans && buffer == bufferLimit) {
 			if(transIndex < transmission.length()) {
-				display += transmission.substring(transIndex, transIndex + 1);
+				displayText += transmission.substring(transIndex, transIndex + 1);
 				transIndex++;
 			}
 			else {
@@ -34,7 +34,7 @@ public class Radio{
 					transmission = log.get(logIndex + 1); //get the next transmission
 					logIndex++; //increment the index 
 					transIndex = 0; //reset the position
-					display = ""; //clear the display
+					displayText = ""; //clear the display
 				}
 				catch(Exception e){
 					newTrans = false;
@@ -48,8 +48,8 @@ public class Radio{
 	
 	//Access
 	
-	public String getDisplay() {
-		return display;
+	public String getDisplayText() {
+		return displayText;
 	}
 	
 	//Mutate

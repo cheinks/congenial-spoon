@@ -1,4 +1,5 @@
 import java.awt.Point;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 
 public class Star extends Sprite{
@@ -15,5 +16,10 @@ public class Star extends Sprite{
 	
 	@Override
 	public Rectangle getRect() {return rect;}
+	public Polygon getFlicker() {
+		int[] xPoints = new int[]{rect.x + 2, rect.x, rect.x - 2, rect.x};
+		int[] yPoints = new int[] {rect.y, rect.y - 2, rect.y, rect.y + 2};
+		return new Polygon(xPoints, yPoints, 4);
+	}
 
 }
