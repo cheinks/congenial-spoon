@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class Radio{
+public class Radio{ //30 character limit?
 	
 	private int buffer = 0;
 	private int bufferLimit = Manual.radioTextDelay;
 
-	private String transmission = " "; //bottom left for now
+	private String transmission = "  "; //bottom left for now
 	private String displayText = "";
 	private int transIndex = 0;
 	
@@ -19,14 +19,20 @@ public class Radio{
 
 	public Radio() {
 		log = new ArrayList<String>();
-		log.add(" ");
+		log.add(transmission);
 		newTrans = true;
 	}
 	
 	public void updateDisplay() {
 		if(newTrans && buffer == bufferLimit) {
-			if(transIndex < transmission.length()) {
-				displayText += transmission.substring(transIndex, transIndex + 1);
+			if(transIndex < transmission.length()) { //add the next character
+				String letter = transmission.substring(transIndex, transIndex + 1);
+				if(letter == " ") {
+					displayText += transmission.substring(transIndex, transIndex + 2);
+					transIndex++;
+				}else {
+					displayText += letter;
+				}
 				transIndex++;
 			}
 			else {
@@ -50,6 +56,27 @@ public class Radio{
 	
 	public String getDisplayText() {
 		return displayText;
+	}
+	
+	public ArrayList<String> getDisplayTexto() {
+		ArrayList<String> formatted = new ArrayList<String>();
+		String[] words = displayText.split(" ");
+		String row = "";
+		int rowLimit = 38;
+		int numChars = 0;
+		for(int i = 0; i < words.length; i++) {
+			if(numChars + words[i].length() < rowLimit) {
+				row += words[i]; row += " ";
+				numChars += words[i].length() + 1;
+			}else {
+				formatted.add(row);
+				row = "";
+				numChars = 0;
+				i--;
+			}
+		}
+		if(!row.isEmpty()) {formatted.add(row);}
+		return formatted;
 	}
 	
 	//Mutate

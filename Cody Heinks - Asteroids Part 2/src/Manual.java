@@ -48,8 +48,9 @@ public class Manual {
 	public static final int maxAstVel = 5;
 	
 	//HUD
-	public static final Font radioFont = new Font(null, Font.PLAIN, 50);
-	public static final int radioTextDelay = 10;
+	public static final Color HUDborder = new Color(128, 128, 42);
+	public static final Font radioFont = new Font(null, Font.PLAIN, 36);
+	public static final int radioTextDelay = 4;
 	
 	//Methods
 	
