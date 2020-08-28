@@ -61,8 +61,9 @@ public class Space extends JPanel{
 		drawBackground(g);
 		checkBounds(g);
 		drawSpace(g);
-		drawField(g);
 		drawPlayer(g, elite);
+		drawField(g);
+		
 		mainHUD.display(g, rect.x, rect.y);
 		Toolkit.getDefaultToolkit().sync();
 	}
