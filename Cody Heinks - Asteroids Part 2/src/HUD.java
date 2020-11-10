@@ -13,6 +13,7 @@ public class HUD { //-47 from bottom, 10 border from edge
 	private int radioY;
 	private int spacing = Manual.radioFont.getSize();
 	
+	private Nav nav;
 	
 	public HUD() {
 		radio = new Radio();
@@ -31,6 +32,7 @@ public class HUD { //-47 from bottom, 10 border from edge
 		x0 = x;
 		y0 = y;
 		drawRadio(g);
+		nav.track(g);
 	}
 	
 	private void drawRadio(Graphics g) {
@@ -48,5 +50,7 @@ public class HUD { //-47 from bottom, 10 border from edge
 		}
 //		g.drawString(radio.getDisplayText(), x0 + radioX, y0 + radioY);
 	}
+	
+	public void addNav(Nav n) {nav=n;}
 
 }

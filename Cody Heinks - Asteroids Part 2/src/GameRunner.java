@@ -19,6 +19,7 @@ public class GameRunner {
 	private ArrayList<Asteroid> asteroids;
 	private Player player1;
 	private HUD mainHUD;
+	private Nav nav;
 
 	public GameRunner() {
 		initializeGame();
@@ -85,6 +86,8 @@ public class GameRunner {
 	}
 	private void makeHUD() {
 		mainHUD = new HUD();
+		nav = new Nav(player1);
+		mainHUD.addNav(nav);
 		mainSpace.addHUD(mainHUD);
 	}
 	

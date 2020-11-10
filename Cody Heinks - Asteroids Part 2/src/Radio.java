@@ -65,17 +65,17 @@ public class Radio{ //30 character limit?
 		int rowLimit = 38;
 		int numChars = 0;
 		for(int i = 0; i < words.length; i++) {
-			if(numChars + words[i].length() < rowLimit) {
+			if(numChars + words[i].length() < rowLimit) { //if there is enough space, keep the next word
 				row += words[i]; row += " ";
 				numChars += words[i].length() + 1;
-			}else {
+			}else { //otherwise reset and try again
 				formatted.add(row);
 				row = "";
 				numChars = 0;
 				i--;
 			}
 		}
-		if(!row.isEmpty()) {formatted.add(row);}
+		if(!row.isEmpty()) {formatted.add(row);} //finish off the last row
 		return formatted;
 	}
 	

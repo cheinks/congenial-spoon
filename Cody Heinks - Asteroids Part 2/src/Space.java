@@ -15,7 +15,7 @@ public class Space extends JPanel{
 	private int offsetY;
 	private Point loc = new Point(); //position of the graphics context
 	private Rectangle bounds; //the total game area
-	private Rectangle rect;
+	private Rectangle rect; //the visible area
 	
 	private Player explorer;
 	private Color explColor;
